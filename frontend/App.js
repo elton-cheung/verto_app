@@ -38,6 +38,12 @@ export default class Terms extends Component {
   }
 
 
+  onPress = () => {
+    this.setState({
+      accepted: true
+    })
+  }
+
   render() {
     return (
         <ScrollView style={styles.container}>
@@ -77,7 +83,7 @@ export default class Terms extends Component {
             nulla. Odio eu feugiat pretium nibh ipsum consequat nisl vel pretium.
         </Text>
       
-        <TouchableOpacity style={styles.button} onPress={ ()=>alert("Terms and conditions accepted") }><Text>Accept</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={ ()=>alert("Terms and conditions accepted") & this.onPress() }><Text>Accept</Text></TouchableOpacity>
       
       
       
