@@ -44,13 +44,13 @@ class SignLogIn extends React.Component {
         </View>
 
     <View style={styles.logInInput}>
-    <TouchableHighlight style={styles.buttonLog}>
+    <TouchableHighlight style={styles.buttonLog} onPress={ ()=>alert("Pressed LogIn")  }>
                     <Text>Log In</Text>
     </TouchableHighlight>
     </View>
 
     <View style={styles.signInInput}>
-    <TouchableHighlight style={styles.buttonSign}>
+    <TouchableHighlight style={styles.buttonSign} onPress={ ()=>alert("Pressed Signup")  }> 
                     <Text>Sign Up</Text>
     </TouchableHighlight>
     </View >
