@@ -3,23 +3,11 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {AddProductContainer} from './components/views/AddProduct';
+import {SplashScreen} from './components/views/SplashScreen';
+
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-class HomeScreen extends React.Component {
-  render() {
-    return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Text>Home!</Text>
-      </View>
-    );
-  }
-}
 
 class SettingsScreen extends React.Component {
   render() {
@@ -34,8 +22,8 @@ export default class App extends React.Component {
     return (
       <NavigationContainer>
         <Tab.Navigator>
-          <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen name="Settings" component={SettingsScreen} />
+          <Tab.Screen name="Splash" component={SplashScreen} />
+          <Tab.Screen name="AddProduct" component={AddProductContainer} />
         </Tab.Navigator>
       </NavigationContainer>
     );
