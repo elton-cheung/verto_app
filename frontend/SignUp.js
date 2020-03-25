@@ -1,4 +1,3 @@
-
 import React from 'react'
 import {
   View,
@@ -24,6 +23,11 @@ class SignUp extends React.Component {
     } catch (err) {
       console.log('error signing up: ', err)
     }
+  }
+
+  completeSign(){
+    // this.signUp();
+    this.props.navigation.navigate('EmailVer');
   }
  
   render() {
@@ -72,7 +76,7 @@ class SignUp extends React.Component {
         />
         <Button
           title='Add e-mail'
-          onPress={this.signUp}
+          onPress={() => this.props.navigation.navigate('EmailVer')}
         />
         </View>
         

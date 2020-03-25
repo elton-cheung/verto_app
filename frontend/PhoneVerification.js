@@ -55,7 +55,7 @@ class PhoneVer extends React.Component {
         />
         <Button
           title='Finish Sign - Up'
-          onPress={this.signUp}
+          onPress={ () => this.props.navigation.navigate('EmailVer') }
         />
         </View>
         

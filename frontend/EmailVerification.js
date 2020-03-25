@@ -26,6 +26,11 @@ class EmailVer extends React.Component {
       console.log('error signing up: ', err)
     }
   }
+
+  completeEmail(){
+    // this.signUp;
+    this.props.navigation.navigate('PhoneVer');
+  }
  
   render() {
     return (
@@ -55,7 +60,7 @@ class EmailVer extends React.Component {
         />
         <Button
           title='Confirm Phone Number'
-          onPress={this.signUp}
+          onPress={() => this.props.navigation.navigate('PhoneVer')}
         />
         </View>
         

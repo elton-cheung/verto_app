@@ -8,7 +8,7 @@ import {
   Image
 } from 'react-native'
 
-class logIn extends React.Component {
+class LogIn extends React.Component {
   state = {
     username: '', password: ''
   }
@@ -17,12 +17,10 @@ class logIn extends React.Component {
   }
   logIn = async () => {
     const { username, password} = this.state
+  }
 
   render() {
     return (
-
-
-
       <View style={styles.container}>
         <View style={styles.header}>
         <Image
@@ -93,4 +91,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default logIn;
+export default LogIn;

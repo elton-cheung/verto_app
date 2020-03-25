@@ -14,7 +14,13 @@ const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
       contentSize.height - paddingToBottom;
 };
 
+const pressHandler = () => {
+    
+}
+
 class TermsAndConditions extends Component{
+
+
 
   state = {
     // State to maintain whether the user has accepted the terms and conditions -> will send to database
@@ -55,7 +61,7 @@ Unauthorised use of this website may give rise to a claim for damages and/or be 
                 <Text style={styles.tcP}>The use of this website is subject to the following terms of use</Text>
             </ScrollView>
 
-            <TouchableOpacity disabled={ !this.state.accepted } onPress={ ()=>alert("Terms and conditions accepted")  } style={ this.state.accepted ? styles.button : styles.buttonDisabled }><Text style={styles.buttonLabel}>Accept</Text></TouchableOpacity>
+            <TouchableOpacity disabled={ !this.state.accepted } onPress={ ()=> this.props.navigation.navigate('SignLog')  } style={ this.state.accepted ? styles.button : styles.buttonDisabled }><Text style={styles.buttonLabel}>Accept</Text></TouchableOpacity>
       </View>
     );
   }
