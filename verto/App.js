@@ -8,13 +8,6 @@ import {SplashScreen} from './components/views/SplashScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-
-class SettingsScreen extends React.Component {
-  render() {
-    return <AddProductContainer />;
-  }
-}
-
 const Tab = createBottomTabNavigator();
 
 export default class App extends React.Component {
