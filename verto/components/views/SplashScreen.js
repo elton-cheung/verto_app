@@ -1,9 +1,6 @@
 import React, {useState} from 'react';
 import { View, StyleSheet, FlatList, Text , Image, SafeAreaView} from 'react-native';
-import { Header } from 'react-native-elements';
-//import { Products } from './components/Products';
-// import {Item} from './components/Item';
-//add item function
+import { Header, Card, ListItem, Button, Icon } from 'react-native-elements'
 
 export class SplashScreen extends React.Component {
   render() {
@@ -25,88 +22,76 @@ export class SplashScreen extends React.Component {
 }
 
 function Welcome() {
-  return <Text style={{fontWeight: 'bold'}}>Welcome back, Jennie!</Text>;
+  return <Text style={styles.welcome}>Welcome back, Jennie!</Text>;
 }
 
-//need to move Products page to its own js file
-
-
-
-
-
 {/* Placeholder items */}
-
 const DATA = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    name: "Iphone 11 Used",
-    photoUrl: "./assets/images/iphone11.jpg"
+    itemName: 'Iphone 11 Used',
+    photoSrc: '../../assets/images/iphone11.jpg',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    name: "Men's Coat",
-    photoUrl: "./assets/images/mens_coat.jpeg"
+    itemName: 'Mens Coat',
+    photoSrc: '../../assets/images/mens_coat.jpeg',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    name: "Minifridge Used",
-    photoUrl: "./assets/images/iphone11.jpg"
+    itemName: 'Minifridge Used',
+    photoSrc: '../../assets/images/mens_coat.jpeg',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   },
 ];
 
-
-const Iphone = {
-    name: "Iphone 11 Used",
-    photoUrl: "./assets/images/iphone11.jpg"
-}
-const Coat = {
-  name: "Men's Coat",
-  photoUrl: "./assets/images/mens_coat.jpeg"
-}
-const Minifridge = {
-  name: "Minifridge Used",
-  photoUrl: "./assets/images/iphone11.jpg"
-}
-
-function Item({name}) {
+function Item({ name, photoSrc }) {
   return (
-  <View>
-    <Image source={require('verto/assets/images/mens_coat.jpeg')}/>
-    <Text>{props.name}</Text>
-  </View>
+    <View style={styles.item}>
+      {/* <Text style={styles.itemName}>{name}</Text>
+      <Image></Image> */}
+      <Card 
+        title={name}
+        image={require('../../assets/images/iphone11.jpg')}>
+      <Text style={{marginBottom: 10}}>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </Text>
+      <Button
+        buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+        title='VIEW NOW' />
+      </Card>
+    </View>
+  );
+}
+
+function Products() {
+  return (
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={DATA}
+        renderItem={({ item }) => <Item name={item.itemName} photoSrc={item.photoSrc} description={item.description} />}
+        keyExtractor={item => item.id}
+      />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex:1
-  }
+    flex: 1,
+    },
+  welcome: {
+    fontSize:20,
+    padding:20,
+  },
+  item: {
+    padding: 10,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  itemName: {
+    fontSize: 15,
+  },
 });
-
-function Products() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <FlatList 
-         renderItem={({ item }) => <Item title={item.title} />}
-         
-      />
-
-    </SafeAreaView>
-    
-
-    // <View>
-    //   <Item 
-    //     name = {Iphone.name}
-    //     photoUrl = {Iphone.photoUrl}
-    //   />
-    //   <Item 
-    //     name = {Coat.name}
-    //     photoUrl = {Coat.photoUrl}
-    //   />
-    //   <Item 
-    //     name = {Minifridge.name}
-    //     photoUrl = {Minifridge.photoUrl}
-    //   />
-    // </View>
-    );
-}
