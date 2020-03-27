@@ -1,24 +1,44 @@
-/* eslint-disable react-native/no-inline-styles */
+import React, {Component} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  Link,
+} from 'react-native';
+import HomeStack from './components/views/navigation/HomeStack';
 
-import React from 'react';
-import {View, Text} from 'react-native';
-import {AddProductContainer} from './components/views/AddProduct';
-import {SplashScreen} from './components/views/SplashScreen';
+// Style part of this apge
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 20,
+    marginLeft: 15,
+    marginRight: 15,
+  },
+  bigBlue: {
+    color: 'blue',
+    fontWeight: 'bold',
+    fontSize: 30,
+  },
+  red: {
+    color: 'red',
+    fontSize: 50,
+  },
+  heading: {
+    fontSize: 50,
+  },
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+    marginTop: 12,
+    marginBottom: 12,
+  },
+});
 
-import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
-const Tab = createBottomTabNavigator();
-
-export default class App extends React.Component {
+export default class App extends Component {
   render() {
-    return (
-      <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen name="Home" component={SplashScreen} />
-          <Tab.Screen name="AddProduct" component={AddProductContainer} />
-        </Tab.Navigator>
-      </NavigationContainer>
-    );
+    return <HomeStack />;
   }
 }

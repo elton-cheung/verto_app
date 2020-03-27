@@ -1,1 +1,59 @@
+# OSX
+#
 .DS_Store
+
+# Xcode
+#
+verto/build/
+verto/*.pbxuser
+verto/!default.pbxuser
+verto/*.mode1v3
+verto/!default.mode1v3
+verto/*.mode2v3
+verto/!default.mode2v3
+verto/*.perspectivev3
+verto/!default.perspectivev3
+verto/xcuserdata
+verto/*.xccheckout
+verto/*.moved-aside
+verto/DerivedData
+verto/*.hmap
+verto/*.ipa
+verto/*.xcuserstate
+
+# Android/IntelliJ
+#
+verto/build/
+verto/.idea
+verto/.gradle
+verto/local.properties
+verto/*.iml
+
+# node.js
+#
+verto/node_modules/
+verto/npm-debug.log
+verto/yarn-error.log
+
+# BUCK
+verto/buck-out/
+verto/\.buckd/
+verto/*.keystore
+verto/!debug.keystore
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+
+verto/*/fastlane/report.xml
+verto/*/fastlane/Preview.html
+verto/*/fastlane/screenshots
+
+# Bundle artifact
+verto/*.jsbundle
+
+# CocoaPods
+verto//ios/Pods/
