@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     padding: 3,
     marginBottom: 5,
-  }
+  },
 });
 
 const data = {
@@ -51,23 +51,16 @@ export default class DetailsScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        
-        
-        
-        <Text style = {styles.title}>{data.title}</Text>
-        <Image source={data.photoSrc} 
-          style = {styles.image}
-        />
-        <Text style = {styles.user}>Sold By: {data.user}</Text>
-        
-        <Text style = {{fontSize: 14}}>Description:</Text>
-        <Text style = {styles.description}>{data.description}</Text>
-        <Text style = {styles.price}>${data.price}</Text>
+        <Text style={styles.title}>{data.title}</Text>
+        <Image source={data.photoSrc} style={styles.image} />
+        <Text style={styles.user}>Sold By: {data.user}</Text>
+
+        <Text style={{fontSize: 14}}>Description:</Text>
+        <Text style={styles.description}>{data.description}</Text>
+        <Text style={styles.price}>${data.price}</Text>
         <Button title="Buy Now" />
         <Button title="Counter Offer" />
       </View>
     );
   }
 }
-
-
