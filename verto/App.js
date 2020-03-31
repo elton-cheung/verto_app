@@ -8,8 +8,9 @@ import {
   Link,
 } from 'react-native';
 import HomeStack from './components/views/navigation/HomeStack';
+import DetailsScreen from './components/views/DetailsScreen';
 
-// Style part of this apge
+// Style part of this page
 const styles = StyleSheet.create({
   container: {
     marginTop: 20,
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
 
 export default class App extends Component {
   render() {
-    return <HomeStack />;
+    //return <HomeStack />;
+    return <DetailsScreen/>;
   }
 }
