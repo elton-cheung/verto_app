@@ -6,6 +6,7 @@ class LogIn extends React.Component {
     username: '',
     password: '',
   };
+  
   onChangeText = (key, val) => {
     this.setState({[key]: val});
   };
