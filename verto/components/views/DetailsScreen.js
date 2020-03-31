@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {Button, View, Text, StyleSheet, Image} from 'react-native';
 
 const data = {
   price: 12.6,
@@ -19,6 +19,9 @@ export default class DetailsScreen extends React.Component {
         <Image source={data.photoSrc} />
         <Text>Description:</Text>
         <Text>{data.description}</Text>
+
+        <Button title="Buy Now" />
+        <Button title="Counter Offer" />
       </View>
     );
   }
