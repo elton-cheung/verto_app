@@ -6,6 +6,7 @@ class LogIn extends React.Component {
     username: '',
     password: '',
   };
+  
   onChangeText = (key, val) => {
     this.setState({[key]: val});
   };
@@ -41,9 +42,9 @@ class LogIn extends React.Component {
         </View>
 
         <Button
-            title="Login"
-            onPress={() => this.props.navigation.navigate('Redirect')}
-          />
+          title="Login"
+          onPress={() => this.props.navigation.navigate('Redirect')}
+        />
       </View>
     );
   }

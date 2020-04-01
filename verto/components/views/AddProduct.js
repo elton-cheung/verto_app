@@ -5,25 +5,6 @@ import {Button} from 'react-native-elements';
 import t from 'tcomb-form-native';
 import ImagePicker from 'react-native-image-picker';
 
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    padding: 20,
-    backgroundColor: '#fff',
-    flex: 1,
-  },
-  image: {
-    alignSelf: 'center',
-    height: 200,
-    width: 200,
-    padding: 2,
-    borderRadius: 20,
-    marginBottom: 20,
-    borderStyle: 'dotted',
-    borderWidth: 1,
-  },
-});
-
 const Location = t.enums({
   Boston_College: 'Boston College',
   Boston_University: 'Boston University',
@@ -72,7 +53,13 @@ const Form = t.form.Form;
 class AddProductContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {source: '../../assets/images/upload_photo.png'};
+    this.state = {
+      source1: '../../assets/images/upload_photo.png',
+      source2: '../../assets/images/upload_photo.png',
+      source3: '../../assets/images/upload_photo.png',
+      source4: '../../assets/images/upload_photo.png',
+      source5: '../../assets/images/upload_photo.png',
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -92,40 +79,68 @@ class AddProductContainer extends React.Component {
         console.log('User tapped custom button: ', response.customButton);
       } else {
         this.setState({
-          source: response.uri,
+          source1: response.uri,
         });
       }
     });
   };
 
   render() {
-    const userInputImage =
-      this.state.source === '../../assets/images/upload_photo.png';
-    let image;
-    if (userInputImage) {
-      image = (
+    let mainImage;
+    if (this.state.source1 === '../../assets/images/upload_photo.png') {
+      mainImage = (
         <Image
           source={require('../../assets/images/upload_photo.png')}
-          style={styles.image}
+          style={styles.mainImage}
         />
       );
     } else {
-      image = <Image source={{uri: this.state.source}} style={styles.image} />;
+      mainImage = (
+        <Image source={{uri: this.state.source1}} style={styles.mainImage} />
+      );
     }
 
     return (
       <View style={styles.container}>
-        {image}
-        <Button
-          title="Select Image"
-          onPress={this.selectImage}
-          style={{marginBottom: 10}}
-        />
-        <Form options={formOptions} type={Item} ref={c => (this._form = c)} />
-        <Button title="Submit" type="solid" onPress={this.handleSubmit} />
+        <View style={styles.imageContainer}>
+          {mainImage}
+          {/* <View style={styles.imagesLeftColumn}>
+            {secondaryImage1}
+            {secondaryImage2}
+          </View>
+          <View style={styles.imagesRightColumn}>
+            {secondaryImage3}
+            {secondaryImage4}
+          </View> */}
+        </View>
+        <View style={styles.form}>
+          <Button title="Select Image" onPress={this.selectImage} />
+          <Form options={formOptions} type={Item} ref={c => (this._form = c)} />
+          <Button title="Submit" type="solid" onPress={this.handleSubmit} />
+        </View>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#fff',
+  },
+  mainImage: {
+    padding: 2,
+    alignSelf: 'center',
+    height: 200,
+    width: 200,
+    borderRadius: 20,
+    borderWidth: 1,
+  },
+  imageContainer: {
+    marginBottom: 15,
+  },
+});
 
 export {AddProductContainer};
