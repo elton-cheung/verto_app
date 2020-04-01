@@ -29,22 +29,21 @@ class LogIn extends React.Component {
             style={styles.input}
             placeholder="Username"
             autoCapitalize="none"
-            placeholderTextColor="white"
+            placeholderTextColor="grey"
             onChangeText={val => this.onChangeText('username', val)}
           />
           <TextInput
             style={styles.input}
             placeholder="Password"
             autoCapitalize="none"
-            placeholderTextColor="white"
+            placeholderTextColor="grey"
             onChangeText={val => this.onChangeText('passwprd', val)}
           />
-        </View>
-
-        <Button
+          <Button
           title="Login"
           onPress={() => this.props.navigation.navigate('Redirect')}
         />
+        </View>
       </View>
     );
   }
@@ -57,18 +56,20 @@ class LogIn extends React.Component {
 
 const styles = StyleSheet.create({
   input: {
-    width: 350,
-    height: 55,
-    backgroundColor: '#42A5F5',
-    margin: 20,
-    padding: 8,
-    color: 'white',
-    borderRadius: 14,
-    fontSize: 18,
-    fontWeight: '500',
+    width: 290,
+    height: 45,
+    backgroundColor: '#fff',
+    margin: 15,
+    padding: 12,
+    color: 'black',
+    borderRadius: 30,
+    fontSize: 14,
+    fontWeight: '400',
+    borderColor: 'grey',
+    borderWidth: 1.5
   },
   header: {
-    flex: 2,
+    flex: 3,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -76,14 +77,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white'
   },
   image: {
-    aspectRatio: 0.8,
+    aspectRatio: 0.9,
     resizeMode: 'contain',
   },
   otherInput: {
-    flex: 8,
-    justifyContent: 'center',
+    flex: 4,
+    alignItems: 'flex-start',
+    // justifyContent: 'center',
     alignItems: 'center',
   },
 });

@@ -41,19 +41,32 @@ class SignLogIn extends React.Component {
         </View>
 
         <View style={styles.logInInput}>
-          <TouchableHighlight
+          <Button style={styles.buttonLog}
+            title = "Log In"
+            onPress={() => this.props.navigation.navigate('LogIn')}
+          />
+
+          {/* <TouchableHighlight
             style={styles.buttonLog}
             onPress={() => this.props.navigation.navigate('LogIn')}>
             <Text>Log In</Text>
-          </TouchableHighlight>
+          </TouchableHighlight> */}
         </View>
 
         <View style={styles.signInInput}>
-          <TouchableHighlight
+          <Button style={styles.buttonSign}
+            title = "Sign Up"
+            onPress={() => this.props.navigation.navigate('SignUp')}
+          />
+          {/* <TouchableHighlight
             style={styles.buttonSign}
             onPress={() => this.props.navigation.navigate('SignUp')}>
             <Text>Sign Up</Text>
-          </TouchableHighlight>
+          </TouchableHighlight> */}
+        </View>
+
+        <View style={styles.blank}>
+          {/* planning to use this space for something maybe? -Jennie */}
         </View>
       </View>
     );
@@ -74,39 +87,39 @@ const styles = StyleSheet.create({
     padding: 8,
     color: 'white',
     borderRadius: 14,
-    fontSize: 18,
+    fontSize: 10,
     fontWeight: '500',
   },
   buttonLog: {
     alignSelf: 'stretch',
-    backgroundColor: '#42A5F5',
+    backgroundColor: "#4d94ff",
     margin: 20,
     padding: 8,
-    color: 'white',
+    color: '#F5F5F5',
     borderRadius: 14,
     fontSize: 18,
     fontWeight: '500',
-    height: 300,
+    height: 50,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
   buttonSign: {
     alignSelf: 'stretch',
-    backgroundColor: 'pink',
+    backgroundColor: '#ffda5c',
     margin: 20,
     padding: 8,
-    color: 'white',
+    color: '#ffffff',
     borderRadius: 14,
     fontSize: 18,
     fontWeight: '500',
-    height: 300,
+    height: 50,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
   header: {
-    flex: 2,
+    flex: 3,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -114,27 +127,31 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white'
   },
   image: {
-    aspectRatio: 0.8,
+    aspectRatio: .9,
     resizeMode: 'contain',
   },
   logInInput: {
-    flex: 4,
-    backgroundColor: 'steelblue',
+    flex: 1,
+    backgroundColor: 'white',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'stretch',
     alignSelf: 'stretch',
   },
   signInInput: {
-    flex: 4,
-    backgroundColor: 'red',
+    flex: 1,
+    backgroundColor: 'white',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'stretch',
     alignSelf: 'stretch',
   },
+  blank: {
+    flex: 2,
+  }
 });
 
 export default SignLogIn;

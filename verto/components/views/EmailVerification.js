@@ -40,17 +40,17 @@ class EmailVer extends React.Component {
         <View style={styles.otherInput}>
           <TextInput
             style={styles.input}
-            placeholder="e-mail"
+            placeholder="E-mail"
             autoCapitalize="none"
-            placeholderTextColor="white"
+            placeholderTextColor="grey"
             onChangeText={val => this.onChangeText('email', val)}
           />
           <TextInput
             style={styles.input}
-            placeholder="confirm e-mail"
+            placeholder="Confirm E-mail"
             secureTextEntry={true}
             autoCapitalize="none"
-            placeholderTextColor="white"
+            placeholderTextColor="grey"
             onChangeText={val => this.onChangeText('confemail', val)}
           />
           <Button
@@ -70,18 +70,20 @@ class EmailVer extends React.Component {
 
 const styles = StyleSheet.create({
   input: {
-    width: 350,
-    height: 50,
-    backgroundColor: '#42A5F5',
-    margin: 20,
-    padding: 8,
-    color: 'white',
-    borderRadius: 14,
-    fontSize: 18,
-    fontWeight: '500',
+    width: 290,
+    height: 45,
+    backgroundColor: '#fff',
+    margin: 15,
+    padding: 12,
+    color: 'black',
+    borderRadius: 30,
+    fontSize: 14,
+    fontWeight: '400',
+    borderColor: 'grey',
+    borderWidth: 1.5
   },
   header: {
-    flex: 2,
+    flex: 3,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -89,14 +91,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white'
   },
   image: {
-    aspectRatio: 0.8,
+    aspectRatio: 0.9,
     resizeMode: 'contain',
   },
   otherInput: {
-    flex: 8,
-    justifyContent: 'center',
+    flex: 4,
+    alignItems: 'flex-start',
+    // justifyContent: 'center',
     alignItems: 'center',
   },
 });

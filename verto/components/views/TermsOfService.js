@@ -7,13 +7,7 @@
 
 */
 import React, {Component} from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Text, ScrollView, Dimensions, TouchableOpacity, } from 'react-native';
 
 const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
   const paddingToBottom = 20;
@@ -137,7 +131,7 @@ const {width, height} = Dimensions.get('window');
 
 const styles = {
   container: {
-    marginTop: 80,
+    marginTop: 20,
     marginLeft: 10,
     marginRight: 10,
   },
@@ -175,7 +169,7 @@ const styles = {
   },
 
   buttonLabel: {
-    fontSize: 14,
+    fontSize: 20,
     color: '#FFF',
     alignSelf: 'center',
   },

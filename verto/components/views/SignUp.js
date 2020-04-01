@@ -41,22 +41,22 @@ class SignUp extends React.Component {
             style={styles.input}
             placeholder="First Name"
             autoCapitalize="none"
-            placeholderTextColor="white"
+            placeholderTextColor="grey"
             onChangeText={val => this.onChangeText('firstname', val)}
           />
           <TextInput
             style={styles.input}
             placeholder="Last Name"
-            secureTextEntry={true}
             autoCapitalize="none"
-            placeholderTextColor="white"
+            placeholderTextColor="grey"
             onChangeText={val => this.onChangeText('lastname', val)}
           />
           <TextInput
             style={styles.input}
             placeholder="Password"
+            secureTextEntry={true}
             autoCapitalize="none"
-            placeholderTextColor="white"
+            placeholderTextColor="grey"
             onChangeText={val => this.onChangeText('passwprd', val)}
           />
 
@@ -64,11 +64,13 @@ class SignUp extends React.Component {
             style={styles.input}
             placeholder="Confirm Password"
             autoCapitalize="none"
-            placeholderTextColor="white"
+            secureTextEntry={true}
+            placeholderTextColor="grey"
             onChangeText={val => this.onChangeText('confpassword', val)}
           />
+
           <Button
-            title="Add e-mail"
+            title="Add E-mail"
             onPress={() => this.props.navigation.navigate('EmailVer')}
           />
         </View>
@@ -84,33 +86,35 @@ class SignUp extends React.Component {
 
 const styles = StyleSheet.create({
   input: {
-    width: 350,
-    height: 55,
-    backgroundColor: '#42A5F5',
-    margin: 20,
-    padding: 8,
-    color: 'white',
-    borderRadius: 14,
-    fontSize: 18,
-    fontWeight: '500',
+    width: 290,
+    height: 45,
+    backgroundColor: '#fff',
+    margin: 15,
+    padding: 12,
+    color: 'black',
+    borderRadius: 30,
+    fontSize: 14,
+    fontWeight: '400',
+    borderColor: 'grey',
+    borderWidth: 1.5
   },
   header: {
-    flex: 2,
+    flex: 3,
     justifyContent: 'center',
-    alignItems: 'center',
   },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white'
   },
   image: {
-    aspectRatio: 0.8,
+    aspectRatio: 0.9,
     resizeMode: 'contain',
   },
   otherInput: {
-    flex: 8,
-    justifyContent: 'center',
+    flex: 4,
+    alignItems: 'flex-start',
     alignItems: 'center',
   },
 });
