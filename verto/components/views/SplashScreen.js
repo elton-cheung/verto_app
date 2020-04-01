@@ -6,14 +6,6 @@ export class SplashScreen extends React.Component {
   render() {
     return (
     <View style={styles.container}>
-      <Header
-        backgroundColor= '#fff'
-        // leftComponent={color: '#000'}}
-        //TODO: create VERTO icon to add here
-        centerComponent={{text: 'VERTO', style: {color: '#000'} }}
-        // rightComponent={{icon: 'favorite', color:'#000'}}
-      />
-      {/* Products componet contains cards for each item listing */}
       <Welcome />
       <Products />
     </View>
@@ -55,9 +47,9 @@ function Item({ name, photoSrc }) {
       <Card 
         title={name}
         image={require('../../assets/images/iphone11.jpg')}>
-      <Text style={{marginBottom: 10}}>
+      {/* <Text style={{marginBottom: 10}}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      </Text>
+      </Text> */}
       <Button
         buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
         title='VIEW NOW' />
