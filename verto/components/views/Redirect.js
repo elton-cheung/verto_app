@@ -10,7 +10,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator();
 
-export default class Redirect extends React.Component {
+export default class Verto extends React.Component {
   render() {
     return (
       <NavigationContainer>

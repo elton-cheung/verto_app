@@ -6,7 +6,7 @@ import TermsAndConditions from '../TermsOfService';
 import SignLogIn from '../SignLogIn';
 import EmailVer from '../EmailVerification';
 import PhoneVer from '../PhoneVerification';
-import Redirect from '../Redirect';
+import Verto from '../Redirect';
 import DetailsScreen from '../DetailsScreen';
 import {SplashScreen} from '../SplashScreen';
 
@@ -29,8 +29,8 @@ const screens = {
   PhoneVer: {
     screen: PhoneVer,
   },
-  Redirect: {
-    screen: Redirect,
+  Verto: {
+    screen: Verto,
   },
 };
 

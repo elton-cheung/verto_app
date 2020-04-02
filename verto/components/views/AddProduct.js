@@ -4,6 +4,7 @@ import {View, Image, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 import t from 'tcomb-form-native';
 import ImagePicker from 'react-native-image-picker';
+import bootstrap from 'tcomb-form-native/lib/stylesheets/bootstrap.js';
 
 const Location = t.enums({
   Boston_College: 'Boston College',
@@ -22,6 +23,7 @@ const Item = t.struct({
 });
 
 const formOptions = {
+  stylesheet: bootstrap,
   fields: {
     item: {
       error: 'Item name required.',
@@ -36,6 +38,18 @@ const formOptions = {
       error: 'Price required.',
     },
   },
+};
+
+formOptions.stylesheet.textbox.normal = {
+  borderWidth: 0,
+  marginBottom: 0,
+  fontSize: 18,
+  padding: 3,
+};
+formOptions.stylesheet.textboxView.normal = {
+  borderWidth: 1,
+  borderRadius: 5,
+  marginBottom: 4,
 };
 
 const imagePickerOptions = {
@@ -114,9 +128,9 @@ class AddProductContainer extends React.Component {
           </View> */}
         </View>
         <View style={styles.form}>
-          <Button title="Select Image" onPress={this.selectImage} />
+          <Button title="Select Image" onPress={this.selectImage} style={styles.selectImage}/>
           <Form options={formOptions} type={Item} ref={c => (this._form = c)} />
-          <Button title="Submit" type="solid" onPress={this.handleSubmit} />
+          <Button title="Submit" type="solid" onPress={this.handleSubmit} style={styles.submit} />
         </View>
       </View>
     );
@@ -141,6 +155,27 @@ const styles = StyleSheet.create({
   imageContainer: {
     marginBottom: 15,
   },
+  input: {
+    width: 290,
+    height: 45,
+    backgroundColor: '#fff',
+    margin: 15,
+    padding: 12,
+    color: 'black',
+    borderRadius: 30,
+    fontSize: 14,
+    fontWeight: '400',
+    borderColor: 'grey',
+    borderWidth: 1.5,
+  },
+  submit: {
+    width: 150,
+    alignSelf: 'flex-end',
+  },
+  selectImage: {
+    width: 150,
+    alignSelf: 'center',
+  }
 });
 
 export {AddProductContainer};

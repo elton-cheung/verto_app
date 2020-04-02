@@ -10,6 +10,7 @@ import {
 import HomeStack from './components/views/navigation/HomeStack';
 
 // Does this actually do anything? -Jennie
+// I had the same thought but did not want to delete lol - Elton
 
 // // Style part of this page
 // const styles = StyleSheet.create({
