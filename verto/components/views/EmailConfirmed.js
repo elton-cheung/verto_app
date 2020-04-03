@@ -2,6 +2,7 @@
 import React from 'react';
 import {View, Button, TextInput, StyleSheet, Image, Text} from 'react-native';
 import { Icon } from 'react-native-elements';
+// import styles from './style/emailConfirmedStyle.js';
 
 class EmailConfirmed extends React.Component {
   state = {
@@ -57,30 +58,30 @@ class EmailConfirmed extends React.Component {
 
 const styles = StyleSheet.create({
   header: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  body: {
-    flex: 4,
-    justifyContent: 'center'
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white'
-  },
-  otherInput: {
-    flex: 1,
-    alignItems: 'flex-start',
-    // justifyContent: 'center',
-    alignItems: 'center',
-  },
-  image: {
-    aspectRatio: 0.9,
-    resizeMode: 'contain',
-  },
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    body: {
+      flex: 4,
+      justifyContent: 'center'
+    },
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'white'
+    },
+    otherInput: {
+      flex: 1,
+      alignItems: 'flex-start',
+      // justifyContent: 'center',
+      alignItems: 'center',
+    },
+    image: {
+      aspectRatio: 0.9,
+      resizeMode: 'contain',
+    },
 });
 
 export default EmailConfirmed;

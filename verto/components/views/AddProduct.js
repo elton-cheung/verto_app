@@ -5,6 +5,7 @@ import {Button} from 'react-native-elements';
 import t from 'tcomb-form-native';
 import ImagePicker from 'react-native-image-picker';
 import bootstrap from 'tcomb-form-native/lib/stylesheets/bootstrap.js';
+// import styles from './style/addProductStyle.js';
 
 const Location = t.enums({
   Boston_College: 'Boston College',

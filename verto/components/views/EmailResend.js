@@ -2,6 +2,7 @@
 import React from 'react';
 import {View, Button, TextInput, StyleSheet, Image, Text} from 'react-native';
 import { Icon } from 'react-native-elements';
+// import styles from './style/emailConfirmedStyle.js';
 
 class EmailResend extends React.Component {
   state = {
