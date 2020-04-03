@@ -53,20 +53,20 @@ class SignUp extends React.Component {
           />
           <TextInput
             style={styles.input}
-            placeholder="Password"
-            secureTextEntry={true}
+            placeholder="E-mail"
+            // secureTextEntry={true}
             autoCapitalize="none"
             placeholderTextColor="grey"
-            onChangeText={val => this.onChangeText('passwprd', val)}
+            onChangeText={val => this.onChangeText('password', val)}
           />
 
           <TextInput
             style={styles.input}
-            placeholder="Confirm Password"
+            placeholder="Password"
             autoCapitalize="none"
             secureTextEntry={true}
             placeholderTextColor="grey"
-            onChangeText={val => this.onChangeText('confpassword', val)}
+            onChangeText={val => this.onChangeText('password', val)}
           />
 
           <Button
