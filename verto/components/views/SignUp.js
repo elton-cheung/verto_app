@@ -53,7 +53,7 @@ class SignUp extends React.Component {
           />
           <TextInput
             style={styles.input}
-            placeholder="E-mail"
+            placeholder=".edu E-mail"
             // secureTextEntry={true}
             autoCapitalize="none"
             placeholderTextColor="grey"
