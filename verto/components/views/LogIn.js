@@ -1,9 +1,9 @@
 import React from 'react';
-import {View, TextInput, StyleSheet, Image, Button} from 'react-native';
+import {View, TextInput, StyleSheet, Image, Button, KeyboardAvoidingView } from 'react-native';
 
 class LogIn extends React.Component {
   state = {
-    username: '',
+    email: '',
     password: '',
   };
   
@@ -11,12 +11,12 @@ class LogIn extends React.Component {
     this.setState({[key]: val});
   };
   logIn = async () => {
-    const {username, password} = this.state;
+    const {email, password} = this.state;
   };
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container}>
         <View style={styles.header}>
           <Image
             style={styles.image}
@@ -27,10 +27,10 @@ class LogIn extends React.Component {
         <View style={styles.otherInput}>
           <TextInput
             style={styles.input}
-            placeholder="Username"
+            placeholder="Email"
             autoCapitalize="none"
             placeholderTextColor="grey"
-            onChangeText={val => this.onChangeText('username', val)}
+            onChangeText={val => this.onChangeText('email', val)}
           />
           <TextInput
             style={styles.input}
@@ -40,11 +40,24 @@ class LogIn extends React.Component {
             onChangeText={val => this.onChangeText('passwprd', val)}
           />
           <Button
+            title='Forgot Password?'
+            onPress={this.props.navigation.navigate('Verto')}
+            titleStyle={{
+              color: '#039BE5'
+            }}
+            type='clear'
+          />
+          //need to format forgot button
+          <Button
           title="Login"
           onPress={() => this.props.navigation.navigate('Verto')}
         />
+           <Button
+              title="Sign Up"
+              onPress={() => this.props.navigation.navigate('SignUp')}
+          />
         </View>
-      </View>
+      </KeyboardAvoidingView >
     );
   }
 }
