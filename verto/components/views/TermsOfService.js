@@ -118,7 +118,7 @@ class TermsAndConditions extends Component {
 
         <TouchableOpacity
           disabled={!this.state.accepted}
-          onPress={() => this.props.navigation.navigate('SignLog')}
+          onPress={() => this.props.navigation.navigate('Onboard')}
           style={this.state.accepted ? styles.button : styles.buttonDisabled}>
           <Text style={styles.buttonLabel}>Accept</Text>
         </TouchableOpacity>
