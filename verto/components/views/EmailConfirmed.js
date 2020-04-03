@@ -2,14 +2,12 @@
 import React from 'react';
 import {View, Button, TextInput, StyleSheet, Image, Text} from 'react-native';
 import { Icon } from 'react-native-elements';
-import styles from './style/style.js';
 
-class EmailVer extends React.Component {
+class EmailConfirmed extends React.Component {
   state = {
     email: '',
     confemail: '',
   };
-  
   onChangeText = (key, val) => {
     this.setState({[key]: val});
   };
@@ -43,15 +41,12 @@ class EmailVer extends React.Component {
 
         <View style={styles.body}>
 
-          <Text style={{textAlign: 'center', fontSize: 15}}>An E-mail has been sent to your .edu email</Text>
-          <Text style={{textAlign: 'center', fontSize: 15}}>Please click on the link provided to verify your e-mail</Text>
-          <Text style={{textAlign: 'center', fontSize: 15}}>Once you click the link,</Text>
-          <Text style={{textAlign: 'center', fontSize: 15}}>Press the verify e-mail button below</Text>
+          <Text style={{textAlign: 'center', fontSize: 15}}>Email verification failed, please click the button to re-send verification E-mail</Text>
         </View>
 
         <View style={styles.otherInput}>
           <Button
-            title="Verify Email"
+            title="Re-send Email"
             onPress={() => this.props.navigation.navigate('PhoneVer')}
           />
         </View>
@@ -60,10 +55,32 @@ class EmailVer extends React.Component {
   }
 }
 
-/*
-  TODO: Implement a function to adjust text size upon typing
+const styles = StyleSheet.create({
+  header: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  body: {
+    flex: 4,
+    justifyContent: 'center'
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white'
+  },
+  otherInput: {
+    flex: 1,
+    alignItems: 'flex-start',
+    // justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    aspectRatio: 0.9,
+    resizeMode: 'contain',
+  },
+});
 
-*/
-
-
-export default EmailVer;
+export default EmailConfirmed;

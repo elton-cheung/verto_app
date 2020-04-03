@@ -1,5 +1,7 @@
 import {createStackNavigator} from 'react-navigation-stack';
+// NavigationActions is super critical
 import {createAppContainer} from 'react-navigation';
+
 import SignUp from '../SignUp';
 import LogIn from '../LogIn';
 import TermsAndConditions from '../TermsOfService';
