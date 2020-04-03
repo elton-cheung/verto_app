@@ -10,6 +10,7 @@ import Redirect from '../Redirect';
 import DetailsScreen from '../DetailsScreen';
 import {SplashScreen} from '../SplashScreen';
 
+
 const screens = {
   Terms: {
     screen: TermsAndConditions,
