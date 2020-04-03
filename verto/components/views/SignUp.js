@@ -142,7 +142,7 @@ const styles =StyleSheet.create({
       backgroundColor: 'white'
     },
     otherInput: {
-      flex: 1,
+      flex: 2,
       alignItems: 'flex-start',
       // justifyContent: 'center',
       alignItems: 'center',

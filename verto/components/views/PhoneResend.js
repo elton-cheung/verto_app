@@ -4,7 +4,7 @@ import {View, Button, TextInput, StyleSheet, Image, Text} from 'react-native';
 import { Icon } from 'react-native-elements';
 // import styles from './style/signUpFlowStyle.js';
 
-class EmailResend extends React.Component {
+class PhoneResend extends React.Component {
   state = {
     email: '',
     confemail: '',
@@ -49,7 +49,7 @@ class EmailResend extends React.Component {
             source={require('../../assets/images/Placeholder.jpg')}
           />
         </View>
-          <Text style={{textAlign: 'center', fontSize: 15}}>Email adress verification failed</Text>
+          <Text style={{textAlign: 'center', fontSize: 15}}>Phone verification failed</Text>
           <Text style={{textAlign: 'center', fontSize: 15}}></Text>
           <Text style={{textAlign: 'center', fontSize: 15}}></Text>
           <Text style={{textAlign: 'center', fontSize: 15}}></Text>
@@ -58,8 +58,8 @@ class EmailResend extends React.Component {
 
         <View style={styles.otherInput}>
           <Button
-            title="Resend Email"
-            onPress={() => this.props.navigation.navigate('EmailConfirmed')}
+            title="Resend SMS"
+            onPress={() => this.props.navigation.navigate('PhoneConfirmed')}
           />
         </View>
       </View>
@@ -164,4 +164,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default EmailResend;
+export default PhoneResend;

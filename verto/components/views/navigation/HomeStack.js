@@ -10,6 +10,10 @@ import EmailVer from '../EmailVerification';
 import PhoneVer from '../PhoneVerification';
 import Verto from '../Redirect';
 import DetailsScreen from '../DetailsScreen';
+import EmailResend from '../EmailResend'
+import EmailConfirmed from '../EmailConfirmed'
+import PhoneResend from '../PhoneResend'
+import PhoneConfirmed from '../PhoneConfirmed'
 import {SplashScreen} from '../SplashScreen';
 
 const screens = {
@@ -28,8 +32,20 @@ const screens = {
   EmailVer: {
     screen: EmailVer,
   },
+  EmailResend: {
+    screen: EmailResend
+  },
+  EmailConfirmed: {
+    screen: EmailConfirmed
+  },
   PhoneVer: {
     screen: PhoneVer,
+  },
+  PhoneResend: {
+    screen: PhoneResend
+  },
+  PhoneConfirmed: {
+    screen: PhoneConfirmed
   },
   Verto: {
     screen: Verto,

@@ -51,7 +51,7 @@ class PhoneVer extends React.Component {
           <Button
             title="Finish Sign-Up"
             // For now I'm gonna let it navigate to Splash Screen -Jennie
-            onPress={() => this.props.navigation.navigate('Redirect')}
+            onPress={() => this.props.navigation.navigate('PhoneResend')}
           />
         </View>
       </View>

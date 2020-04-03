@@ -2,13 +2,14 @@
 import React from 'react';
 import {View, Button, TextInput, StyleSheet, Image, Text} from 'react-native';
 import { Icon } from 'react-native-elements';
-// import styles from './style/emailConfirmedStyle.js';
+// import styles from './style/signUpFlowStyle.js';
 
 class EmailConfirmed extends React.Component {
   state = {
     email: '',
     confemail: '',
   };
+  
   onChangeText = (key, val) => {
     this.setState({[key]: val});
   };
@@ -40,14 +41,24 @@ class EmailConfirmed extends React.Component {
         </View>
 
 
-        <View style={styles.body}>
 
-          <Text style={{textAlign: 'center', fontSize: 15}}>Email verification failed, please click the button to re-send verification E-mail</Text>
+        <View style={styles.body}>
+        <View style={styles.header}>
+          <Image
+            style={styles.image2}
+            source={require('../../assets/images/Placeholder.jpg')}
+          />
+        </View>
+          <Text style={{textAlign: 'center', fontSize: 15}}>Email verification success</Text>
+          <Text style={{textAlign: 'center', fontSize: 15}}></Text>
+          <Text style={{textAlign: 'center', fontSize: 15}}></Text>
+          <Text style={{textAlign: 'center', fontSize: 15}}></Text>
+
         </View>
 
         <View style={styles.otherInput}>
           <Button
-            title="Re-send Email"
+            title="Verify Phone"
             onPress={() => this.props.navigation.navigate('PhoneVer')}
           />
         </View>
@@ -56,8 +67,53 @@ class EmailConfirmed extends React.Component {
   }
 }
 
+/*
+  TODO: Implement a function to adjust text size upon typing
+
+*/
 const styles = StyleSheet.create({
-  header: {
+  buttonLog: {
+      alignSelf: 'stretch',
+      backgroundColor: "#4d94ff",
+      margin: 20,
+      padding: 8,
+      color: '#F5F5F5',
+      borderRadius: 14,
+      fontSize: 18,
+      fontWeight: '500',
+      height: 50,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    buttonSign: {
+      alignSelf: 'stretch',
+      backgroundColor: '#ffda5c',
+      margin: 20,
+      padding: 8,
+      color: '#ffffff',
+      borderRadius: 14,
+      fontSize: 18,
+      fontWeight: '500',
+      height: 50,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+  input: {
+      width: 290,
+      height: 45,
+      backgroundColor: '#fff',
+      margin: 15,
+      padding: 12,
+      color: 'black',
+      borderRadius: 30,
+      fontSize: 14,
+      fontWeight: '400',
+      borderColor: 'grey',
+      borderWidth: 1.5
+    },
+      header: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
@@ -82,6 +138,30 @@ const styles = StyleSheet.create({
       aspectRatio: 0.9,
       resizeMode: 'contain',
     },
+    image2: {
+      aspectRatio: 0.5,
+      resizeMode: 'contain',
+    },
+    logInInput: {
+      flex: 1,
+      backgroundColor: 'white',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'stretch',
+      alignSelf: 'stretch',
+    },
+    signInInput: {
+      flex: 1,
+      backgroundColor: 'white',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'stretch',
+      alignSelf: 'stretch',
+    },
+    blank: {
+      flex: 2,
+    }
 });
+
 
 export default EmailConfirmed;

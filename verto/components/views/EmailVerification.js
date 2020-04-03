@@ -41,8 +41,14 @@ class EmailVer extends React.Component {
         </View>
 
 
-        <View style={styles.body}>
 
+        <View style={styles.body}>
+        <View style={styles.header}>
+          <Image
+            style={styles.image2}
+            source={require('../../assets/images/Placeholder.jpg')}
+          />
+        </View>
           <Text style={{textAlign: 'center', fontSize: 15}}>An E-mail has been sent to your .edu email</Text>
           <Text style={{textAlign: 'center', fontSize: 15}}>Please click on the link provided to verify your e-mail</Text>
           <Text style={{textAlign: 'center', fontSize: 15}}>Once you click the link,</Text>
@@ -52,7 +58,7 @@ class EmailVer extends React.Component {
         <View style={styles.otherInput}>
           <Button
             title="Verify Email"
-            onPress={() => this.props.navigation.navigate('PhoneVer')}
+            onPress={() => this.props.navigation.navigate('EmailResend')}
           />
         </View>
       </View>
@@ -129,6 +135,10 @@ const styles = StyleSheet.create({
     },
     image: {
       aspectRatio: 0.9,
+      resizeMode: 'contain',
+    },
+    image2: {
+      aspectRatio: 0.5,
       resizeMode: 'contain',
     },
     logInInput: {
