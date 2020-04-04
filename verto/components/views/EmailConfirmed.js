@@ -59,7 +59,7 @@ class EmailConfirmed extends React.Component {
         <View style={styles.otherInput}>
           <Button
             title="Verify Phone"
-            onPress={() => this.props.navigation.navigate('PhoneVer')}
+            onPress={() => this.props.navigation.navigate('PhoneInput')}
           />
         </View>
       </View>

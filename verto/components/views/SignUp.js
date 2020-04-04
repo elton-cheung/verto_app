@@ -70,6 +70,15 @@ class SignUp extends React.Component {
             onChangeText={val => this.onChangeText('password', val)}
           />
 
+<TextInput
+            style={styles.input}
+            placeholder="Confirm Password"
+            autoCapitalize="none"
+            secureTextEntry={true}
+            placeholderTextColor="grey"
+            onChangeText={val => this.onChangeText('password', val)}
+          />
+
           <Button
             title="Add E-mail"
             onPress={() => this.props.navigation.navigate('EmailVer')}
