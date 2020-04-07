@@ -8,31 +8,43 @@ const Simple = (props) => (
   onSkip={props.navigation.navigate('SignLog')}
   onDone={props.navigation.navigate('SignLog')}
   flatlistProps={props.navigation}
-  titleStyles = {{top: 150}}
-  subTitleStyles = {{top: 155}}
+  titleStyles = {{bottom: 50}}
+  subTitleStyles = {{bottom: 50}}
   bottomBarHighlight={false}
     pages={[
       {
         backgroundColor: '#fff',
-        image: <Image
+        image: <><Image
                     style={styles.tinyLogo}
-                    source={require('../../assets/images/verto_icon.png')} />,
+                    source={require('../../assets/images/verto_icon.png')}/>
+               <Image
+                    style={styles.onboardingPic}
+                    source={require('../../assets/images/onboard1.jpg')}/>
+               </>,
         title: 'Hello!',
         subtitle: 'Welcome to Verto!',
       },
       {
         backgroundColor: '#fff',
-        image: <Image
+        image: <><Image
                     style={styles.tinyLogo}
-                    source={require('../../assets/images/verto_icon.png')} />,
-        title: 'What this does',
+                    source={require('../../assets/images/verto_icon.png')} />
+               <Image
+                    style={styles.onboardingPic}
+                    source={require('../../assets/images/onboard2.jpg')}/>
+               </>,
+        title: 'What this App does',
         subtitle: 'Here, this is how you use the app',
       },
       {
         backgroundColor: '#fff',
-        image: <Image
+        image: <><Image
                     style={styles.tinyLogo}
-                    source={require('../../assets/images/verto_icon.png')} />,
+                    source={require('../../assets/images/verto_icon.png')} />
+               <Image
+                    style={styles.onboardingPic}
+                    source={require('../../assets/images/onboard3.png')}/>
+               </>,
         title: 'Get Going!',
       },
     ]}
@@ -40,12 +52,17 @@ const Simple = (props) => (
 );
 
 const styles = StyleSheet.create({
+    onboardingPic: {
+        //justifyContent: 'center',
+        alignItems: 'center',
+    },
+
     tinyLogo: {
         position: 'absolute',
         resizeMode: 'contain',
-        width: 40,
-        height: 40,
-        bottom: 300,
+        width: 50,
+        height: 50,
+        bottom: 450,
     },
 });
 
