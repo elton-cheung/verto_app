@@ -7,10 +7,11 @@ import SignLogIn from '../SignLogIn';
 import EmailVer from '../EmailVerification';
 import PhoneVer from '../PhoneVerification';
 import PhoneInput from '../PhoneInput'
+import ForgotPswrd from '../ForgotPswrd';
 import Verto from '../Redirect';
 import DetailsScreen from '../DetailsScreen';
 import {SplashScreen} from '../SplashScreen';
-import Onboard from '../Onboard'
+import Onboard from '../Onboard';
 
 const screens = {
   Terms: {
@@ -27,6 +28,9 @@ const screens = {
   },
   LogIn: {
     screen: LogIn,
+  },
+  Forgot: {
+    screen: ForgotPswrd,
   },
   EmailVer: {
     screen: EmailVer,
