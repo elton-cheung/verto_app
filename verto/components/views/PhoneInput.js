@@ -4,7 +4,7 @@ import {View, Button, TextInput, StyleSheet, Image, Text} from 'react-native';
 import { Icon } from 'react-native-elements';
 // import styles from './style/signUpFlowStyle.js';
 
-class EmailVer extends React.Component {
+class PhoneInput extends React.Component {
   state = {
     email: '',
     confemail: '',
@@ -49,27 +49,24 @@ class EmailVer extends React.Component {
             source={require('../../assets/images/Placeholder.jpg')}
           />
         </View>
-          <Text style={{textAlign: 'center', fontSize: 15}}>An E-mail has been sent</Text>
-          <Text style={{textAlign: 'center', fontSize: 15}}>to your .edu email</Text>
-          <Text style={{textAlign: 'center', fontSize: 15}}>Please click on the link provided</Text>
-          <Text style={{textAlign: 'center', fontSize: 15}}>to verify your e-mail</Text> 
+          <Text style={{textAlign: 'center', fontSize: 20}}>Enter Phone Number</Text>
+
           <TextInput
           textAlign={'center'}
             style={styles.input}
-            placeholder="6 Digit"
+            placeholder="Phone Number"
             autoCapitalize="none"
             secureTextEntry={true}
             placeholderTextColor="grey"
             onChangeText={val => this.onChangeText('password', val)}
-            maxLength={6}
           />
 
         </View>
 
         <View style={styles.otherInput}>
           <Button
-            title="Enter Phone Number"
-            onPress={() => this.props.navigation.navigate('PhoneInput')}
+            title="Send Verification Code"
+            onPress={() => this.props.navigation.navigate('PhoneVer')}
           />
         </View>
       </View>
@@ -149,7 +146,7 @@ const styles = StyleSheet.create({
       resizeMode: 'contain',
     },
     image2: {
-      aspectRatio: 0.4,
+      aspectRatio: 0.45,
       resizeMode: 'contain',
     },
     logInInput: {
@@ -174,5 +171,4 @@ const styles = StyleSheet.create({
 });
 
 
-
-export default EmailVer;
+export default PhoneInput;
