@@ -1,23 +1,20 @@
-/* eslint-disable no-undef */
+
 import React from 'react';
 import {View, Button, TextInput, StyleSheet, Image, Text, Linking} from 'react-native';
 import { Icon } from 'react-native-elements';
 // import styles from './style/signUpFlowStyle.js';
 
-class PhoneVer extends React.Component {
+class ForgotPswrd extends React.Component {
   state = {
     email: '',
     confemail: '',
-    errorMessage: '',
-    error: true
   };
-  
+
   onChangeText = (key, val) => {
     this.setState({[key]: val});
   };
 
-  // After e-mail verification, we need to set up phone verification
-  signUp = async () => {
+  /*signUp = async () => {
     const {email, confemail} = this.state;
     try {
       // here place your signup logic
@@ -25,12 +22,8 @@ class PhoneVer extends React.Component {
     } catch (err) {
       console.log('error signing up: ', err);
     }
-  };
+  };*/
 
-  completeEmail() {
-    // this.signUp;
-    this.props.navigation.navigate('PhoneVer');
-  }
 
   render() {
     return (
@@ -40,47 +33,31 @@ class PhoneVer extends React.Component {
             style={styles.image}
             source={require('../../assets/images/verto_logo.png')}
           />
-        </View>
+    </View>
+    <View style={styles.container}>
+        <Text style={{textAlign: 'center', fontSize: 20}}>Set new Password for your account</Text>
+        <Text style={{textAlign: 'center', fontSize: 15}}>If you would like to reset your password, enter your email address below and follow the steps in the email:</Text>
 
-
-
-        <View style={styles.body}>
-        <View style={styles.header}>
-          <Image
-            style={styles.image2}
-            source={require('../../assets/images/Placeholder.jpg')}
-          />
-        </View>
-
-        <Text style={{textAlign: 'center', fontSize: 15}}>Phone Number Verification</Text>
-        <TextInput
-          textAlign={'center'}
-            style={styles.input}
-            placeholder="6 Digit"
-            autoCapitalize="none"
-            secureTextEntry={true}
-            placeholder={this.state.errorMessage}
-            placeholderTextColor="red"
-            onChangeText={val => this.onChangeText('password', val)}
-            maxLength={6}
-          />
-          <Text style={{textAlign: 'center', fontSize: 15}}>An SMS message has been sent</Text>
-          <Text style={{textAlign: 'center', fontSize: 15}}>to your mobile phone number</Text>
-          <Text style={{textAlign: 'center', fontSize: 15}}>Please enter the 6 digit phone number</Text>
-        </View>
-
-        <View style={styles.otherInput}>
+         <TextInput
+           textAlign={'center'}
+           style={styles.input}
+           placeholder="Enter Email Address"
+           autoCapitalize="none"
+           secureTextEntry={true}
+           placeholderTextColor="grey"
+           onChangeText={val => this.onChangeText('password', val)}
+           maxLength={6}
+         />
           <Button
-            title="Verify Number"
+            title="Reset Password"
             onPress={() => this.props.navigation.navigate('LogIn')}
           />
-                    <Text style={{textAlign: 'center', fontSize: 15}}>If you have not received the SMS,</Text>
 <Text style={{color: 'blue'}}
-      onPress={() => this.state.error ? this.setState({errorMessage: "Wrong Code"}) : alert("SMS sent")}>
-  click here
+      onPress={() => this.props.navigation.navigate('Login')}>
+  Cancel
 </Text>
         </View>
-        
+
 
       </View>
     );
@@ -121,38 +98,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
   input: {
-  //   width: 290,
-  //   height: 45,
-  //   backgroundColor: '#fff',
-  //   margin: 15,
-  //   padding: 12,
-  //   color: 'black',
-  //   borderRadius: 30,
-  //   fontSize: 14,
-  //   fontWeight: '400',
-  //   borderColor: 'grey',
-  //   borderWidth: 1.5
-  // },
-  // header: {
-  //   flex: 3,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
-  // container: {
-  //   flex: 1,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   backgroundColor: 'white'
-  // },
-  // image: {
-  //   aspectRatio: 0.9,
-  //   resizeMode: 'contain',
-  // },
-  // otherInput: {
-  //   flex: 4,
-  //   alignItems: 'flex-start',
-  //   alignItems: 'center',
-  // },
       width: 290,
       height: 45,
       backgroundColor: '#fff',
@@ -175,7 +120,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center'
     },
     container: {
-      flex: 20,
+      flex: 5,
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: 'white'
@@ -220,4 +165,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default PhoneVer;
+export default ForgotPswrd;

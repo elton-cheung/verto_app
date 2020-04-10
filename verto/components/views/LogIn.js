@@ -17,7 +17,7 @@ class LogIn extends React.Component {
   render() {
     return (
       <KeyboardAvoidingView style={styles.container}>
-        <View style={styles.header}>
+      <View style={styles.header}>
           <Image
             style={styles.image}
             source={require('../../assets/images/verto_logo.png')}
@@ -40,21 +40,16 @@ class LogIn extends React.Component {
             onChangeText={val => this.onChangeText('passwprd', val)}
           />
           <Button
-            title='Forgot Password?'
-            onPress={this.props.navigation.navigate('Verto')}
-            titleStyle={{
-              color: '#039BE5'
-            }}
-            type='clear'
+          title="Forgot Password?"
+          onPress={() => this.props.navigation.navigate('Forgot')}
           />
-          {/* need to format forgot button */}
           <Button
           title="Login"
           onPress={() => this.props.navigation.navigate('Verto')}
-        />
-           <Button
-              title="Sign Up"
-              onPress={() => this.props.navigation.navigate('SignUp')}
+          />
+          <Button
+          title="Sign Up"
+          onPress={() => this.props.navigation.navigate('SignUp')}
           />
         </View>
       </KeyboardAvoidingView >
