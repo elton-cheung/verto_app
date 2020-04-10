@@ -41,7 +41,7 @@ class LogIn extends React.Component {
           />
           <Button
             title='Forgot Password?'
-            onPress={this.props.navigation.navigate('Forgot')}
+            onPress={() => this.props.navigation.navigate('Forgot')}
           />
           <Button
           title="Login"
