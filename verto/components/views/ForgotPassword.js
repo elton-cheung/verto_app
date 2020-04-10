@@ -4,26 +4,14 @@ import {View, Button, TextInput, StyleSheet, Image, Text, Linking} from 'react-n
 import { Icon } from 'react-native-elements';
 // import styles from './style/signUpFlowStyle.js';
 
-class PhoneVer extends React.Component {
+class ForgotPassword extends React.Component {
   state = {
     email: '',
     confemail: '',
   };
   
-  onChangeText = (key, val) => {
-    this.setState({[key]: val});
-  };
 
-  // After e-mail verification, we need to set up phone verification
-  signUp = async () => {
-    const {email, confemail} = this.state;
-    try {
-      // here place your signup logic
-      console.log('Next adding phone number!: ', success);
-    } catch (err) {
-      console.log('error signing up: ', err);
-    }
-  };
+
 
   completeEmail() {
     // this.signUp;
@@ -33,49 +21,19 @@ class PhoneVer extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Image
-            style={styles.image}
-            source={require('../../assets/images/verto_logo.png')}
-          />
+        
+        <View>
+            <Text>Set new Password for your account</Text>
         </View>
 
-
-
-        <View style={styles.body}>
-        <View style={styles.header}>
-          <Image
-            style={styles.image2}
-            source={require('../../assets/images/Placeholder.jpg')}
-          />
+        <View>
+            <Text style={{textAlign: 'center', fontSize: 15}}>If you'd like to reset password</Text>
+            <Text style={{textAlign: 'center', fontSize: 15}}>Enter your E-mail address below</Text>
+            <Text style={{textAlign: 'center', fontSize: 15}}>and follow the steps in the email</Text>
         </View>
 
-        <Text style={{textAlign: 'center', fontSize: 15}}>Phone Number Verification</Text>
-        <TextInput
-          textAlign={'center'}
-            style={styles.input}
-            placeholder="6 Digit"
-            autoCapitalize="none"
-            secureTextEntry={true}
-            placeholderTextColor="grey"
-            onChangeText={val => this.onChangeText('password', val)}
-            maxLength={6}
-          />
-          <Text style={{textAlign: 'center', fontSize: 15}}>An SMS message has been sent</Text>
-          <Text style={{textAlign: 'center', fontSize: 15}}>to your mobile phone number</Text>
-          <Text style={{textAlign: 'center', fontSize: 15}}>Please enter the 6 digit phone number</Text>
-        </View>
+        <View>
 
-        <View style={styles.otherInput}>
-          <Button
-            title="Verify Number"
-            onPress={() => this.props.navigation.navigate('LogIn')}
-          />
-                    <Text style={{textAlign: 'center', fontSize: 15}}>If you have not received the SMS,</Text>
-<Text style={{color: 'blue'}}
-      onPress={() => alert("SMS sent")}>
-  click here
-</Text>
         </View>
         
 
@@ -185,4 +143,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default PhoneVer;
+export default ForgotPassword;
