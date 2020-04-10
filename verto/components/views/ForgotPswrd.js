@@ -14,15 +14,6 @@ class ForgotPswrd extends React.Component {
     this.setState({[key]: val});
   };
 
-  /*signUp = async () => {
-    const {email, confemail} = this.state;
-    try {
-      // here place your signup logic
-      console.log('Next adding phone number!: ', success);
-    } catch (err) {
-      console.log('error signing up: ', err);
-    }
-  };*/
 
 
   render() {
@@ -33,70 +24,33 @@ class ForgotPswrd extends React.Component {
             style={styles.image}
             source={require('../../assets/images/verto_logo.png')}
           />
-    </View>
-    <View style={styles.container}>
-        <Text style={{textAlign: 'center', fontSize: 20}}>Set new Password for your account</Text>
-        <Text style={{textAlign: 'center', fontSize: 15}}>If you would like to reset your password, enter your email address below and follow the steps in the email:</Text>
-
-         <TextInput
-           textAlign={'center'}
-           style={styles.input}
-           placeholder="Enter Email Address"
-           autoCapitalize="none"
-           secureTextEntry={true}
-           placeholderTextColor="grey"
-           onChangeText={val => this.onChangeText('password', val)}
-           maxLength={6}
-         />
-          <Button
-            title="Reset Password"
-            onPress={() => this.props.navigation.navigate('LogIn')}
-          />
-<Text style={{color: 'blue'}}
-      onPress={() => this.props.navigation.navigate('Login')}>
-  Cancel
-</Text>
         </View>
+        <View style={styles.container}>
+            <Text style={styles.information}>Set new Password for your account</Text>
+            <Text style={{flexDirection: 'column',textAlign: 'center', width: 300, fontSize: 15}}>If you would like to reset your password, enter your email address below and follow the steps in the email:</Text>
 
-
-      </View>
+            <TextInput
+                textAlign={'center'}
+                style={styles.input}
+                placeholder="Enter Email Address"
+                autoCapitalize="none"
+                secureTextEntry={true}
+                placeholderTextColor="grey"
+                onChangeText={val => this.onChangeText('email', val)}
+                maxLength={50}
+            />
+            <Button
+                title="Reset Password"
+                onPress={() => this.props.navigation.navigate('LogIn')}
+            />
+            <Text style={{color: 'blue'}} onPress={() => this.props.navigation.navigate('LogIn')}> Cancel </Text>
+        </View>
+     </View>
     );
   }
 }
 
-/*
-  TODO: Implement a function to adjust text size upon typing
-
-*/
 const styles = StyleSheet.create({
-  buttonLog: {
-      alignSelf: 'stretch',
-      backgroundColor: "#4d94ff",
-      margin: 20,
-      padding: 8,
-      color: '#F5F5F5',
-      borderRadius: 14,
-      fontSize: 18,
-      fontWeight: '500',
-      height: 50,
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    buttonSign: {
-      alignSelf: 'stretch',
-      backgroundColor: '#ffda5c',
-      margin: 20,
-      padding: 8,
-      color: '#ffffff',
-      borderRadius: 14,
-      fontSize: 18,
-      fontWeight: '500',
-      height: 50,
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
   input: {
       width: 290,
       height: 45,
@@ -115,19 +69,11 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
-    body: {
-      flex: 8,
-      justifyContent: 'center'
-    },
     container: {
-      flex: 5,
+      flex: 6,
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: 'white'
-    },
-    miniInput: {
-      flex: 1,
-      alignItems: 'center',
     },
     otherInput: {
       flex: 2,
@@ -136,32 +82,14 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     image: {
-      aspectRatio: 0.9,
+      aspectRatio: 0.8,
       resizeMode: 'contain',
     },
-    image2: {
-      aspectRatio: 0.2,
-      resizeMode: 'contain',
-    },
-    logInInput: {
-      flex: 1,
-      backgroundColor: 'white',
+    information: {
       flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'stretch',
-      alignSelf: 'stretch',
+      color: 'blue', fontWeight: 'bold', textAlign: 'center', fontSize: 20,
     },
-    signInInput: {
-      flex: 1,
-      backgroundColor: 'white',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'stretch',
-      alignSelf: 'stretch',
-    },
-    blank: {
-      flex: 2,
-    }
+
 });
 
 

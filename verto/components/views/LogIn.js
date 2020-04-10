@@ -40,8 +40,8 @@ class LogIn extends React.Component {
             onChangeText={val => this.onChangeText('passwprd', val)}
           />
           <Button
-          title="Forgot Password?"
-          onPress={() => this.props.navigation.navigate('Forgot')}
+            title='Forgot Password?'
+            onPress={() => this.props.navigation.navigate('Forgot')}
           />
           <Button
           title="Login"
