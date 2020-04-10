@@ -8,6 +8,8 @@ class EmailVer extends React.Component {
   state = {
     email: '',
     confemail: '',
+    errorMessage: '',
+    error: true
   };
   
   onChangeText = (key, val) => {
@@ -59,20 +61,23 @@ class EmailVer extends React.Component {
             placeholder="6 Digit"
             autoCapitalize="none"
             secureTextEntry={true}
-            placeholderTextColor="grey"
+            placeholder={this.state.errorMessage}
+            placeholderTextColor="red"
             onChangeText={val => this.onChangeText('password', val)}
             maxLength={6}
+            errorStyle={{ color: 'red' }}
+            errorMessage='ENTER A VALID ERROR HERE'
           />
 
         </View>
 
         <View style={styles.otherInput}>
         <Button
-            title="Resend Code"
-            onPress={() => this.props.navigation.navigate('PhoneInput')}
+            title="Confirm Code"
+            onPress={() => this.state.error ? this.setState({errorMessage: "Wrong Code"}) : alert("Nice")}
           />
           <Button
-            title="Confirm Code"
+            title="Resend Code"
             onPress={() => this.props.navigation.navigate('PhoneInput')}
           />
         </View>

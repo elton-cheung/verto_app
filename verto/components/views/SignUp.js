@@ -53,6 +53,13 @@ class SignUp extends React.Component {
           />
           <TextInput
             style={styles.input}
+            placeholder="Email"
+            autoCapitalize="none"
+            placeholderTextColor="grey"
+            onChangeText={val => this.onChangeText('lastname', val)}
+          />
+          <TextInput
+            style={styles.input}
             placeholder="Password"
             secureTextEntry={true}
             autoCapitalize="none"
@@ -113,7 +120,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   otherInput: {
-    flex: 4,
+    flex: 6,
     alignItems: 'flex-start',
     alignItems: 'center',
   },

@@ -8,6 +8,8 @@ class PhoneVer extends React.Component {
   state = {
     email: '',
     confemail: '',
+    errorMessage: '',
+    error: true
   };
   
   onChangeText = (key, val) => {
@@ -57,7 +59,8 @@ class PhoneVer extends React.Component {
             placeholder="6 Digit"
             autoCapitalize="none"
             secureTextEntry={true}
-            placeholderTextColor="grey"
+            placeholder={this.state.errorMessage}
+            placeholderTextColor="red"
             onChangeText={val => this.onChangeText('password', val)}
             maxLength={6}
           />
@@ -73,7 +76,7 @@ class PhoneVer extends React.Component {
           />
                     <Text style={{textAlign: 'center', fontSize: 15}}>If you have not received the SMS,</Text>
 <Text style={{color: 'blue'}}
-      onPress={() => alert("SMS sent")}>
+      onPress={() => this.state.error ? this.setState({errorMessage: "Wrong Code"}) : alert("SMS sent")}>
   click here
 </Text>
         </View>
