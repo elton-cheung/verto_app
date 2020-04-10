@@ -67,8 +67,12 @@ class EmailVer extends React.Component {
         </View>
 
         <View style={styles.otherInput}>
+        <Button
+            title="Resend Code"
+            onPress={() => this.props.navigation.navigate('PhoneInput')}
+          />
           <Button
-            title="Enter Phone Number"
+            title="Confirm Code"
             onPress={() => this.props.navigation.navigate('PhoneInput')}
           />
         </View>
