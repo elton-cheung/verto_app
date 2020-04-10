@@ -6,7 +6,7 @@ import TermsAndConditions from '../TermsOfService';
 import SignLogIn from '../SignLogIn';
 import EmailVer from '../EmailVerification';
 import PhoneVer from '../PhoneVerification';
-import PhoneInput from '../PhoneInput'
+import PhoneInput from '../PhoneInput';
 import ForgotPswrd from '../ForgotPswrd';
 import Verto from '../Redirect';
 import DetailsScreen from '../DetailsScreen';
