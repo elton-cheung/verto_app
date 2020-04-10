@@ -9,10 +9,14 @@ import PhoneVer from '../PhoneVerification';
 import Verto from '../Redirect';
 import DetailsScreen from '../DetailsScreen';
 import {SplashScreen} from '../SplashScreen';
+import Onboard from '../Onboard'
 
 const screens = {
   Terms: {
     screen: TermsAndConditions,
+  },
+  Onboard: {
+    screen: Onboard,
   },
   SignLog: {
     screen: SignLogIn,
