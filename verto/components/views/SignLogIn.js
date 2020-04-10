@@ -5,7 +5,7 @@ import {
   TextInput,
   StyleSheet,
   Image,
-  TouchableHighlight,
+  TouchableOpacity,
   Text,
 } from 'react-native';
 
@@ -41,6 +41,9 @@ class SignLogIn extends React.Component {
         </View>
 
         <View style={styles.logInInput}>
+          {/* <TouchableOpacity onPress={this.handlPress}>
+            <Text style={styles.button}>Log In</Text>
+          </TouchableOpacity> */}
           <Button style={styles.buttonLog}
             title = "Log In"
             onPress={() => this.props.navigation.navigate('LogIn')}
@@ -58,11 +61,6 @@ class SignLogIn extends React.Component {
             title = "Sign Up"
             onPress={() => this.props.navigation.navigate('SignUp')}
           />
-          {/* <TouchableHighlight
-            style={styles.buttonSign}
-            onPress={() => this.props.navigation.navigate('SignUp')}>
-            <Text>Sign Up</Text>
-          </TouchableHighlight> */}
         </View>
 
         <View style={styles.blank}>

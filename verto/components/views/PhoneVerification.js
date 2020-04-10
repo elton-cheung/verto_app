@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
   otherInput: {
     flex: 4,
     alignItems: 'flex-start',
-    // justifyContent: 'center',
     alignItems: 'center',
   },
 });

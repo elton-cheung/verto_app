@@ -47,7 +47,7 @@ class LogIn extends React.Component {
             }}
             type='clear'
           />
-          //need to format forgot button
+          {/* need to format forgot button */}
           <Button
           title="Login"
           onPress={() => this.props.navigation.navigate('Verto')}
