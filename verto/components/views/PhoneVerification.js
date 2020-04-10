@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
       resizeMode: 'contain',
     },
     image2: {
-      aspectRatio: 0.4,
+      aspectRatio: 0.2,
       resizeMode: 'contain',
     },
     logInInput: {
