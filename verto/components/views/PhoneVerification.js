@@ -8,7 +8,7 @@ class PhoneVer extends React.Component {
   state = {
     email: '',
     confemail: '',
-    errorMessage: '',
+    errorMessage: 'Enter Code Here',
     error: true
   };
   
@@ -64,20 +64,20 @@ class PhoneVer extends React.Component {
             onChangeText={val => this.onChangeText('password', val)}
             maxLength={6}
           />
-          <Text style={{textAlign: 'center', fontSize: 15}}>An SMS message has been sent</Text>
-          <Text style={{textAlign: 'center', fontSize: 15}}>to your mobile phone number</Text>
-          <Text style={{textAlign: 'center', fontSize: 15}}>Please enter the 6 digit phone number</Text>
+          <Text style={{textAlign: 'center', fontSize: 15}}>An SMS message will been sent</Text>
+          <Text style={{textAlign: 'center', fontSize: 15}}>to the above phone number</Text>
+          <Text style={{textAlign: 'center', fontSize: 15}}>Please enter the 6-digit code</Text>
         </View>
 
         <View style={styles.otherInput}>
           <Button
-            title="Verify Number"
+            title="Verify Phone Number"
             onPress={() => this.props.navigation.navigate('LogIn')}
           />
-                    <Text style={{textAlign: 'center', fontSize: 15}}>If you have not received the SMS,</Text>
+                    <Text style={{textAlign: 'center', fontSize: 15}}>If you have not received the SMS, please click to</Text>
 <Text style={{color: 'blue'}}
       onPress={() => this.state.error ? this.setState({errorMessage: "Wrong Code"}) : alert("SMS sent")}>
-  click here
+  resend SMS
 </Text>
         </View>
         

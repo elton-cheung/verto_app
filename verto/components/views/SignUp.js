@@ -53,7 +53,7 @@ class SignUp extends React.Component {
           />
           <TextInput
             style={styles.input}
-            placeholder="Email"
+            placeholder="EDU Email"
             autoCapitalize="none"
             placeholderTextColor="grey"
             onChangeText={val => this.onChangeText('lastname', val)}
@@ -77,7 +77,7 @@ class SignUp extends React.Component {
           />
 
           <Button
-            title="Add E-mail"
+            title="Verify E-mail"
             onPress={() => this.props.navigation.navigate('EmailVer')}
           />
         </View>

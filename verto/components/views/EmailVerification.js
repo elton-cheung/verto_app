@@ -8,7 +8,7 @@ class EmailVer extends React.Component {
   state = {
     email: '',
     confemail: '',
-    errorMessage: '',
+    errorMessage: 'Enter Code Here',
     error: true
   };
   
@@ -53,8 +53,8 @@ class EmailVer extends React.Component {
         </View>
           <Text style={{textAlign: 'center', fontSize: 15}}>An E-mail has been sent</Text>
           <Text style={{textAlign: 'center', fontSize: 15}}>to your .edu email</Text>
-          <Text style={{textAlign: 'center', fontSize: 15}}>Please click on the link provided</Text>
-          <Text style={{textAlign: 'center', fontSize: 15}}>to verify your e-mail</Text> 
+          <Text style={{textAlign: 'center', fontSize: 15}}>Please enter the 6-digit code</Text>
+          <Text style={{textAlign: 'center', fontSize: 15}}>below to verify your e-mail</Text> 
           <TextInput
           textAlign={'center'}
             style={styles.input}
@@ -74,7 +74,7 @@ class EmailVer extends React.Component {
         <View style={styles.otherInput}>
         <Button
             title="Confirm Code"
-            onPress={() => this.state.error ? this.setState({errorMessage: "Wrong Code"}) : alert("Nice")}
+            onPress={() => this.state.error ? this.setState({errorMessage: "Incorrect Code"}) : alert("Nice")}
           />
           <Button
             title="Resend Code"

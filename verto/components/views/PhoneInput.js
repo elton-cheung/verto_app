@@ -8,6 +8,7 @@ class PhoneInput extends React.Component {
   state = {
     email: '',
     confemail: '',
+    message: 'Enter Phone Number'
   };
   
   onChangeText = (key, val) => {
@@ -49,12 +50,12 @@ class PhoneInput extends React.Component {
             source={require('../../assets/images/Placeholder.jpg')}
           />
         </View>
-          <Text style={{textAlign: 'center', fontSize: 20}}>Enter Phone Number</Text>
+          <Text style={{textAlign: 'center', fontSize: 20}}>Phone Number Verification</Text>
 
           <TextInput
           textAlign={'center'}
             style={styles.input}
-            placeholder="Phone Number"
+            placeholder={this.state.message}
             autoCapitalize="none"
             secureTextEntry={true}
             placeholderTextColor="grey"
