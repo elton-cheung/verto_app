@@ -17,9 +17,6 @@ const screens = {
   Terms: {
     screen: TermsAndConditions,
   },
-  Onboard: {
-    screen: Onboard,
-  },
   SignLog: {
     screen: SignLogIn,
   },
@@ -40,6 +37,9 @@ const screens = {
   },
   PhoneVer: {
     screen: PhoneVer,
+  },
+  Onboard: {
+     screen: Onboard,
   },
   Verto: {
     screen: Verto,

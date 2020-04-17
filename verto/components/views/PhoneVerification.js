@@ -72,7 +72,7 @@ class PhoneVer extends React.Component {
         <View style={styles.otherInput}>
           <Button
             title="Verify Phone Number"
-            onPress={() => this.props.navigation.navigate('LogIn')}
+            onPress={() => this.props.navigation.navigate('Onboard')}
           />
                     <Text style={{textAlign: 'center', fontSize: 15}}>If you have not received the SMS, please click to</Text>
 <Text style={{color: 'blue'}}

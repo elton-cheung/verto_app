@@ -6,8 +6,8 @@ class OnBoard extends React.Component{
   render(){
     return(
       <Onboarding
-      onSkip={() => this.props.navigation.navigate('SignLog')}
-      onDone={() => this.props.navigation.navigate('SignLog')}
+      onSkip={() => this.props.navigation.navigate('Verto')}
+      onDone={() => this.props.navigation.navigate('Verto')}
       flatlistProps={this.props.navigation}
       titleStyles = {{bottom: 50}}
       subTitleStyles = {{bottom: 50}}

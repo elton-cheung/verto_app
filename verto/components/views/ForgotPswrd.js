@@ -34,7 +34,6 @@ class ForgotPswrd extends React.Component {
                 style={styles.input}
                 placeholder="Enter Email Address"
                 autoCapitalize="none"
-                secureTextEntry={true}
                 placeholderTextColor="grey"
                 onChangeText={val => this.onChangeText('email', val)}
                 maxLength={50}
