@@ -95,7 +95,7 @@ function Products() {
           <Item
             name={item.itemName}
             photoSrc={item.photoSrc}
-            description={item.description}
+            //description={item.description}
             price={item.price}
           />
         )}

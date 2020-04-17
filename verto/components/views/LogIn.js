@@ -37,7 +37,7 @@ class LogIn extends React.Component {
             placeholder="Password"
             autoCapitalize="none"
             placeholderTextColor="grey"
-            onChangeText={val => this.onChangeText('passwprd', val)}
+            onChangeText={val => this.onChangeText('password', val)}
           />
           <Button
             title='Forgot Password?'
