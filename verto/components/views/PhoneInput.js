@@ -1,15 +1,14 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import {View, Button, TextInput, StyleSheet, Image, Text, Linking} from 'react-native';
+import {View, Button, TextInput, StyleSheet, Image, Text} from 'react-native';
 import { Icon } from 'react-native-elements';
 // import styles from './style/signUpFlowStyle.js';
 
-class PhoneVer extends React.Component {
+class PhoneInput extends React.Component {
   state = {
     email: '',
     confemail: '',
-    errorMessage: 'Enter Code Here',
-    error: true
+    message: 'Enter Phone Number'
   };
   
   onChangeText = (key, val) => {
@@ -51,37 +50,26 @@ class PhoneVer extends React.Component {
             source={require('../../assets/images/Placeholder.jpg')}
           />
         </View>
+          <Text style={{textAlign: 'center', fontSize: 20}}>Phone Number Verification</Text>
 
-        <Text style={{textAlign: 'center', fontSize: 15}}>Phone Number Verification</Text>
-        <TextInput
+          <TextInput
           textAlign={'center'}
             style={styles.input}
-            placeholder="6 Digit"
+            placeholder={this.state.message}
             autoCapitalize="none"
             secureTextEntry={true}
-            placeholder={this.state.errorMessage}
-            placeholderTextColor="red"
+            placeholderTextColor="grey"
             onChangeText={val => this.onChangeText('password', val)}
-            maxLength={6}
           />
-          <Text style={{textAlign: 'center', fontSize: 15}}>An SMS message will been sent</Text>
-          <Text style={{textAlign: 'center', fontSize: 15}}>to the above phone number</Text>
-          <Text style={{textAlign: 'center', fontSize: 15}}>Please enter the 6-digit code</Text>
+
         </View>
 
         <View style={styles.otherInput}>
           <Button
-            title="Verify Phone Number"
-            onPress={() => this.props.navigation.navigate('Onboard')}
+            title="Send Verification Code"
+            onPress={() => this.props.navigation.navigate('PhoneVer')}
           />
-                    <Text style={{textAlign: 'center', fontSize: 15}}>If you have not received the SMS, please click to</Text>
-<Text style={{color: 'blue'}}
-      onPress={() => this.state.error ? this.setState({errorMessage: "Wrong Code"}) : alert("SMS sent")}>
-  resend SMS
-</Text>
         </View>
-        
-
       </View>
     );
   }
@@ -121,38 +109,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
   input: {
-  //   width: 290,
-  //   height: 45,
-  //   backgroundColor: '#fff',
-  //   margin: 15,
-  //   padding: 12,
-  //   color: 'black',
-  //   borderRadius: 30,
-  //   fontSize: 14,
-  //   fontWeight: '400',
-  //   borderColor: 'grey',
-  //   borderWidth: 1.5
-  // },
-  // header: {
-  //   flex: 3,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
-  // container: {
-  //   flex: 1,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   backgroundColor: 'white'
-  // },
-  // image: {
-  //   aspectRatio: 0.9,
-  //   resizeMode: 'contain',
-  // },
-  // otherInput: {
-  //   flex: 4,
-  //   alignItems: 'flex-start',
-  //   alignItems: 'center',
-  // },
       width: 290,
       height: 45,
       backgroundColor: '#fff',
@@ -165,27 +121,23 @@ const styles = StyleSheet.create({
       borderColor: 'grey',
       borderWidth: 1.5
     },
-    header: {
-      flex: 2,
+      header: {
+      flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
     },
     body: {
-      flex: 8,
+      flex: 4,
       justifyContent: 'center'
     },
     container: {
-      flex: 20,
+      flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: 'white'
     },
-    miniInput: {
-      flex: 1,
-      alignItems: 'center',
-    },
     otherInput: {
-      flex: 2,
+      flex: 1,
       alignItems: 'flex-start',
       // justifyContent: 'center',
       alignItems: 'center',
@@ -195,7 +147,7 @@ const styles = StyleSheet.create({
       resizeMode: 'contain',
     },
     image2: {
-      aspectRatio: 0.2,
+      aspectRatio: 0.45,
       resizeMode: 'contain',
     },
     logInInput: {
@@ -220,4 +172,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default PhoneVer;
+export default PhoneInput;

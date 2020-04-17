@@ -5,11 +5,12 @@ import {
   StyleSheet,
   FlatList,
   Text,
-  Image,
   SafeAreaView,
+  Image,
 } from 'react-native';
 import {Header, Card, ListItem, Button, Icon} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
 export class SplashScreen extends React.Component {
   render() {
@@ -60,7 +61,119 @@ const DATA = [
     price: '$25'
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571e29d75',
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    itemName: 'Iphone 11 Used',
+    photoSrc: require('../../assets/images/iphone11.jpg'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    price: '$200'
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    itemName: 'Mens Coat',
+    photoSrc: require('../../assets/images/mens_coat.jpeg'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    price: '$40'
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    itemName: 'Minifridge Used',
+    photoSrc: require('../../assets/images/minifridge.jpg'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    price: '$25'
+  },
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    itemName: 'Iphone 11 Used',
+    photoSrc: require('../../assets/images/iphone11.jpg'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    price: '$200'
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    itemName: 'Mens Coat',
+    photoSrc: require('../../assets/images/mens_coat.jpeg'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    price: '$40'
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    itemName: 'Minifridge Used',
+    photoSrc: require('../../assets/images/minifridge.jpg'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    price: '$25'
+  },
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    itemName: 'Iphone 11 Used',
+    photoSrc: require('../../assets/images/iphone11.jpg'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    price: '$200'
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    itemName: 'Mens Coat',
+    photoSrc: require('../../assets/images/mens_coat.jpeg'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    price: '$40'
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    itemName: 'Minifridge Used',
+    photoSrc: require('../../assets/images/minifridge.jpg'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    price: '$25'
+  },
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    itemName: 'Iphone 11 Used',
+    photoSrc: require('../../assets/images/iphone11.jpg'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    price: '$200'
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    itemName: 'Mens Coat',
+    photoSrc: require('../../assets/images/mens_coat.jpeg'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    price: '$40'
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    itemName: 'Minifridge Used',
+    photoSrc: require('../../assets/images/minifridge.jpg'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    price: '$25'
+  },
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    itemName: 'Iphone 11 Used',
+    photoSrc: require('../../assets/images/iphone11.jpg'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    price: '$200'
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    itemName: 'Mens Coat',
+    photoSrc: require('../../assets/images/mens_coat.jpeg'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    price: '$40'
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
     itemName: 'Minifridge Used',
     photoSrc: require('../../assets/images/minifridge.jpg'),
     description:
@@ -73,13 +186,16 @@ const DATA = [
 function Item({name, photoSrc, price}) {
   const navigation = useNavigation();
   return (
-    <View>
+      
+    <TouchableHighlight style={styles.item}>
+      {/* onPress={() => this.props.navigation.navigate('Details')} */}
       <Card 
-        image={photoSrc}>
+        image={photoSrc}
+        >
         <Text>{name}</Text>
         <Text>{price}</Text>
       </Card>
-    </View>
+    </TouchableHighlight>
   );
 }
 
@@ -91,15 +207,16 @@ function Products() {
     <SafeAreaView style={styles.container}>
       <FlatList
         data={DATA}
+        numColumns={2}
+        horizontal={false}
+        keyExtractor={item => item.id}
         renderItem={({item}) => (
           <Item
             name={item.itemName}
             photoSrc={item.photoSrc}
-            //description={item.description}
             price={item.price}
           />
         )}
-        keyExtractor={item => item.id}
       />
     </SafeAreaView>
   );
@@ -117,10 +234,16 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   item: {
-    padding: 5,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    //need to fix this!
+    width: 205,
+
   },
+  image: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'contain'
+},
   itemName: {
     fontSize: 10,
   },

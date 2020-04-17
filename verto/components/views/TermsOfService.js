@@ -34,7 +34,7 @@ class TermsAndConditions extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Terms and conditions</Text>
+        <Text style={styles.title}>Terms and Conditions</Text>
         <ScrollView
           style={styles.tcContainer}
           onScroll={({nativeEvent}) => {
