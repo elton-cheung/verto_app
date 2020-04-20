@@ -19,6 +19,9 @@ const screens = {
   },
   SignLog: {
     screen: SignLogIn,
+    navigationOptions: {
+      headerShown: false,
+    },
   },
   SignUp: {
     screen: SignUp,
@@ -43,6 +46,9 @@ const screens = {
   },
   Verto: {
     screen: Verto,
+    navigationOptions: {
+      headerShown: false,
+    },
   },
 };
 
