@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {Header, Card, ListItem, Button, Icon} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
-import {TouchableHighlight} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export class SplashScreen extends React.Component {
   render() {
@@ -184,14 +184,14 @@ const DATA = [
 function Item({name, photoSrc, price, navigation}) {
   //const navigation = useNavigation();
   return (
-    <TouchableHighlight
+    <TouchableOpacity
       style={styles.item}
       onPress={() => navigation.navigate('Details')}>
       <Card image={photoSrc}>
         <Text>{name}</Text>
         <Text>{price}</Text>
       </Card>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 }
 

@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 
 import React from 'react';
+import {Image} from 'react-native';
 import {AddProductContainer} from './AddProduct';
 import {SplashScreen} from './SplashScreen';
 import DetailsScreen from './DetailsScreen';
@@ -14,10 +15,7 @@ const CatalogStack = createStackNavigator();
 function CatalogStackScreen() {
   return (
     <CatalogStack.Navigator>
-      <CatalogStack.Screen
-        name="Home"
-        component={SplashScreen}
-      />
+      <CatalogStack.Screen name="Home" component={SplashScreen} />
       <CatalogStack.Screen name="Details" component={DetailsScreen} />
     </CatalogStack.Navigator>
   );
@@ -29,11 +27,60 @@ export default class Verto extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <Tab.Navigator initialRouteName={'Home'}>
-          <Tab.Screen name="Home" component={CatalogStackScreen} />
-          <Tab.Screen name="AddProduct" component={AddProductContainer} />
-          <Tab.Screen name="Details" component={DetailsScreen} />
-          <Tab.Screen name="Settings" component={DetailsScreen} />
+        <Tab.Navigator
+          initialRouteName={'Home'}
+          tabBarOptions={{
+            showIcon: true,
+          }}>
+          <Tab.Screen
+            name="Shop"
+            component={CatalogStackScreen}
+            options={{
+              tabBarIcon: () => (
+                <Image
+                  source={require('../../assets/logos/home_icon.png')}
+                  style={{
+                    marginLeft: 1,
+                    marginTop: 1,
+                    width: 24,
+                    height: 24,
+                  }}
+                />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Sell"
+            component={AddProductContainer}
+            options={{
+              tabBarIcon: () => (
+                <Image
+                  source={require('../../assets/logos/camera.png')}
+                  style={{
+                    marginLeft: 1,
+                    marginTop: 1,
+                    width: 24,
+                    height: 24,
+                  }}
+                />
+              ),
+            }}/>
+          <Tab.Screen
+            name="Chat"
+            component={DetailsScreen}
+            options={{
+              tabBarIcon: () => (
+                <Image
+                  source={require('../../assets/logos/message.png')}
+                  style={{
+                    marginLeft: 1,
+                    marginTop: 1,
+                    width: 24,
+                    height: 24,
+                  }}
+                />
+              ),
+            }}/>
         </Tab.Navigator>
       </NavigationContainer>
     );
