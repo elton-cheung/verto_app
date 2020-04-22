@@ -128,9 +128,18 @@ class AddProductContainer extends React.Component {
           </View> */}
         </View>
         <View style={styles.form}>
-          <Button title="Select Image" onPress={this.selectImage} style={styles.selectImage}/>
+          <Button
+            title="Select Image"
+            onPress={this.selectImage}
+            style={styles.selectImage}
+          />
           <Form options={formOptions} type={Item} ref={c => (this._form = c)} />
-          <Button title="Submit" type="solid" onPress={this.handleSubmit} style={styles.submit} />
+          <Button
+            title="Upload"
+            type="solid"
+            onPress={this.handleSubmit}
+            style={styles.submit}
+          />
         </View>
       </View>
     );
@@ -170,12 +179,12 @@ const styles = StyleSheet.create({
   },
   submit: {
     width: 150,
-    alignSelf: 'flex-end',
+    alignSelf: 'center',
   },
   selectImage: {
     width: 150,
     alignSelf: 'center',
-  }
+  },
 });
 
 export {AddProductContainer};

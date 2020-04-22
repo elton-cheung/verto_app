@@ -10,29 +10,28 @@ import {
 } from 'react-native';
 import {Header, Card, ListItem, Button, Icon} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export class SplashScreen extends React.Component {
   render() {
     return (
-    <View style={styles.container}>
-      <Welcome />
-      <Products />
-    </View>
-  );
-}
+      <View style={styles.container}>
+        <Welcome />
+        <Products navigation={this.props.navigation} />
+      </View>
+    );
+  }
 }
 
 //eventually want to place name of user instead of "Jennie"
 function Welcome() {
   return (
-  <Text style={styles.welcome}>Welcome back,
-    <Text>{" "}</Text>  
-    <Text style={{color: '#4D94FF'}}>
-      Jennie
+    <Text style={styles.welcome}>
+      Welcome back,
+      <Text> </Text>
+      <Text style={{color: '#4D94FF'}}>Jennie</Text>!
     </Text>
-    !
-  </Text>)
+  );
 }
 
 const DATA = [
@@ -42,7 +41,7 @@ const DATA = [
     photoSrc: require('../../assets/images/iphone11.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$200'
+    price: '$200',
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
@@ -50,7 +49,7 @@ const DATA = [
     photoSrc: require('../../assets/images/mens_coat.jpeg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$40'
+    price: '$40',
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
@@ -58,7 +57,7 @@ const DATA = [
     photoSrc: require('../../assets/images/minifridge.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$25'
+    price: '$25',
   },
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -66,7 +65,7 @@ const DATA = [
     photoSrc: require('../../assets/images/iphone11.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$200'
+    price: '$200',
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
@@ -74,7 +73,7 @@ const DATA = [
     photoSrc: require('../../assets/images/mens_coat.jpeg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$40'
+    price: '$40',
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
@@ -82,7 +81,7 @@ const DATA = [
     photoSrc: require('../../assets/images/minifridge.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$25'
+    price: '$25',
   },
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -90,7 +89,7 @@ const DATA = [
     photoSrc: require('../../assets/images/iphone11.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$200'
+    price: '$200',
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
@@ -98,7 +97,7 @@ const DATA = [
     photoSrc: require('../../assets/images/mens_coat.jpeg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$40'
+    price: '$40',
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
@@ -106,7 +105,7 @@ const DATA = [
     photoSrc: require('../../assets/images/minifridge.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$25'
+    price: '$25',
   },
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -114,7 +113,7 @@ const DATA = [
     photoSrc: require('../../assets/images/iphone11.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$200'
+    price: '$200',
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
@@ -122,7 +121,7 @@ const DATA = [
     photoSrc: require('../../assets/images/mens_coat.jpeg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$40'
+    price: '$40',
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
@@ -130,7 +129,7 @@ const DATA = [
     photoSrc: require('../../assets/images/minifridge.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$25'
+    price: '$25',
   },
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -138,7 +137,7 @@ const DATA = [
     photoSrc: require('../../assets/images/iphone11.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$200'
+    price: '$200',
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
@@ -146,7 +145,7 @@ const DATA = [
     photoSrc: require('../../assets/images/mens_coat.jpeg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$40'
+    price: '$40',
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
@@ -154,7 +153,7 @@ const DATA = [
     photoSrc: require('../../assets/images/minifridge.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$25'
+    price: '$25',
   },
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -162,7 +161,7 @@ const DATA = [
     photoSrc: require('../../assets/images/iphone11.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$200'
+    price: '$200',
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
@@ -170,7 +169,7 @@ const DATA = [
     photoSrc: require('../../assets/images/mens_coat.jpeg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$40'
+    price: '$40',
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
@@ -178,31 +177,28 @@ const DATA = [
     photoSrc: require('../../assets/images/minifridge.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$25'
+    price: '$25',
   },
 ];
 
-
-function Item({name, photoSrc, price}) {
-  const navigation = useNavigation();
+function Item({name, photoSrc, price, navigation}) {
+  //const navigation = useNavigation();
   return (
-      
-    <TouchableHighlight style={styles.item}>
-      {/* onPress={() => this.props.navigation.navigate('Details')} */}
-      <Card 
-        image={photoSrc}
-        >
+    <TouchableOpacity
+      style={styles.item}
+      onPress={() => navigation.navigate('Details')}>
+      <Card image={photoSrc}>
         <Text>{name}</Text>
         <Text>{price}</Text>
       </Card>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 }
 
 // items will be taken from Verto data, this is just placeholder items
 // Need to reconsider after knowing how data is organized
 // render the list of products
-function Products() {
+function Products(props) {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
@@ -215,6 +211,7 @@ function Products() {
             name={item.itemName}
             photoSrc={item.photoSrc}
             price={item.price}
+            navigation={props.navigation}
           />
         )}
       />
@@ -222,11 +219,10 @@ function Products() {
   );
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:'white'
+    backgroundColor: 'white',
   },
   welcome: {
     fontSize: 25,
@@ -236,14 +232,13 @@ const styles = StyleSheet.create({
   item: {
     //need to fix this!
     width: 205,
-
   },
   image: {
     flex: 1,
     width: null,
     height: null,
-    resizeMode: 'contain'
-},
+    resizeMode: 'contain',
+  },
   itemName: {
     fontSize: 10,
   },
