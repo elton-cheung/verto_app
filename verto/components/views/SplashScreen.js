@@ -180,7 +180,15 @@ function Item({name, photoSrc, price, navigation}) {
   return (
     <TouchableOpacity
       style={styles.item}
-      onPress={() => navigation.navigate('Details')}>
+      onPress={() => {
+        navigation.navigate('Details', {
+          screenProps: {
+            name,
+            photoSrc,
+            price,
+          },
+        });
+      }}>
       <Card image={photoSrc}>
         <Text>{name}</Text>
         <Text>{price}</Text>
