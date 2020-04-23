@@ -1,12 +1,42 @@
 import React from 'react';
-import {View, TextInput, StyleSheet, Image, Button, KeyboardAvoidingView } from 'react-native';
+import {View, TextInput, StyleSheet, Image, Button, KeyboardAvoidingView, Alert } from 'react-native';
 
 class LogIn extends React.Component {
   state = {
     email: '',
     password: '',
-  };
-  
+    isLoggedIn: false,
+  }
+
+    _userLogin = () => {
+        this.setState({ isLoggingIn: true, message: 'Logged in!' });
+        var params = {
+                   email: this.state.email,
+                   password: this.state.password,
+                   grant_type: 'password'
+        };
+        fetch("https://api.vertostore.com/account/login", {
+            method:"POST",
+            headers: {
+                          'Accept': 'application/json',
+                          'Content-Type': 'application/json'
+                        },
+                         body: JSON.stringify({
+                               email: this.state.email,
+                               password: this.state.password,
+                         })
+                      })
+                      .then(response => response.json())
+                      .then(json => {
+                      if(json.code == "authorized"){
+                            this.props.navigation.navigate('Verto')
+                        }
+                        else{
+                            Alert.alert('Wrong Credentials', 'Nice try loser')
+                        }
+                      })
+        }
+
   onChangeText = (key, val) => {
     this.setState({[key]: val});
   };
@@ -30,14 +60,15 @@ class LogIn extends React.Component {
             placeholder="Email"
             autoCapitalize="none"
             placeholderTextColor="grey"
-            onChangeText={val => this.onChangeText('email', val)}
+            onChangeText={email => this.setState({email})}
           />
           <TextInput
             style={styles.input}
             placeholder="Password"
+            secureTextEntry = {true}
             autoCapitalize="none"
             placeholderTextColor="grey"
-            onChangeText={val => this.onChangeText('passwprd', val)}
+            onChangeText={password => this.setState({password})}
           />
           <Button
             title='Forgot Password?'
@@ -45,7 +76,8 @@ class LogIn extends React.Component {
           />
           <Button
           title="Login"
-          onPress={() => this.props.navigation.navigate('Verto')}
+          onPress={() => this._userLogin()}
+          //onPress={() => this.props.navigation.navigate('Verto')}
           />
           <Button
           title="Sign Up"
@@ -94,7 +126,6 @@ const styles = StyleSheet.create({
   otherInput: {
     flex: 4,
     alignItems: 'flex-start',
-    // justifyContent: 'center',
     alignItems: 'center',
   },
 });
