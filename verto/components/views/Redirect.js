@@ -2,9 +2,14 @@
 
 import React from 'react';
 import {Image} from 'react-native';
-import {AddProductContainer} from './AddProduct';
+import {AddProductScreen} from './AddProduct';
 import {SplashScreen} from './SplashScreen';
 import DetailsScreen from './DetailsScreen';
+import SettingsScreen from './SettingsScreen';
+import ProfileScreen from './ProfileScreen';
+import SettingsHeaderButton from '../reusable/SettingsHeaderButton';
+import ProfileHeaderButton from '../reusable/ProfileHeaderButton';
+import HeaderTitle from '../reusable/HeaderTitle';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -12,11 +17,25 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const CatalogStack = createStackNavigator();
 
-function CatalogStackScreen() {
+function CatalogStackScreen(props) {
   return (
     <CatalogStack.Navigator>
-      <CatalogStack.Screen name="Home" component={SplashScreen} />
+      <CatalogStack.Screen
+        name="Shop"
+        component={SplashScreen}
+        options={{
+          headerLeft: () => (
+            <ProfileHeaderButton navigation={props.navigation} />
+          ),
+          headerTitle: () => <HeaderTitle />,
+          headerRight: () => (
+            <SettingsHeaderButton navigation={props.navigation} />
+          ),
+        }}
+      />
       <CatalogStack.Screen name="Details" component={DetailsScreen} />
+      <CatalogStack.Screen name="Settings" component={SettingsScreen} />
+      <CatalogStack.Screen name="Profile" component={ProfileScreen} />
     </CatalogStack.Navigator>
   );
 }
@@ -51,7 +70,7 @@ export default class Verto extends React.Component {
           />
           <Tab.Screen
             name="Sell"
-            component={AddProductContainer}
+            component={AddProductScreen}
             options={{
               tabBarIcon: () => (
                 <Image
@@ -64,7 +83,8 @@ export default class Verto extends React.Component {
                   }}
                 />
               ),
-            }}/>
+            }}
+          />
           <Tab.Screen
             name="Chat"
             component={DetailsScreen}
@@ -80,7 +100,8 @@ export default class Verto extends React.Component {
                   }}
                 />
               ),
-            }}/>
+            }}
+          />
         </Tab.Navigator>
       </NavigationContainer>
     );
