@@ -1,24 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  Text,
-  SafeAreaView,
-  Image,
-} from 'react-native';
-import {Header, Card, ListItem, Button, Icon} from 'react-native-elements';
-import {useNavigation} from '@react-navigation/native';
-import {TouchableHighlight} from 'react-native-gesture-handler';
+import {View, StyleSheet, FlatList, Text, SafeAreaView} from 'react-native';
+import {Card} from 'react-native-elements';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export class SplashScreen extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Welcome />
-        <Products navigation={this.props.navigation} />
-      </View>
+      <React.Fragment>
+        <View style={styles.container}>
+          <Welcome />
+          <Products navigation={this.props.navigation} />
+        </View>
+      </React.Fragment>
     );
   }
 }
@@ -184,14 +178,14 @@ const DATA = [
 function Item({name, photoSrc, price, navigation}) {
   //const navigation = useNavigation();
   return (
-    <TouchableHighlight
+    <TouchableOpacity
       style={styles.item}
       onPress={() => navigation.navigate('Details')}>
       <Card image={photoSrc}>
         <Text>{name}</Text>
         <Text>{price}</Text>
       </Card>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 }
 

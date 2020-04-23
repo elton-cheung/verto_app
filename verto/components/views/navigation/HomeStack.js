@@ -9,8 +9,6 @@ import PhoneVer from '../PhoneVerification';
 import PhoneInput from '../PhoneInput';
 import ForgotPswrd from '../ForgotPswrd';
 import Verto from '../Redirect';
-import DetailsScreen from '../DetailsScreen';
-import {SplashScreen} from '../SplashScreen';
 import Onboard from '../Onboard';
 
 const screens = {
@@ -42,7 +40,10 @@ const screens = {
     screen: PhoneVer,
   },
   Onboard: {
-     screen: Onboard,
+    screen: Onboard,
+    navigationOptions: {
+          headerShown: false,
+    },
   },
   Verto: {
     screen: Verto,

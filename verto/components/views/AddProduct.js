@@ -2,9 +2,16 @@
 import React from 'react';
 import {View, Image, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
+import {createStackNavigator} from '@react-navigation/stack';
 import t from 'tcomb-form-native';
 import ImagePicker from 'react-native-image-picker';
 import bootstrap from 'tcomb-form-native/lib/stylesheets/bootstrap.js';
+
+import SettingsScreen from './SettingsScreen';
+import ProfileScreen from './ProfileScreen';
+import SettingsHeaderButton from '../reusable/SettingsHeaderButton';
+import ProfileHeaderButton from '../reusable/ProfileHeaderButton';
+import HeaderTitle from '../reusable/HeaderTitle';
 
 const Location = t.enums({
   Boston_College: 'Boston College',
@@ -69,10 +76,6 @@ class AddProductContainer extends React.Component {
     super(props);
     this.state = {
       source1: '../../assets/images/upload_photo.png',
-      source2: '../../assets/images/upload_photo.png',
-      source3: '../../assets/images/upload_photo.png',
-      source4: '../../assets/images/upload_photo.png',
-      source5: '../../assets/images/upload_photo.png',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -116,25 +119,48 @@ class AddProductContainer extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.imageContainer}>
-          {mainImage}
-          {/* <View style={styles.imagesLeftColumn}>
-            {secondaryImage1}
-            {secondaryImage2}
-          </View>
-          <View style={styles.imagesRightColumn}>
-            {secondaryImage3}
-            {secondaryImage4}
-          </View> */}
-        </View>
+        <View style={styles.imageContainer}>{mainImage}</View>
         <View style={styles.form}>
-          <Button title="Select Image" onPress={this.selectImage} style={styles.selectImage}/>
+          <Button
+            title="Select Image"
+            onPress={this.selectImage}
+            style={styles.selectImage}
+          />
           <Form options={formOptions} type={Item} ref={c => (this._form = c)} />
-          <Button title="Submit" type="solid" onPress={this.handleSubmit} style={styles.submit} />
+          <Button
+            title="Upload"
+            type="solid"
+            onPress={this.handleSubmit}
+            style={styles.submit}
+          />
         </View>
       </View>
     );
   }
+}
+
+const AddProductStack = createStackNavigator();
+
+function AddProductScreen(props) {
+  return (
+    <AddProductStack.Navigator>
+      <AddProductStack.Screen
+        name="Sell"
+        component={AddProductContainer}
+        options={{
+          headerLeft: () => (
+            <ProfileHeaderButton navigation={props.navigation} />
+          ),
+          headerTitle: () => <HeaderTitle />,
+          headerRight: () => (
+            <SettingsHeaderButton navigation={props.navigation} />
+          ),
+        }}
+      />
+      <AddProductStack.Screen name="Settings" component={SettingsScreen} />
+      <AddProductStack.Screen name="Profile" component={ProfileScreen} />
+    </AddProductStack.Navigator>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -170,12 +196,12 @@ const styles = StyleSheet.create({
   },
   submit: {
     width: 150,
-    alignSelf: 'flex-end',
+    alignSelf: 'center',
   },
   selectImage: {
     width: 150,
     alignSelf: 'center',
-  }
+  },
 });
 
-export {AddProductContainer};
+export {AddProductScreen};

@@ -17,7 +17,7 @@ class OnBoard extends React.Component{
             backgroundColor: '#fff',
             image: <><Image
                         style={styles.tinyLogo}
-                        source={require('../../assets/images/verto_icon.png')}/>
+                        source={require('../../assets/Icons/verto_logo.png')}/>
                    <Image
                         style={styles.onboardingPic}
                         source={require('../../assets/images/onboard1.jpg')}/>
@@ -29,7 +29,7 @@ class OnBoard extends React.Component{
             backgroundColor: '#fff',
             image: <><Image
                         style={styles.tinyLogo}
-                        source={require('../../assets/images/verto_icon.png')} />
+                        source={require('../../assets/Icons/verto_logo.png')} />
                    <Image
                         style={styles.onboardingPic}
                         source={require('../../assets/images/onboard2.jpg')}/>
@@ -41,7 +41,7 @@ class OnBoard extends React.Component{
             backgroundColor: '#fff',
             image: <><Image
                         style={styles.tinyLogo}
-                        source={require('../../assets/images/verto_icon.png')} />
+                        source={require('../../assets/Icons/verto_logo.png')} />
                    <Image
                         style={styles.onboardingPic}
                         source={require('../../assets/images/onboard3.png')}/>
@@ -60,14 +60,16 @@ const styles = StyleSheet.create({
     onboardingPic: {
         //justifyContent: 'center',
         alignItems: 'center',
+        bottom: 10,
+        justifyContent: 'flex-end'
     },
 
     tinyLogo: {
-        position: 'absolute',
+        //position: 'absolute',
         resizeMode: 'contain',
-        width: 50,
-        height: 50,
-        bottom: 450,
+        width: 100,
+        height: 100,
+        //bottom: 450,
     },
 });
 
