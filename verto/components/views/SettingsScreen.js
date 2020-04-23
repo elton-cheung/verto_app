@@ -6,7 +6,9 @@ export default class SettingsScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button title="Logout" type="solid" />
+        <Button title="Logout" type="solid"
+        onPress={() => this.props.navigation.navigate('LogIn')}
+        />
       </View>
     );
   }

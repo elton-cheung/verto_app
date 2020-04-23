@@ -77,7 +77,6 @@ class LogIn extends React.Component {
           <Button
           title="Login"
           onPress={() => this._userLogin()}
-          //onPress={() => this.props.navigation.navigate('Verto')}
           />
           <Button
           title="Sign Up"

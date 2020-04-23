@@ -41,6 +41,9 @@ const screens = {
   },
   Onboard: {
     screen: Onboard,
+    navigationOptions: {
+          headerShown: false,
+    },
   },
   Verto: {
     screen: Verto,

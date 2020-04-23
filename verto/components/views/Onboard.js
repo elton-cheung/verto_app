@@ -60,14 +60,16 @@ const styles = StyleSheet.create({
     onboardingPic: {
         //justifyContent: 'center',
         alignItems: 'center',
+        bottom: 10,
+        justifyContent: 'flex-end'
     },
 
     tinyLogo: {
-        position: 'absolute',
+        //position: 'absolute',
         resizeMode: 'contain',
-        width: 50,
-        height: 50,
-        bottom: 450,
+        width: 100,
+        height: 100,
+        //bottom: 450,
     },
 });
 
