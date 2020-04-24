@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Verto from './components/views/Redirect';
+
 import {
   StyleSheet,
   Text,
@@ -11,6 +13,10 @@ import HomeStack from './components/views/navigation/HomeStack';
 
 export default class App extends Component {
   render() {
-    return <HomeStack />;
+    // if you want to see auth flow:
+    //return <HomeStack />;
+
+    // else
+    return <Verto />;
   }
 }
