@@ -8,6 +8,7 @@ import {
   Link,
 } from 'react-native';
 import HomeStack from './components/views/navigation/HomeStack';
+<<<<<<< HEAD
 import DetailsScreen from './components/views/DetailsScreen';
 import SplashScreen from './components/views/SplashScreen';
 import Redirect from './components/views/Redirect'
@@ -48,5 +49,16 @@ export default class App extends Component {
     //return <HomeStack />;
     return <Redirect />;
     //return <ChatScreen />
+=======
+import Verto from './components/views/Redirect';
+
+export default class App extends Component {
+  render() {
+    // if you want to see auth flow:
+    // return <HomeStack />;
+
+    // else
+    return <Verto />;
+>>>>>>> 967440a20bb2c7663b255a5826549d4effaece75
   }
 }
