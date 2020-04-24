@@ -47,18 +47,7 @@ import ChatScreen from './components/views/ChatScreen'
 export default class App extends Component {
   render() {
     //return <HomeStack />;
-    return <Redirect />;
-    //return <ChatScreen />
-=======
-import Verto from './components/views/Redirect';
-
-export default class App extends Component {
-  render() {
-    // if you want to see auth flow:
-    // return <HomeStack />;
-
-    // else
-    return <Verto />;
->>>>>>> 967440a20bb2c7663b255a5826549d4effaece75
+    //return <Redirect />;
+    return <ChatScreen />
   }
 }
