@@ -11,6 +11,7 @@ import HomeStack from './components/views/navigation/HomeStack';
 import DetailsScreen from './components/views/DetailsScreen';
 import SplashScreen from './components/views/SplashScreen';
 import Redirect from './components/views/Redirect'
+import ChatScreen from './components/views/ChatScreen'
 // Does this actually do anything? -Jennie
 // I had the same thought but did not want to delete lol - Elton
 
@@ -46,5 +47,6 @@ export default class App extends Component {
   render() {
     //return <HomeStack />;
     return <Redirect />;
+    //return <ChatScreen />
   }
 }
