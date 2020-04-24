@@ -20,9 +20,9 @@ const screens = {
   },
   SignLog: {
     screen: SignLogIn,
-    navigationOptions: {
-      headerShown: false,
-    },
+    // navigationOptions: {
+    //   headerShown: false,
+    // },
   },
   SignUp: {
     screen: SignUp,

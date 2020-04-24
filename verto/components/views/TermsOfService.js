@@ -173,7 +173,6 @@ const styles = {
   buttonLabel: {
     fontSize: 20,
     color: '#FFF',
-    backgroundColor: '#136AC7',
     alignSelf: 'center',
   },
 };
