@@ -8,6 +8,7 @@
 */
 import React, {Component} from 'react';
 import { View, Text, ScrollView, Dimensions, TouchableOpacity, } from 'react-native';
+import { withTheme } from 'react-native-elements';
 
 const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
   const paddingToBottom = 20;
@@ -131,11 +132,10 @@ const {width, height} = Dimensions.get('window');
 
 const styles = {
   container: {
-    marginTop: 20,
-    marginLeft: 10,
-    marginRight: 10,
+    backgroundColor: 'white',
   },
   title: {
+    marginTop: 80,
     fontSize: 22,
     alignSelf: 'center',
   },
@@ -153,6 +153,8 @@ const styles = {
   tcContainer: {
     marginTop: 15,
     marginBottom: 15,
+    marginLeft: 20,
+    marginRight: 25,
     height: height * 0.7,
   },
 

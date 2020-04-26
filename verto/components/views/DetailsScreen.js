@@ -12,7 +12,9 @@ const data = {
 };
 
 export default class DetailsScreen extends React.Component {
-  render() {
+  render(props) {
+    console.log(props);
+
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{data.title}</Text>

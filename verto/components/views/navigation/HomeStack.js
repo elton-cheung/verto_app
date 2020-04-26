@@ -14,7 +14,7 @@ import Onboard from '../Onboard';
 const screens = {
   Terms: {
     screen: TermsAndConditions,
-        navigationOptions: {
+    navigationOptions: {
           headerShown: false,
         },
   },
@@ -23,6 +23,12 @@ const screens = {
     navigationOptions: {
       headerShown: false,
     },
+  },
+  SignLog: {
+    screen: SignLogIn,
+    // navigationOptions: {
+    //   headerShown: false,
+    // },
   },
   SignUp: {
     screen: SignUp,
