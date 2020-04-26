@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Button, TextInput, StyleSheet, Image, Text} from 'react-native';
-// import DatePicker from 'react-native-datepicker'
+import DatePicker from 'react-native-datepicker'
 // import styles from './style/signUpFlowStyle.js';
 
 class SignUp extends React.Component {
@@ -127,7 +127,7 @@ class SignUp extends React.Component {
           />
           <Text>Date of Birth</Text>
 
-          {/* <DatePicker
+          <DatePicker
           style={{width: 200}}
           date={this.state.birthDate}
           mode="date"
@@ -150,7 +150,7 @@ class SignUp extends React.Component {
             // ... You can check the source to find the other keys.
           }}
           onDateChange={(date) => {this.setState({birthDate: date})}}
-        /> */}
+        />
 
 
           <TextInput
