@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, AsyncStorage} from 'react-native';
 import {Button} from 'react-native-elements';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeStack from './navigation/HomeStack';
@@ -27,7 +27,10 @@ class SettingsContainer extends React.Component {
         <Button
           title="Logout"
           type="solid"
-          onPress={() => this.props.navigation.navigate('Login')}
+          onPress={() => {
+            this.props.navigation.goBack();
+            this.props.navigation.navigate('Auth');
+          }}
         />
       </View>
     );

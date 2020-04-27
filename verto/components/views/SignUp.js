@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Button, TextInput, StyleSheet, Image, Text} from 'react-native';
-// import DatePicker from 'react-native-datepicker'
+import DatePicker from 'react-native-datepicker';
 // import styles from './style/signUpFlowStyle.js';
 
 class SignUp extends React.Component {
@@ -127,31 +127,32 @@ class SignUp extends React.Component {
           />
           <Text>Date of Birth</Text>
 
-          {/* <DatePicker
-          style={{width: 200}}
-          date={this.state.birthDate}
-          mode="date"
-          placeholder="select date"
-          format="YYYY-MM-DD"
-          minDate="2016-05-01"
-          maxDate="2016-06-01"
-          confirmBtnText="Confirm"
-          cancelBtnText="Cancel"
-          customStyles={{
-            dateIcon: {
-              position: 'absolute',
-              left: 0,
-              top: 4,
-              marginLeft: 0
-            },
-            dateInput: {
-              marginLeft: 36
-            }
-            // ... You can check the source to find the other keys.
-          }}
-          onDateChange={(date) => {this.setState({birthDate: date})}}
-        /> */}
-
+          <DatePicker
+            style={{width: 200}}
+            date={this.state.birthDate}
+            mode="date"
+            placeholder="select date"
+            format="YYYY-MM-DD"
+            minDate="2016-05-01"
+            maxDate="2016-06-01"
+            confirmBtnText="Confirm"
+            cancelBtnText="Cancel"
+            customStyles={{
+              dateIcon: {
+                position: 'absolute',
+                left: 0,
+                top: 4,
+                marginLeft: 0,
+              },
+              dateInput: {
+                marginLeft: 36,
+              },
+              // ... You can check the source to find the other keys.
+            }}
+            onDateChange={date => {
+              this.setState({birthDate: date});
+            }}
+          />
 
           <TextInput
             style={styles.input}

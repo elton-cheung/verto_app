@@ -1,5 +1,5 @@
 import {createStackNavigator} from 'react-navigation-stack';
-import {createAppContainer} from 'react-navigation';
+import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 import SignUp from '../SignUp';
 import LogIn from '../LogIn';
 import TermsAndConditions from '../TermsOfService';
@@ -11,18 +11,20 @@ import ForgotPswrd from '../ForgotPswrd';
 import Verto from '../Redirect';
 import Onboard from '../Onboard';
 
+
 const screens = {
   Terms: {
-    screen: TermsAndConditions,
+        screen: TermsAndConditions,
+        navigationOptions: {
+              headerShown: false,
+            },
+  },
+
+  SignLog: {
+    screen: SignLogIn,
     navigationOptions: {
       headerShown: false,
     },
-  },
-  SignLog: {
-    screen: SignLogIn,
-    // navigationOptions: {
-    //   headerShown: false,
-    // },
   },
   SignUp: {
     screen: SignUp,
@@ -48,14 +50,7 @@ const screens = {
           headerShown: false,
     },
   },
-  Verto: {
-    screen: Verto,
-    navigationOptions: {
-      headerShown: false,
-    },
-  },
 };
 
 const HomeStack = createStackNavigator(screens);
-
-export default createAppContainer(HomeStack);
+export default HomeStack;
