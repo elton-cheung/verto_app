@@ -29,7 +29,7 @@ class LogIn extends React.Component {
                       .then(response => response.json())
                       .then(json => {
                       if(json.code == "authorized"){
-                            this.props.navigation.navigate('Verto')
+                            this.props.navigation.navigate('App')
                         }
                         else{
                             Alert.alert('Wrong Credentials', 'Nice try loser')

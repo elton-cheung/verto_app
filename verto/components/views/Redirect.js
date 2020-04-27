@@ -41,7 +41,6 @@ function CatalogStackScreen(props) {
 }
 
 const Tab = createBottomTabNavigator();
-
 export default class Verto extends React.Component {
   render() {
     return (
@@ -106,4 +105,4 @@ export default class Verto extends React.Component {
       </NavigationContainer>
     );
   }
-}
+};
