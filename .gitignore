@@ -32,6 +32,7 @@ verto/*.iml
 # node.js
 #
 verto/node_modules/
+verto/config.js
 verto/npm-debug.log
 verto/yarn-error.log
 
