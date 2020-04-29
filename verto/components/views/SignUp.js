@@ -12,7 +12,7 @@ class SignUp extends React.Component {
     currentdate: "",
     email:"",
     birthDate:"2016-05-15",
-    error: 'error message goes here (To be removed)'
+    error: 'Please enter all the fields'
   };
   onChangeText = (key, val) => {
     this.setState({[key]: val});
@@ -70,14 +70,18 @@ calculateAge(birth_date) {
           })
             .then(response => response.json())
             .then(json => {
+              let emailSend = this.state.email;
               if (json.code == 'user_created') {
-                alert('1')
-                this.props.navigation.navigate('EmailVer');
+                // alert('1')
+                const token = json.token
+                const userId = json.user.user_id
+                const secure = SecureStorage.setItem(userId, token, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
+                this.props.navigation.navigate('EmailVer',  {token_user: userId, email:json.user.email} );
               } else if (json.code == 'email_exists') {
                 alert('2')
                 console.log(json.code)
                 this.setState({error: 'This email is already used'});
-                this.props.navigation.navigate('EmailVer');
+                this.props.navigation.navigate('EmailVer', {email:"ethango@bu.edu"});
               }
               else if(json.code == 'chatkit_error'){
                 alert('3')
@@ -87,9 +91,13 @@ calculateAge(birth_date) {
                 alert('4')
                 this.setState({error: 'Please enter an edu e-mail'})
               }
+              else{
+                alert('5')
+
+              }
             });
         } catch {
-          alert('error error error');
+          alert('An unexpected error occur please contact us!');
         }
         }
       }
