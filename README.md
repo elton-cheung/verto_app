@@ -1,3 +1,4 @@
+![alt text] (https://github.com/elton-cheung/verto_app/blob/master/verto/assets/logos/verto_logo.png "Logo Title Text 1")
 # Verto (The Mobile App) version 1.0 
 This app is a prototype for Verto's mobile platform, built in React Native and AWS. The goal is to create an iOS/Android app for Verto users to buy and sell products to by and from other college students. 
 
