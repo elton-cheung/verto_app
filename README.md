@@ -4,8 +4,8 @@ This app is a prototype for Verto's mobile platform, built in React Native and A
 ## Verto Authentication 
 
 ## Requirements: 
-Apple [Xcode](https://developer.apple.com/xcode/)
-Android [Android_Studio](https://developer.android.com/studio/)
+* Apple [Xcode](https://developer.apple.com/xcode/)
+* Android [Android_Studio](https://developer.android.com/studio/)
 
 ## Build 
 1. Installation: ``` npm install ```
