@@ -1,0 +1,4 @@
+export const keys = {
+  token:
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZlcnRvc3RvcmVAdmVydG9zdG9yZS5jb20iLCJ1c2VyX2lkIjoiNWM4YTViNzQ0NjFjZTQxZjEyMTBmZjE1IiwidmVydG9faWQiOiIyMWJhYmFkMGYwOTJjMTA1ZjJkMmFhYmE3N2NhNDkyYyIsImlhdCI6MTU4ODExNTEwOX0.Zp3D15ftp4AtixoHbxhHsbtemQU0lWoCY5VCNUHuWrc',
+};

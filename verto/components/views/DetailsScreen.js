@@ -12,8 +12,9 @@ const data = {
 };
 
 export default class DetailsScreen extends React.Component {
+
   render(props) {
-    console.log(props);
+    // console.log(props.route.params.name);
 
     return (
       <View style={styles.container}>

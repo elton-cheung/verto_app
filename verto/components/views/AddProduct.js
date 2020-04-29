@@ -12,6 +12,7 @@ import ProfileScreen from './ProfileScreen';
 import SettingsHeaderButton from '../reusable/SettingsHeaderButton';
 import ProfileHeaderButton from '../reusable/ProfileHeaderButton';
 import HeaderTitle from '../reusable/HeaderTitle';
+import {keys} from '../../config.js';
 
 const Location = t.enums({
   Boston_College: 'Boston College',
@@ -75,19 +76,47 @@ class AddProductContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      source1: '../../assets/images/upload_photo.png',
+      source: '../../assets/images/upload_photo.png',
+      encoded: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit = () => {
     const value = this._form.getValue();
+
+    /* POST request to add image to server */
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + keys.token,
+    });
+    let formdata = new FormData();
+    let requestOptions;
+    console.log('hello');
+    fetch('data:image/jpeg;base64,' + this.state.encoded)
+      .then(res => res.blob())
+      .then(blob => {
+        formdata.append('images', blob);
+        requestOptions = {
+          method: 'POST',
+          headers: headers,
+          body: formdata,
+        };
+        console.log(blob);
+      })
+      .then(() => {
+        fetch(
+          'https://api.vertostore.com/products/image-upload',
+          requestOptions,
+        )
+          .then(imageres => imageres.json())
+          .then(json => console.log(json))
+          .catch(error => console.log('error', error));
+      });
   };
 
   selectImage = async () => {
-    ImagePicker.showImagePicker(imagePickerOptions, response => {
-      console.log('Response = ', response);
-
+    ImagePicker.showImagePicker(imagePickerOptions, async response => {
       if (response.didCancel) {
         console.log('User cancelled image picker.');
       } else if (response.error) {
@@ -96,7 +125,8 @@ class AddProductContainer extends React.Component {
         console.log('User tapped custom button: ', response.customButton);
       } else {
         this.setState({
-          source1: response.uri,
+          source: response.uri,
+          encoded: response.data,
         });
       }
     });
@@ -104,7 +134,7 @@ class AddProductContainer extends React.Component {
 
   render() {
     let mainImage;
-    if (this.state.source1 === '../../assets/images/upload_photo.png') {
+    if (this.state.source === '../../assets/images/upload_photo.png') {
       mainImage = (
         <Image
           source={require('../../assets/images/upload_photo.png')}
@@ -113,7 +143,7 @@ class AddProductContainer extends React.Component {
       );
     } else {
       mainImage = (
-        <Image source={{uri: this.state.source1}} style={styles.mainImage} />
+        <Image source={{uri: this.state.source}} style={styles.mainImage} />
       );
     }
 

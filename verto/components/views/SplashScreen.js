@@ -253,7 +253,6 @@ const DATA = [
 ];
 
 function Item({name, photoSrc, price, navigation}) {
-  //const navigation = useNavigation();
   return (
     <TouchableOpacity
       style={styles.item}
