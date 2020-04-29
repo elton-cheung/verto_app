@@ -1,5 +1,7 @@
 import React from 'react';
-import {View, TextInput, StyleSheet, Image, Button, KeyboardAvoidingView, Alert } from 'react-native';
+import {View, TextInput, StyleSheet, Image, Button, KeyboardAvoidingView, Alert, AsyncStorage } from 'react-native';
+import SecureStorage, { ACCESS_CONTROL, ACCESSIBLE, AUTHENTICATION_TYPE } from 'react-native-secure-storage';
+
 
 class LogIn extends React.Component {
   state = {
@@ -8,12 +10,12 @@ class LogIn extends React.Component {
     isLoggedIn: false,
   }
 
-    _userLogin = () => {
+    _userLogin = async() => {
         this.setState({ isLoggingIn: true, message: 'Logged in!' });
         var params = {
                    email: this.state.email,
                    password: this.state.password,
-                   grant_type: 'password'
+                   //grant_type: 'password'
         };
         fetch("https://api.vertostore.com/account/login", {
             method:"POST",
@@ -28,8 +30,12 @@ class LogIn extends React.Component {
                       })
                       .then(response => response.json())
                       .then(json => {
+                      const token = json.token
+                      const userId = json.user.user_id
+                      const secure = SecureStorage.setItem(userId, token, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
                       if(json.code == "authorized"){
-                            this.props.navigation.navigate('App')
+                            //console.log("this is the key ", json.user.user_id),
+                            this.props.navigation.navigate('App', {token_user: userId})
                         }
                         else{
                             Alert.alert('Wrong Credentials', 'Nice try loser')

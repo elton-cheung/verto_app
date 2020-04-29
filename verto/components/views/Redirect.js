@@ -10,13 +10,16 @@ import ProfileScreen from './ProfileScreen';
 import SettingsHeaderButton from '../reusable/SettingsHeaderButton';
 import ProfileHeaderButton from '../reusable/ProfileHeaderButton';
 import HeaderTitle from '../reusable/HeaderTitle';
+import SecureStorage, { ACCESS_CONTROL, ACCESSIBLE, AUTHENTICATION_TYPE } from 'react-native-secure-storage'
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const CatalogStack = createStackNavigator();
-
+async() => {
+    const got = await SecureStorage.getItem(token_user, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
+}
 function CatalogStackScreen(props) {
   return (
     <CatalogStack.Navigator>
