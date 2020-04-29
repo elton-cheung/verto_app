@@ -9,8 +9,9 @@ This app is a prototype for Verto's mobile platform, built in React Native and A
 
 ## Build 
 1. Installation: ``` npm install ```
-2. Run on Android: ``` npx react-native run-android ```
-2.5. Run on iOS: ```npx react-native run-ios ```
+2. 
+* Run on Android: ``` npx react-native run-android ```
+* Run on iOS: ```npx react-native run-ios ```
 
 ### Dependencies
 1. React-native
