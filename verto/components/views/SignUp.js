@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Button, TextInput, StyleSheet, Image, Text} from 'react-native';
-import DatePicker from 'react-native-datepicker';
+import DatePicker from 'react-native-datepicker'
 // import styles from './style/signUpFlowStyle.js';
 
 class SignUp extends React.Component {
@@ -9,87 +9,90 @@ class SignUp extends React.Component {
     lastname: '',
     password: '',
     confpassword: '',
-    currentdate: '',
-    birthDate: '2016-05-15',
-    error: 'error message goes here (To be removed)',
+    currentdate: "",
+    email:"",
+    birthDate:"2016-05-15",
+    error: 'error message goes here (To be removed)'
   };
   onChangeText = (key, val) => {
     this.setState({[key]: val});
   };
 
-  signUp = async () => {
-    const {firstname, lastname, password, confpassword} = this.state;
-    try {
-      // here place your signup logic
-      console.log('Now to verifying email ', success);
-    } catch (err) {
-      console.log('error signing up: ', err);
-    }
-  };
 
-  completeSign() {
-    // this.signUp();
-    this.props.navigation.navigate('EmailVer');
+calculateAge(birth_date) {
+  var year = Number(birth_date.substring(0, 4));
+  var month = Number(birth_date.substring(4, 2)) - 1;
+  var day = Number(birth_date.substring(6, 2));
+  var today = new Date();
+  var age = today.getFullYear() - year;
+  if (today.getMonth() < month || (today.getMonth() == month && today.getDate() < day)) {
+    age--;
   }
+  return age
+}
 
-  calculateAge(birth_date) {
-    var ageDif = Date.now() - birth_date.getTime();
-    var ageDate = new Date(ageDif); // miliseconds from epoch
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
-  }
+  async verification(){
+    let birth = new Object();
+    birth["day"] = this.state.birthDate.substring(8,10)
+    birth["month"] = this.state.birthDate.substring(5,7)
+    birth["year"] = this.state.birthDate.substring(0,4)
+    let data = new Object();
+    data["email"] = this.state.email
+    data["firstName"] = this.state.firstname
+    data["lastName"] = this.state.lastname
+    data["password"] = this.state.password
+    data["dob"] = birth
 
-  async verification() {
-    let data = {
-      email: 'test-juan2@bu.edu',
-      firstName: 'Test',
-      lastName: 'Juan2',
-      password: 'TestJuan2',
-      dob: {
-        day: '11',
-        month: '08',
-        year: '1997',
-      },
-    };
-
-    // let age = this.calculateAge(this.state.date)
-    let age = 14;
-    // alert(age)
-    if (age > 13) {
-      try {
-        await fetch('https://api.vertostore.com/account/signup', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        })
-          .then(response => response.json())
-          .then(json => {
-            if (json.code == 'user_created') {
-              console.log(json.code);
-              this.props.navigation.navigate('EmailVer');
-            } else if (json.code == 'email_exists') {
-              this.setState({error: 'This email is already used'});
-            }
-          });
-
-        // response is an object
-        // let temp = response.json()
-        // console.log(temp._55);
-        // console.log(temp);
-        // if(response.json()._55.code == "authorized"){
-        //   alert('hi')
-        //       this.props.navigation.navigate('EmailVer')
-        // }
-        // this.props.navigation.navigate('EmailVer');
-      } catch {
-        alert('error error error');
+    let age = this.calculateAge(this.state.birthDate)
+    //Using if statement to see whether an error occurs, if exist, then DO NOT DO ANYTHING AND emit error
+    if(this.state.firstname.length <= 0 || this.state.lastname.length <= 0 
+      || this.state.password.length <= 0 || this.state.confpassword.length <= 0 
+      || this.state.email.length <= 0){
+        this.setState({error: "You must fill in all the fields"})
       }
-    } else {
-      this.setState({error: 'You need to be at least 13 years old'});
-    }
-  }
+      else if(this.state.password != this.state.confpassword){
+        this.setState({error: "Your passwod must be the same"})
+      }
+      else if(age < 13){
+        this.setState({error: "You must be at least 13 years old to use this service"})
+      }
+      else{
+        //NO error, then proceed
+        // console.log("Inside this")
+        try {
+          await fetch('https://api.vertostore.com/account/signup', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          })
+            .then(response => response.json())
+            .then(json => {
+              if (json.code == 'user_created') {
+                alert('1')
+                this.props.navigation.navigate('EmailVer');
+              } else if (json.code == 'email_exists') {
+                alert('2')
+                console.log(json.code)
+                this.setState({error: 'This email is already used'});
+                this.props.navigation.navigate('EmailVer');
+              }
+              else if(json.code == 'chatkit_error'){
+                alert('3')
+                this.setState({error: 'Please enter a valid e-mail'})
+              }
+              else if(json.code == "edu_email_required"){
+                alert('4')
+                this.setState({error: 'Please enter an edu e-mail'})
+              }
+            });
+        } catch {
+          alert('error error error');
+        }
+        }
+      }
 
   render() {
     return (
@@ -102,20 +105,20 @@ class SignUp extends React.Component {
         </View>
 
         <View style={styles.otherInput}>
-          <Text>{this.state.error}</Text>
+    <Text style={styles.errorMessage}>{this.state.error}</Text>
           <TextInput
             style={styles.input}
             placeholder="First Name"
             autoCapitalize="none"
             placeholderTextColor="grey"
-            onChangeText={val => this.onChangeText('firstname', val)}
+            onChangeText={firstname => this.setState({firstname})}
           />
           <TextInput
             style={styles.input}
             placeholder="Last Name"
             autoCapitalize="none"
             placeholderTextColor="grey"
-            onChangeText={val => this.onChangeText('lastname', val)}
+            onChangeText={lastname => this.setState({lastname})}
           />
           <TextInput
             style={styles.input}
@@ -123,36 +126,34 @@ class SignUp extends React.Component {
             // secureTextEntry={true}
             autoCapitalize="none"
             placeholderTextColor="grey"
-            onChangeText={val => this.onChangeText('password', val)}
+            onChangeText={email => this.setState({email})}
           />
           <Text>Date of Birth</Text>
-
           <DatePicker
-            style={{width: 200}}
-            date={this.state.birthDate}
-            mode="date"
-            placeholder="select date"
-            format="YYYY-MM-DD"
-            minDate="2016-05-01"
-            maxDate="2016-06-01"
-            confirmBtnText="Confirm"
-            cancelBtnText="Cancel"
-            customStyles={{
-              dateIcon: {
-                position: 'absolute',
-                left: 0,
-                top: 4,
-                marginLeft: 0,
-              },
-              dateInput: {
-                marginLeft: 36,
-              },
-              // ... You can check the source to find the other keys.
-            }}
-            onDateChange={date => {
-              this.setState({birthDate: date});
-            }}
-          />
+          style={{width: 200}}
+          date={this.state.birthDate}
+          mode="date"
+          placeholder="select date"
+          format="YYYY-MM-DD"
+          minDate="1920-05-01"
+          maxDate="2020-04-01"
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          customStyles={{
+            dateIcon: {
+              position: 'absolute',
+              left: 0,
+              top: 4,
+              marginLeft: 0
+            },
+            dateInput: {
+              marginLeft: 36
+            }
+            // ... You can check the source to find the other keys.
+          }}
+          onDateChange={(date) => {this.setState({birthDate: date})}}
+        />
+
 
           <TextInput
             style={styles.input}
@@ -160,7 +161,7 @@ class SignUp extends React.Component {
             autoCapitalize="none"
             secureTextEntry={true}
             placeholderTextColor="grey"
-            onChangeText={val => this.onChangeText('password', val)}
+            onChangeText={password => this.setState({password})}
           />
 
           <TextInput
@@ -169,10 +170,13 @@ class SignUp extends React.Component {
             autoCapitalize="none"
             secureTextEntry={true}
             placeholderTextColor="grey"
-            onChangeText={val => this.onChangeText('password', val)}
+            onChangeText={confpassword => this.setState({confpassword})}
           />
 
-          <Button title="Add E-mail" onPress={this.verification.bind(this)} />
+          <Button
+            title="Add E-mail"
+            onPress={this.verification.bind(this)}
+          />
         </View>
       </View>
     );
@@ -183,92 +187,95 @@ class SignUp extends React.Component {
   TODO: Implement a function to adjust text size upon typing
 
 */
-const styles = StyleSheet.create({
+const styles =StyleSheet.create({
   buttonLog: {
-    alignSelf: 'stretch',
-    backgroundColor: '#4d94ff',
-    margin: 20,
-    padding: 8,
-    color: '#F5F5F5',
-    borderRadius: 14,
-    fontSize: 18,
-    fontWeight: '500',
-    height: 50,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonSign: {
-    alignSelf: 'stretch',
-    backgroundColor: '#ffda5c',
-    margin: 20,
-    padding: 8,
-    color: '#ffffff',
-    borderRadius: 14,
-    fontSize: 18,
-    fontWeight: '500',
-    height: 50,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+      alignSelf: 'stretch',
+      backgroundColor: "#4d94ff",
+      margin: 20,
+      padding: 8,
+      color: '#F5F5F5',
+      borderRadius: 14,
+      fontSize: 18,
+      fontWeight: '500',
+      height: 50,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    buttonSign: {
+      alignSelf: 'stretch',
+      backgroundColor: '#ffda5c',
+      margin: 20,
+      padding: 8,
+      color: '#ffffff',
+      borderRadius: 14,
+      fontSize: 18,
+      fontWeight: '500',
+      height: 50,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
   input: {
-    width: 290,
-    height: 45,
-    backgroundColor: '#fff',
-    margin: 15,
-    padding: 12,
-    color: 'black',
-    borderRadius: 30,
-    fontSize: 14,
-    fontWeight: '400',
-    borderColor: 'grey',
-    borderWidth: 1.5,
-  },
-  header: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  body: {
-    flex: 4,
-    justifyContent: 'center',
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-  },
-  otherInput: {
-    flex: 2,
-    alignItems: 'flex-start',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-  },
-  image: {
-    aspectRatio: 0.9,
-    resizeMode: 'contain',
-  },
-  logInInput: {
-    flex: 1,
-    backgroundColor: 'white',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    alignSelf: 'stretch',
-  },
-  signInInput: {
-    flex: 1,
-    backgroundColor: 'white',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    alignSelf: 'stretch',
-  },
-  blank: {
-    flex: 2,
-  },
+      width: 290,
+      height: 45,
+      backgroundColor: '#fff',
+      margin: 15,
+      padding: 12,
+      color: 'black',
+      borderRadius: 30,
+      fontSize: 14,
+      fontWeight: '400',
+      borderColor: 'grey',
+      borderWidth: 1.5
+    },
+      header: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    body: {
+      flex: 4,
+      justifyContent: 'center'
+    },
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'white'
+    },
+    otherInput: {
+      flex: 2,
+      alignItems: 'flex-start',
+      // justifyContent: 'center',
+      alignItems: 'center',
+    },
+    image: {
+      aspectRatio: 0.9,
+      resizeMode: 'contain',
+    },
+    logInInput: {
+      flex: 1,
+      backgroundColor: 'white',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'stretch',
+      alignSelf: 'stretch',
+    },
+    signInInput: {
+      flex: 1,
+      backgroundColor: 'white',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'stretch',
+      alignSelf: 'stretch',
+    },
+    blank: {
+      flex: 2,
+    },
+    errorMessage:{
+      color:'red'
+    }
 });
 
 export default SignUp;
