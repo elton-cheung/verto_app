@@ -15,7 +15,6 @@ class LogIn extends React.Component {
         var params = {
                    email: this.state.email,
                    password: this.state.password,
-                   //grant_type: 'password'
         };
         fetch("https://api.vertostore.com/account/login", {
             method:"POST",
@@ -35,10 +34,10 @@ class LogIn extends React.Component {
                       const secure = SecureStorage.setItem(userId, token, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
                       if(json.code == "authorized"){
                             //console.log("this is the key ", json.user.user_id),
-                            this.props.navigation.navigate('App', {token_user: userId})
+                            this.props.navigation.navigate('Verto', {t: 86})
                         }
                         else{
-                            Alert.alert('Wrong Credentials', 'Nice try loser')
+                            Alert.alert('Wrong Credentials', 'Please Try Again')
                         }
                       })
         }
