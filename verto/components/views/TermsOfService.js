@@ -3,8 +3,6 @@
   The following code has been copied from https://gist.github.com/luisbajana/51549d9f0faecaab1df1493fb0ec8a15
   Author: luisbajana (Github Username)
   TODO: Modify
-
-
 */
 import React, {Component} from 'react';
 import { View, Text, ScrollView, Dimensions, TouchableOpacity, } from 'react-native';
