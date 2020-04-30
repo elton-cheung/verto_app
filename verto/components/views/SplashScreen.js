@@ -112,7 +112,7 @@ const DATA = [
     photoSrc: require('../../assets/images/iphone11.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$200',
+    price: '200',
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
@@ -120,7 +120,7 @@ const DATA = [
     photoSrc: require('../../assets/images/mens_coat.jpeg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$40',
+    price: '40',
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
@@ -128,7 +128,7 @@ const DATA = [
     photoSrc: require('../../assets/images/minifridge.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$25',
+    price: '25',
   },
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -136,7 +136,7 @@ const DATA = [
     photoSrc: require('../../assets/images/iphone11.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$200',
+    price: '200',
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
@@ -144,7 +144,7 @@ const DATA = [
     photoSrc: require('../../assets/images/mens_coat.jpeg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$40',
+    price: '40',
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
@@ -152,7 +152,7 @@ const DATA = [
     photoSrc: require('../../assets/images/minifridge.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$25',
+    price: '25',
   },
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -160,7 +160,7 @@ const DATA = [
     photoSrc: require('../../assets/images/iphone11.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$200',
+    price: '200',
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
@@ -168,7 +168,7 @@ const DATA = [
     photoSrc: require('../../assets/images/mens_coat.jpeg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$40',
+    price: '40',
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
@@ -176,7 +176,7 @@ const DATA = [
     photoSrc: require('../../assets/images/minifridge.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$25',
+    price: '25',
   },
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -184,7 +184,7 @@ const DATA = [
     photoSrc: require('../../assets/images/iphone11.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$200',
+    price: '200',
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
@@ -192,7 +192,7 @@ const DATA = [
     photoSrc: require('../../assets/images/mens_coat.jpeg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$40',
+    price: '40',
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
@@ -200,7 +200,7 @@ const DATA = [
     photoSrc: require('../../assets/images/minifridge.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$25',
+    price: '25',
   },
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -208,7 +208,7 @@ const DATA = [
     photoSrc: require('../../assets/images/iphone11.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$200',
+    price: '200',
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
@@ -216,7 +216,7 @@ const DATA = [
     photoSrc: require('../../assets/images/mens_coat.jpeg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$40',
+    price: '40',
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
@@ -224,7 +224,7 @@ const DATA = [
     photoSrc: require('../../assets/images/minifridge.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$25',
+    price: '25',
   },
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -232,7 +232,7 @@ const DATA = [
     photoSrc: require('../../assets/images/iphone11.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$200',
+    price: '200',
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
@@ -240,7 +240,7 @@ const DATA = [
     photoSrc: require('../../assets/images/mens_coat.jpeg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$40',
+    price: '40',
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
@@ -248,7 +248,7 @@ const DATA = [
     photoSrc: require('../../assets/images/minifridge.jpg'),
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '$25',
+    price: '25',
   },
 ];
 
@@ -258,16 +258,14 @@ function Item({name, photoSrc, price, navigation}) {
       style={styles.item}
       onPress={() => {
         navigation.navigate('Details', {
-          screenProps: {
-            name,
-            photoSrc,
-            price,
-          },
+          name,
+          photoSrc,
+          price,
         });
       }}>
       <Card image={photoSrc}>
         <Text>{name}</Text>
-        <Text>{price}</Text>
+        <Text>${price}</Text>
       </Card>
     </TouchableOpacity>
   );

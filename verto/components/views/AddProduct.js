@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Image, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet, ScrollView} from 'react-native';
 import {Button} from 'react-native-elements';
 import {createStackNavigator} from '@react-navigation/stack';
 import t from 'tcomb-form-native';
@@ -68,6 +68,7 @@ const imagePickerOptions = {
     skipBackup: true,
     path: 'images',
   },
+  quality: 0.001,
 };
 
 const Form = t.form.Form;
@@ -78,12 +79,14 @@ class AddProductContainer extends React.Component {
     this.state = {
       source: '../../assets/images/upload_photo.png',
       encoded: '',
+      type: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit = () => {
     const value = this._form.getValue();
+    console.log('photo', this.state.photo);
 
     /* POST request to add image to server */
     let headers = new Headers({
@@ -91,28 +94,16 @@ class AddProductContainer extends React.Component {
       Authorization: 'Bearer ' + keys.token,
     });
     let formdata = new FormData();
-    let requestOptions;
-    console.log('hello');
-    fetch('data:image/jpeg;base64,' + this.state.encoded)
-      .then(res => res.blob())
-      .then(blob => {
-        formdata.append('images', blob);
-        requestOptions = {
-          method: 'POST',
-          headers: headers,
-          body: formdata,
-        };
-        console.log(blob);
-      })
-      .then(() => {
-        fetch(
-          'https://api.vertostore.com/products/image-upload',
-          requestOptions,
-        )
-          .then(imageres => imageres.json())
-          .then(json => console.log(json))
-          .catch(error => console.log('error', error));
-      });
+    formdata.append('image', this.state.encoded);
+    let requestOptions = {
+      method: 'POST',
+      headers: headers,
+      body: formdata,
+    };
+    fetch('https://api.vertostore.com/products/image-upload', requestOptions)
+      .then(res => console.log('uhh', res))
+      .then(json => console.log('hello', json))
+      .catch(error => console.log('error', error));
   };
 
   selectImage = async () => {
@@ -127,6 +118,8 @@ class AddProductContainer extends React.Component {
         this.setState({
           source: response.uri,
           encoded: response.data,
+          type: response.type,
+          photo: response,
         });
       }
     });
@@ -148,7 +141,7 @@ class AddProductContainer extends React.Component {
     }
 
     return (
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.imageContainer}>{mainImage}</View>
         <View style={styles.form}>
           <Button
@@ -164,7 +157,7 @@ class AddProductContainer extends React.Component {
             style={styles.submit}
           />
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
