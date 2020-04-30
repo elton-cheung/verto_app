@@ -6,6 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import t from 'tcomb-form-native';
 import ImagePicker from 'react-native-image-picker';
 import bootstrap from 'tcomb-form-native/lib/stylesheets/bootstrap.js';
+import axios from 'react-native-axios';
 
 import SettingsScreen from './SettingsScreen';
 import ProfileScreen from './ProfileScreen';
@@ -48,6 +49,7 @@ const formOptions = {
   },
 };
 
+/* unintuitive to style - i would suggest refactoring and using a different form library or just built-in components */
 formOptions.stylesheet.textbox.normal = {
   borderWidth: 0,
   marginBottom: 0,
@@ -68,7 +70,7 @@ const imagePickerOptions = {
     skipBackup: true,
     path: 'images',
   },
-  quality: 0.001,
+  quality: 0.1,
 };
 
 const Form = t.form.Form;
@@ -78,7 +80,6 @@ class AddProductContainer extends React.Component {
     super(props);
     this.state = {
       source: '../../assets/images/upload_photo.png',
-      encoded: '',
       type: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -86,22 +87,57 @@ class AddProductContainer extends React.Component {
 
   handleSubmit = () => {
     const value = this._form.getValue();
-    console.log('photo', this.state.photo);
+
+    var dataForm = new FormData();
+    dataForm.append('image', {
+      uri: this.state.source,
+      type: this.state.type,
+      name: 'testPhotoName',
+    });
+
+    // return axios({
+    //   method: 'POST',
+    //   url: 'https://api.vertostore.com/products/image-upload',
+    //   async: true,
+    //   crossDomain: true,
+    //   headers: {
+    //     Authorization: 'Bearer ' + keys.token,
+    //   },
+    //   processData: false,
+    //   contentType: false,
+    //   mimeType: 'multipart/form-data',
+    //   dataType: 'json',
+    //   data: dataForm,
+    // })
+    //   .then(responseJson => {
+    //     console.log('hello', responseJson.data);
+    //     console.log('We hit upload Image function!!!');
+    //     return responseJson;
+    //   })
+    //   .catch(error => {
+    //     console.log(error.response);
+    //   });
 
     /* POST request to add image to server */
     let headers = new Headers({
-      'Content-Type': 'application/json',
       Authorization: 'Bearer ' + keys.token,
     });
     let formdata = new FormData();
-    formdata.append('image', this.state.encoded);
+    formdata.append('image', {
+      uri: this.state.source,
+      type: this.state.type,
+      name: 'testPhotoName',
+    });
     let requestOptions = {
       method: 'POST',
       headers: headers,
       body: formdata,
     };
     fetch('https://api.vertostore.com/products/image-upload', requestOptions)
-      .then(res => console.log('uhh', res))
+      .then(res => {
+        console.log('res ', res);
+        res.json();
+      })
       .then(json => console.log('hello', json))
       .catch(error => console.log('error', error));
   };
@@ -117,9 +153,7 @@ class AddProductContainer extends React.Component {
       } else {
         this.setState({
           source: response.uri,
-          encoded: response.data,
           type: response.type,
-          photo: response,
         });
       }
     });
