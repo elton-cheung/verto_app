@@ -94,11 +94,6 @@ const sellMessages = [
     name: "Steve",
     lastMessage: "Are you buying this?",
   },
-  {
-    id: "4",
-    name: "Steve",
-    lastMessage: "I'm selling this",
-  },
 ]
 
 
@@ -193,10 +188,15 @@ const styles = StyleSheet.create({
     },
     noMessagesContainer: {
       flex: 1,
-      marginTop: 5,
-      margin: 10,
-      borderColor: "grey"
-      
+      marginTop: 0,
+      margin: 0,
+      padding: 10,
+      borderColor: "grey",
+      borderWidth: 2,
+      borderColor: '#6495ed',
+      backgroundColor: '#dcdcdc',
+      borderRadius: 5,
+      height: 60,
     },
     container: {
       flex: 1,
