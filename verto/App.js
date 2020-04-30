@@ -1,14 +1,7 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  ScrollView,
-  Link,
-} from 'react-native';
+import {createStackNavigator} from 'react-navigation-stack';
+import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 import HomeStack from './components/views/navigation/HomeStack';
-<<<<<<< HEAD
 import DetailsScreen from './components/views/DetailsScreen';
 import SplashScreen from './components/views/SplashScreen';
 import Redirect from './components/views/Redirect'
@@ -46,8 +39,26 @@ import ChatScreen from './components/views/ChatScreen'
 
 export default class App extends Component {
   render() {
-    //return <HomeStack />;
-    //return <Redirect />;
-    return <ChatScreen />
+    // if you want to see auth flow:
+
+    // return <HomeStack />;
+
+    const AuthStack = HomeStack;
+    const VertoStack = Verto;
+
+    const FinalStack = createSwitchNavigator(
+      {
+        Auth: AuthStack,
+        App: VertoStack,
+      },
+      {
+        initialRouteName: 'Auth',
+      },
+    );
+
+    const Final = createAppContainer(FinalStack);
+     return <Final />;
+
+    //return <Verto />;
   }
 }

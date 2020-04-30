@@ -6,15 +6,56 @@ import { Icon } from 'react-native-elements';
 
 class EmailVer extends React.Component {
   state = {
-    email: '',
-    confemail: '',
-    errorMessage: 'Enter Code Here',
-    error: true
+    userId: '',
+    email: this.props.navigation.getParam('email')
   };
-  
-  onChangeText = (key, val) => {
-    this.setState({[key]: val});
-  };
+  // Call the Email Verification API
+
+
+  componentWillMount(){
+    this.setState({
+      email: this.props.email
+    });
+    try{
+    fetch('https://api.vertostore.com/account/email-update', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          })
+            .then(response => response.json())
+            .then(json => {
+              if (json.code == 'user_created') {
+                // alert('1')
+                const token = json.token
+                const userId = json.user.user_id
+                const secure = SecureStorage.setItem(userId, token, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
+                this.props.navigation.navigate('EmailVer',  {token_user: userId} );
+              } else if (json.code == 'email_exists') {
+                // alert('2')
+                console.log(json.code)
+                this.setState({error: 'This email is already used'});
+                this.props.navigation.navigate('EmailVer');
+              }
+              else if(json.code == 'chatkit_error'){
+                // alert('3')
+                this.setState({error: 'Please enter a valid e-mail'})
+              }
+              else if(json.code == "edu_email_required"){
+                // alert('4')
+                this.setState({error: 'Please enter an edu e-mail'})
+              }
+              else{
+                alert('An unexpected error occur please contact us!')
+              }
+            });
+          }
+          catch{
+
+          }        
+}
 
   // After e-mail verification, we need to set up phone verification
   signUp = async () => {
@@ -51,6 +92,7 @@ class EmailVer extends React.Component {
             source={require('../../assets/images/Placeholder.jpg')}
           />
         </View>
+    <Text>{this.state.email}</Text>
           <Text style={{textAlign: 'center', fontSize: 15}}>An E-mail has been sent</Text>
           <Text style={{textAlign: 'center', fontSize: 15}}>to your .edu email</Text>
           <Text style={{textAlign: 'center', fontSize: 15}}>Please enter the 6-digit code</Text>

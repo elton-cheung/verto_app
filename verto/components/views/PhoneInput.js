@@ -6,14 +6,10 @@ import { Icon } from 'react-native-elements';
 
 class PhoneInput extends React.Component {
   state = {
-    email: '',
-    confemail: '',
+    phone: '',
     message: 'Enter Phone Number'
   };
-  
-  onChangeText = (key, val) => {
-    this.setState({[key]: val});
-  };
+
 
   // After e-mail verification, we need to set up phone verification
   signUp = async () => {
@@ -25,6 +21,16 @@ class PhoneInput extends React.Component {
       console.log('error signing up: ', err);
     }
   };
+
+  async verification(){
+    
+    try{
+
+    }
+    catch{
+
+    }
+  }
 
   completeEmail() {
     // this.signUp;
@@ -59,7 +65,7 @@ class PhoneInput extends React.Component {
             autoCapitalize="none"
             secureTextEntry={true}
             placeholderTextColor="grey"
-            onChangeText={val => this.onChangeText('password', val)}
+            onChangeText={phone => this.setState({phone})}
           />
 
         </View>
@@ -67,7 +73,7 @@ class PhoneInput extends React.Component {
         <View style={styles.otherInput}>
           <Button
             title="Send Verification Code"
-            onPress={() => this.props.navigation.navigate('PhoneVer')}
+            onPress={this.verification.bind(this)}
           />
         </View>
       </View>
