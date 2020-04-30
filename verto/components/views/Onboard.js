@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TextInput, StyleSheet, Image, Button, Icon}  from 'react-native';
+import {View, TextInput, StyleSheet, Image, ImageBackground, Button, Icon}  from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper'; // 0.4.0
 
 class OnBoard extends React.Component{
@@ -9,44 +9,39 @@ class OnBoard extends React.Component{
       onSkip={() => this.props.navigation.navigate('App')}
       onDone={() => this.props.navigation.navigate('App')}
       flatlistProps={this.props.navigation}
-      titleStyles = {{bottom: 50}}
-      subTitleStyles = {{bottom: 50}}
+
       bottomBarHighlight={false}
         pages={[
           {
             backgroundColor: '#fff',
-            image: <><Image
-                        style={styles.tinyLogo}
-                        source={require('../../assets/Icons/verto_logo.png')}/>
+            image: <>
                    <Image
                         style={styles.onboardingPic}
-                        source={require('../../assets/images/onboard1.jpg')}/>
+                        source={require('../../assets/images/Buy&Sell.png')}/>
                    </>,
-            title: 'Hello!',
-            subtitle: 'Welcome to Verto!',
+            title:'',
+            subtitle:'',
           },
           {
             backgroundColor: '#fff',
-            image: <><Image
-                        style={styles.tinyLogo}
-                        source={require('../../assets/Icons/verto_logo.png')} />
+            image: <>
                    <Image
                         style={styles.onboardingPic}
-                        source={require('../../assets/images/onboard2.jpg')}/>
+                        source={require('../../assets/images/SnapShopSell.png')}/>
                    </>,
-            title: 'What this App does',
-            subtitle: 'Here, this is how you use the app',
+            title:'',
+            subtitle:'',
           },
+
           {
             backgroundColor: '#fff',
-            image: <><Image
-                        style={styles.tinyLogo}
-                        source={require('../../assets/Icons/verto_logo.png')} />
+            image: <>
                    <Image
                         style={styles.onboardingPic}
-                        source={require('../../assets/images/onboard3.png')}/>
+                        source={require('../../assets/images/JustVertoIt.png')}/>
                    </>,
-            title: 'Get Going!',
+            title:'',
+            subtitle:'',
 
           },
         ]}
@@ -60,16 +55,23 @@ const styles = StyleSheet.create({
     onboardingPic: {
         //justifyContent: 'center',
         alignItems: 'center',
-        bottom: 10,
-        justifyContent: 'flex-end'
+        //resizeMode: 'contain',
+       // bottom:10000000000,
+        //justifyContent: 'flex-end',
+        transform:[{scale:0.35}],
+        //flex:100,
+        //flexDirection: 'row',
+        //flexWrap: 'wrap',
     },
 
     tinyLogo: {
-        //position: 'absolute',
+        position: 'relative',
         resizeMode: 'contain',
         width: 100,
-        height: 100,
-        //bottom: 450,
+        height: 40,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        bottom: 500,
     },
 });
 
