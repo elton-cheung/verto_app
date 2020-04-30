@@ -22,36 +22,36 @@ class LogIn extends React.Component {
     isLoggedIn: false,
   };
 
-  _userLogin = async () => {
-    this.setState({isLoggingIn: true, message: 'Logged in!'});
-    var params = {
-      email: this.state.email,
-      password: this.state.password,
-      //grant_type: 'password'
-    };
-    fetch('https://api.vertostore.com/account/login', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password,
-      }),
-    })
-      .then(response => response.json())
-      .then(json => {
-        const token = json.token;
-        const userId = json.user.user_id;
-        const secure = SecureStorage.setItem(userId, token, {
-          accessible: ACCESSIBLE.WHEN_UNLOCKED,
-        });
-        if (json.code == 'authorized') {
-          //console.log("this is the key ", json.user.user_id),
-          this.props.navigation.navigate('App', {token_user: userId});
-        } else {
-          Alert.alert('Wrong Credentials', 'Nice try loser');
+    _userLogin = async() => {
+        this.setState({ isLoggingIn: true, message: 'Logged in!' });
+        var params = {
+                   email: this.state.email,
+                   password: this.state.password,
+        };
+        fetch("https://api.vertostore.com/account/login", {
+            method:"POST",
+            headers: {
+                          'Accept': 'application/json',
+                          'Content-Type': 'application/json'
+                        },
+                         body: JSON.stringify({
+                               email: this.state.email,
+                               password: this.state.password,
+                         })
+                      })
+                      .then(response => response.json())
+                      .then(json => {
+                      const token = json.token
+                      const userId = json.user.user_id
+                      const secure = SecureStorage.setItem(userId, token, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
+                      if(json.code == "authorized"){
+                            //console.log("this is the key ", json.user.user_id),
+                            this.props.navigation.navigate('Verto', {t: 86})
+                        }
+                        else{
+                            Alert.alert('Wrong Credentials', 'Please Try Again')
+                        }
+                      })
         }
       });
   };

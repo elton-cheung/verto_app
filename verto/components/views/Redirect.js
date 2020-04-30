@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 
 import React from 'react';
-import {Image} from 'react-native';
+import {Text, Image, Alert} from 'react-native';
 import {AddProductScreen} from './AddProduct';
 import {SplashScreen} from './SplashScreen';
 import DetailsScreen from './DetailsScreen';
@@ -10,16 +10,19 @@ import ProfileScreen from './ProfileScreen';
 import SettingsHeaderButton from '../reusable/SettingsHeaderButton';
 import ProfileHeaderButton from '../reusable/ProfileHeaderButton';
 import HeaderTitle from '../reusable/HeaderTitle';
-import SecureStorage, { ACCESS_CONTROL, ACCESSIBLE, AUTHENTICATION_TYPE } from 'react-native-secure-storage'
+import SecureStorage, {
+  ACCESS_CONTROL,
+  ACCESSIBLE,
+  AUTHENTICATION_TYPE,
+} from 'react-native-secure-storage';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {CreateChatScreen} from './ChatScreen';
 
 const CatalogStack = createStackNavigator();
-async() => {
-    const got = await SecureStorage.getItem(token_user, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
-}
+
 function CatalogStackScreen(props) {
   return (
     <CatalogStack.Navigator>
@@ -45,6 +48,11 @@ function CatalogStackScreen(props) {
 
 const Tab = createBottomTabNavigator();
 export default class Verto extends React.Component {
+  userToken({route, navigation}) {
+    const {t} = route.params;
+    return console.log('open', t);
+  }
+
   render() {
     return (
       <NavigationContainer>
@@ -72,7 +80,7 @@ export default class Verto extends React.Component {
           />
           <Tab.Screen
             name="Sell"
-            component={AddProductScreen}
+            component={AddProductScreen} //{this.userToken}
             options={{
               tabBarIcon: () => (
                 <Image
@@ -89,7 +97,7 @@ export default class Verto extends React.Component {
           />
           <Tab.Screen
             name="Chat"
-            component={DetailsScreen}
+            component={CreateChatScreen}
             options={{
               tabBarIcon: () => (
                 <Image
@@ -108,4 +116,4 @@ export default class Verto extends React.Component {
       </NavigationContainer>
     );
   }
-};
+}

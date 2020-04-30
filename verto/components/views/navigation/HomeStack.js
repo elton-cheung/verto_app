@@ -50,7 +50,13 @@ const screens = {
           headerShown: false,
     },
   },
+  Verto: {
+    screen: Verto,
+    navigationOptions: {
+              headerShown: false,
+    },
+  },
 };
 
 const HomeStack = createStackNavigator(screens);
-export default HomeStack;
+export default createAppContainer(HomeStack);
