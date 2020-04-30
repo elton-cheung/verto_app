@@ -4,8 +4,9 @@ import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 import HomeStack from './components/views/navigation/HomeStack';
 import DetailsScreen from './components/views/DetailsScreen';
 import SplashScreen from './components/views/SplashScreen';
-import Redirect from './components/views/Redirect'
-import ChatScreen from './components/views/ChatScreen'
+import Redirect from './components/views/Redirect';
+import ChatScreen from './components/views/ChatScreen';
+import Verto from './components/views/Redirect';
 // Does this actually do anything? -Jennie
 // I had the same thought but did not want to delete lol - Elton
 
@@ -57,8 +58,8 @@ export default class App extends Component {
     );
 
     const Final = createAppContainer(FinalStack);
-     return <Final />;
+     //return <Final />;
 
-    //return <Verto />;
+    return <Redirect />;
   }
 }

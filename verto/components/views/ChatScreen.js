@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, AppRegistry, StyleSheet, Image, FlatList, Dimensions} from 'react-native';
-const verto_logo = require('../../assets/images/verto_icon.png');
+const verto_logo = require('../../assets/images/verto_logo.png');
 const account = require('../../assets/images/account.png');
 const settings = require('../../assets/images/settings.png');
 const camera = require('../../assets/images/camera.png');

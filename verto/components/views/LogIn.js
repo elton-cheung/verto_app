@@ -74,11 +74,7 @@ class LogIn extends React.Component {
             secureTextEntry = {true}
             autoCapitalize="none"
             placeholderTextColor="grey"
-<<<<<<< HEAD
-            onChangeText={val => this.onChangeText('password', val)}
-=======
             onChangeText={password => this.setState({password})}
->>>>>>> 967440a20bb2c7663b255a5826549d4effaece75
           />
           <Button
             title='Forgot Password?'
