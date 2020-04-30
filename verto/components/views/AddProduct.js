@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Image, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet, ScrollView} from 'react-native';
 import {Button} from 'react-native-elements';
 import {createStackNavigator} from '@react-navigation/stack';
 import t from 'tcomb-form-native';
@@ -12,6 +12,7 @@ import ProfileScreen from './ProfileScreen';
 import SettingsHeaderButton from '../reusable/SettingsHeaderButton';
 import ProfileHeaderButton from '../reusable/ProfileHeaderButton';
 import HeaderTitle from '../reusable/HeaderTitle';
+import {keys} from '../../config.js';
 
 const Location = t.enums({
   Boston_College: 'Boston College',
@@ -47,6 +48,7 @@ const formOptions = {
   },
 };
 
+/* unintuitive to style - i would suggest refactoring and using a different form library or just built-in components */
 formOptions.stylesheet.textbox.normal = {
   borderWidth: 0,
   marginBottom: 0,
@@ -67,6 +69,7 @@ const imagePickerOptions = {
     skipBackup: true,
     path: 'images',
   },
+  quality: 0.1,
 };
 
 const Form = t.form.Form;
@@ -75,19 +78,71 @@ class AddProductContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      source1: '../../assets/images/upload_photo.png',
+      source: '../../assets/images/upload_photo.png',
+      type: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit = () => {
     const value = this._form.getValue();
+
+    var dataForm = new FormData();
+    dataForm.append('image', {
+      uri: this.state.source,
+      type: this.state.type,
+      name: 'testPhotoName',
+    });
+
+    // return axios({
+    //   method: 'POST',
+    //   url: 'https://api.vertostore.com/products/image-upload',
+    //   async: true,
+    //   crossDomain: true,
+    //   headers: {
+    //     Authorization: 'Bearer ' + keys.token,
+    //   },
+    //   processData: false,
+    //   contentType: false,
+    //   mimeType: 'multipart/form-data',
+    //   dataType: 'json',
+    //   data: dataForm,
+    // })
+    //   .then(responseJson => {
+    //     console.log('hello', responseJson.data);
+    //     console.log('We hit upload Image function!!!');
+    //     return responseJson;
+    //   })
+    //   .catch(error => {
+    //     console.log(error.response);
+    //   });
+
+    /* POST request to add image to server */
+    let headers = new Headers({
+      Authorization: 'Bearer ' + keys.token,
+    });
+    let formdata = new FormData();
+    formdata.append('image', {
+      uri: this.state.source,
+      type: this.state.type,
+      name: 'testPhotoName',
+    });
+    let requestOptions = {
+      method: 'POST',
+      headers: headers,
+      body: formdata,
+    };
+    fetch('https://api.vertostore.com/products/image-upload', requestOptions)
+      .then(res => {
+        console.log('res ', res);
+        res.json();
+      })
+      .then(json => console.log('hello', json))
+      .catch(error => console.log('error', error));
   };
 
   selectImage = async () => {
-    ImagePicker.showImagePicker(imagePickerOptions, response => {
-      console.log('Response = ', response);
-
+    ImagePicker.showImagePicker(imagePickerOptions, async response => {
       if (response.didCancel) {
         console.log('User cancelled image picker.');
       } else if (response.error) {
@@ -96,7 +151,8 @@ class AddProductContainer extends React.Component {
         console.log('User tapped custom button: ', response.customButton);
       } else {
         this.setState({
-          source1: response.uri,
+          source: response.uri,
+          type: response.type,
         });
       }
     });
@@ -104,7 +160,7 @@ class AddProductContainer extends React.Component {
 
   render() {
     let mainImage;
-    if (this.state.source1 === '../../assets/images/upload_photo.png') {
+    if (this.state.source === '../../assets/images/upload_photo.png') {
       mainImage = (
         <Image
           source={require('../../assets/images/upload_photo.png')}
@@ -113,12 +169,12 @@ class AddProductContainer extends React.Component {
       );
     } else {
       mainImage = (
-        <Image source={{uri: this.state.source1}} style={styles.mainImage} />
+        <Image source={{uri: this.state.source}} style={styles.mainImage} />
       );
     }
 
     return (
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.imageContainer}>{mainImage}</View>
         <View style={styles.form}>
           <Button
@@ -134,7 +190,7 @@ class AddProductContainer extends React.Component {
             style={styles.submit}
           />
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

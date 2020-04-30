@@ -2,71 +2,114 @@
 import React from 'react';
 import {View, Button, TextInput, StyleSheet, Image, Text} from 'react-native';
 import { Icon } from 'react-native-elements';
+import SecureStorage, { ACCESS_CONTROL, ACCESSIBLE, AUTHENTICATION_TYPE } from 'react-native-secure-storage';
+
 // import styles from './style/signUpFlowStyle.js';
 
 class EmailVer extends React.Component {
   state = {
     userId: '',
-    email: this.props.navigation.getParam('email')
+    email: this.props.navigation.getParam('email'),
+    value: '',
+    userId:this.props.navigation.getParam('token_user'),
   };
   // Call the Email Verification API
 
 
   componentWillMount(){
-    this.setState({
-      email: this.props.email
-    });
+    // this.setState({
+    //   email: this.props.email
+    // });
     try{
-    fetch('https://api.vertostore.com/account/email-update', {
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-          })
+      let data = new Object();
+      data["email"] = this.state.email
+      SecureStorage.getItem(this.state.userId, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
+      .then(response => fetch('https://api.vertostore.com/account/email-update', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + response
+        },
+
+        body: JSON.stringify(data),
+      }))
             .then(response => response.json())
             .then(json => {
-              if (json.code == 'user_created') {
+              if (json.message == 'Email sent') {
                 // alert('1')
-                const token = json.token
-                const userId = json.user.user_id
-                const secure = SecureStorage.setItem(userId, token, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
-                this.props.navigation.navigate('EmailVer',  {token_user: userId} );
-              } else if (json.code == 'email_exists') {
-                // alert('2')
-                console.log(json.code)
-                this.setState({error: 'This email is already used'});
-                this.props.navigation.navigate('EmailVer');
-              }
-              else if(json.code == 'chatkit_error'){
-                // alert('3')
-                this.setState({error: 'Please enter a valid e-mail'})
-              }
-              else if(json.code == "edu_email_required"){
-                // alert('4')
-                this.setState({error: 'Please enter an edu e-mail'})
+                console.log('email has been sent')
               }
               else{
-                alert('An unexpected error occur please contact us!')
+                alert('An error has occured, please contact us!');
               }
             });
           }
           catch{
-
+              alert('An error has occured, please contact us!')
           }        
 }
 
-  // After e-mail verification, we need to set up phone verification
-  signUp = async () => {
-    const {email, confemail} = this.state;
-    try {
-      // here place your signup logic
-      console.log('Next adding phone number!: ', success);
-    } catch (err) {
-      console.log('error signing up: ', err);
-    }
-  };
+// After e-mail verification, we need to set up phone verification
+async resendCode(){
+  console.log('inside resend code')
+  try{
+    let data = new Object();
+    data["email"] = this.state.email
+    SecureStorage.getItem(this.state.userId, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
+    .then(response => fetch('https://api.vertostore.com/account/email-update', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + response
+        },
+        body: JSON.stringify(data),
+      }))
+      .then(response => response.json())
+            .then(json => {
+              console.log(json)
+              if (json.message == 'Email sent') {
+                // alert('1')
+                console.log("email sent 2")
+              }
+              else{
+                alert('An error has occured, please contact us!');
+              }
+            });
+  }
+  catch{
+    alert('An error has occured, please contact us!');
+  }
+}
+
+async verification(){
+  try{
+    let data = new Object();
+    data["email"] = this.state.email;
+    SecureStorage.getItem(this.state.userId, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
+    .then(response => fetch('https://api.vertostore.com/account/email-update/' + this.state.value, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer' + SecureStorage.getItem(userId, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
+          },
+          body: JSON.stringify(data),
+        }))
+          .then(response => response.json())
+          .then(json => {
+            console.log(json)
+            if (json.code == 'verified_email') {
+              console.log('here')
+              this.props.navigation.navigate('PhoneInput',  {token_user: this.state.userId} );
+            } 
+          });
+        }
+        catch{
+          alert('An error has occured, please contact us!');
+        }   
+}
 
   completeEmail() {
     // this.signUp;
@@ -92,23 +135,22 @@ class EmailVer extends React.Component {
             source={require('../../assets/images/Placeholder.jpg')}
           />
         </View>
-    <Text>{this.state.email}</Text>
           <Text style={{textAlign: 'center', fontSize: 15}}>An E-mail has been sent</Text>
           <Text style={{textAlign: 'center', fontSize: 15}}>to your .edu email</Text>
-          <Text style={{textAlign: 'center', fontSize: 15}}>Please enter the 6-digit code</Text>
+          <Text style={{textAlign: 'center', fontSize: 15}}>Please enter the 7-digit code</Text>
           <Text style={{textAlign: 'center', fontSize: 15}}>below to verify your e-mail</Text> 
           <TextInput
           textAlign={'center'}
             style={styles.input}
-            placeholder="6 Digit"
+            placeholder="7 Digit"
             autoCapitalize="none"
             secureTextEntry={true}
             placeholder={this.state.errorMessage}
             placeholderTextColor="red"
-            onChangeText={val => this.onChangeText('password', val)}
-            maxLength={6}
+            onChangeText={value => this.setState({value})}
+            maxLength={7}
             errorStyle={{ color: 'red' }}
-            errorMessage='ENTER A VALID ERROR HERE'
+            errorMessage='The code you entered is incorrect'
           />
 
         </View>
@@ -116,11 +158,11 @@ class EmailVer extends React.Component {
         <View style={styles.otherInput}>
         <Button
             title="Confirm Code"
-            onPress={() => this.state.error ? this.setState({errorMessage: "Incorrect Code"}) : alert("Nice")}
+            onPress={this.verification.bind(this)}
           />
           <Button
             title="Resend Code"
-            onPress={() => this.props.navigation.navigate('PhoneInput')}
+            onPress={this.resendCode.bind(this)}
           />
         </View>
       </View>
