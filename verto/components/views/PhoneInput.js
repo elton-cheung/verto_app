@@ -2,34 +2,48 @@
 import React from 'react';
 import {View, Button, TextInput, StyleSheet, Image, Text} from 'react-native';
 import { Icon } from 'react-native-elements';
+import SecureStorage, { ACCESS_CONTROL, ACCESSIBLE, AUTHENTICATION_TYPE } from 'react-native-secure-storage';
+
 // import styles from './style/signUpFlowStyle.js';
 
 class PhoneInput extends React.Component {
   state = {
     phone: '',
-    message: 'Enter Phone Number'
+    message: 'Enter Phone Number',
+    userId:this.props.navigation.getParam('token_user'),
   };
 
 
   // After e-mail verification, we need to set up phone verification
-  signUp = async () => {
-    const {email, confemail} = this.state;
-    try {
-      // here place your signup logic
-      console.log('Next adding phone number!: ', success);
-    } catch (err) {
-      console.log('error signing up: ', err);
-    }
-  };
 
-  async verification(){
-    
+  async sendPhone(){
     try{
-
-    }
-    catch{
-
-    }
+    let data = new Object();
+      data["phone_number"] = this.state.phone
+      SecureStorage.getItem(this.state.userId, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
+      .then(response => fetch('https://api.vertostore.com/account/start-phone-verification', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + response
+        },
+        body: JSON.stringify(data),
+      }))
+            .then(response => response.json())
+            .then(json => {
+              if (json.message == 'Email sent') {
+                // alert('1')
+                console.log('email has been sent')
+              }
+              else{
+                console.log('An error has occured, please contact us!');
+              }
+            });
+          }
+          catch{
+              console.log('An error has occured, please contact us!')
+          }      
   }
 
   completeEmail() {
@@ -73,7 +87,7 @@ class PhoneInput extends React.Component {
         <View style={styles.otherInput}>
           <Button
             title="Send Verification Code"
-            onPress={this.verification.bind(this)}
+            onPress={this.sendPhone.bind(this)}
           />
         </View>
       </View>
