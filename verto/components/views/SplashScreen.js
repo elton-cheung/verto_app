@@ -145,6 +145,8 @@ export class SplashScreen extends Component {
   Item({name, photoSrc, price, navigation}) {
     // const navigation = useNavigation();
     // const photoSrc = require({photoSrc})
+
+    price = (price / 100).toFixed(2);
     return (
       <TouchableOpacity
         style={styles.item}

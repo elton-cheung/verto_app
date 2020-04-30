@@ -11,7 +11,7 @@ export default class DetailsScreen extends React.Component {
     const data = {
       name: this.props.route.params.name,
       photoSrc: this.props.route.params.photoSrc,
-      price: parseInt(this.props.route.params.price).toFixed(2),
+      price: this.props.route.params.price,
       user: 'Johnny F.',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
