@@ -1,46 +1,59 @@
 import React from 'react';
-import {View, TextInput, StyleSheet, Image, Button, KeyboardAvoidingView, Alert, AsyncStorage } from 'react-native';
-import SecureStorage, { ACCESS_CONTROL, ACCESSIBLE, AUTHENTICATION_TYPE } from 'react-native-secure-storage';
-
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Image,
+  Button,
+  KeyboardAvoidingView,
+  Alert,
+  AsyncStorage,
+} from 'react-native';
+import SecureStorage, {
+  ACCESS_CONTROL,
+  ACCESSIBLE,
+  AUTHENTICATION_TYPE,
+} from 'react-native-secure-storage';
 
 class LogIn extends React.Component {
   state = {
     email: '',
     password: '',
     isLoggedIn: false,
-  }
+  };
 
-    _userLogin = async() => {
-        this.setState({ isLoggingIn: true, message: 'Logged in!' });
-        var params = {
-                   email: this.state.email,
-                   password: this.state.password,
-        };
-        fetch("https://api.vertostore.com/account/login", {
-            method:"POST",
-            headers: {
-                          'Accept': 'application/json',
-                          'Content-Type': 'application/json'
-                        },
-                         body: JSON.stringify({
-                               email: this.state.email,
-                               password: this.state.password,
-                         })
-                      })
-                      .then(response => response.json())
-                      .then(json => {
-                      const token = json.token
-                      const userId = json.user.user_id
-                      const secure = SecureStorage.setItem(userId, token, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
-                      if(json.code == "authorized"){
-                            //console.log("this is the key ", json.user.user_id),
-                            this.props.navigation.navigate('Verto', {t: 86})
-                        }
-                        else{
-                            Alert.alert('Wrong Credentials', 'Please Try Again')
-                        }
-                      })
+  _userLogin = async () => {
+    this.setState({isLoggingIn: true, message: 'Logged in!'});
+    var params = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+    fetch('https://api.vertostore.com/account/login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password,
+      }),
+    })
+      .then(response => response.json())
+      .then(json => {
+        const token = json.token;
+        const userId = json.user.user_id;
+        const secure = SecureStorage.setItem(userId, token, {
+          accessible: ACCESSIBLE.WHEN_UNLOCKED,
+        });
+        if (json.code == 'authorized') {
+          //console.log("this is the key ", json.user.user_id),
+          this.props.navigation.navigate('Verto', {t: 86});
+        } else {
+          Alert.alert('Wrong Credentials', 'Please Try Again');
         }
+      });
+  };
 
   onChangeText = (key, val) => {
     this.setState({[key]: val});
@@ -52,7 +65,7 @@ class LogIn extends React.Component {
   render() {
     return (
       <KeyboardAvoidingView style={styles.container}>
-      <View style={styles.header}>
+        <View style={styles.header}>
           <Image
             style={styles.image}
             source={require('../../assets/images/verto_logo.png')}
@@ -70,25 +83,22 @@ class LogIn extends React.Component {
           <TextInput
             style={styles.input}
             placeholder="Password"
-            secureTextEntry = {true}
+            secureTextEntry={true}
             autoCapitalize="none"
             placeholderTextColor="grey"
             onChangeText={password => this.setState({password})}
           />
           <Button
-            title='Forgot Password?'
+            title="Forgot Password?"
             onPress={() => this.props.navigation.navigate('Forgot')}
           />
+          <Button title="Login" onPress={() => this._userLogin()} />
           <Button
-          title="Login"
-          onPress={() => this._userLogin()}
-          />
-          <Button
-          title="Sign Up"
-          onPress={() => this.props.navigation.navigate('SignUp')}
+            title="Sign Up"
+            onPress={() => this.props.navigation.navigate('SignUp')}
           />
         </View>
-      </KeyboardAvoidingView >
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -110,7 +120,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '400',
     borderColor: 'grey',
-    borderWidth: 1.5
+    borderWidth: 1.5,
   },
   header: {
     flex: 3,
@@ -121,7 +131,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   image: {
     aspectRatio: 0.9,
@@ -130,7 +140,6 @@ const styles = StyleSheet.create({
   otherInput: {
     flex: 4,
     alignItems: 'flex-start',
-    alignItems: 'center',
   },
 });
 

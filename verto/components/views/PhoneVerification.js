@@ -2,6 +2,8 @@
 import React from 'react';
 import {View, Button, TextInput, StyleSheet, Image, Text, Linking} from 'react-native';
 import { Icon } from 'react-native-elements';
+import SecureStorage, { ACCESS_CONTROL, ACCESSIBLE, AUTHENTICATION_TYPE } from 'react-native-secure-storage';
+
 // import styles from './style/signUpFlowStyle.js';
 
 class PhoneVer extends React.Component {

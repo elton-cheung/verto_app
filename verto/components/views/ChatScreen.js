@@ -19,37 +19,49 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 const FirstRoute = () => (
   <View style={{ backgroundColor: '#f0f8ff' }}>
-    <FlatList style={styles.flatList}
-                data={buyMessages}
-                numColumns={1}
-                horizontal={false}
-                keyExtractor={item => item.id}
-                
-                renderItem={({item}) => (
-                  <View style={styles.noMessagesContainer}>
-                    <Text>{item.name}</Text>
-                    <Text>{item.lastMessage}</Text>
-                   </View>
-                )}
-              />
+    
+        <FlatList style={styles.flatList}
+            data={buyMessages}
+            numColumns={1}
+            horizontal={false}
+            keyExtractor={item => item.id}
+            
+            renderItem={({item}) => (
+              <TouchableHighlight 
+                style={styles.noMessagesContainer}
+                activeOpacity={0.6}
+                underlayColor="#DDDDDD">
+                <View >
+                  <Text>{item.name}</Text>
+                  <Text>{item.lastMessage}</Text>
+                </View>
+              </TouchableHighlight>
+            )}
+        />
+    
   </View> 
 );
 
 const SecondRoute = () => (
   <View style={{ backgroundColor: '#f0f8ff' }}>
     <FlatList style={styles.flatList}
-                data={sellMessages}
-                numColumns={1}
-                horizontal={false}
-                keyExtractor={item => item.id}
-                
-                renderItem={({item}) => (
-                  <View style={styles.noMessagesContainer}>
-                    <Text>{item.name}</Text>
-                    <Text>{item.lastMessage}</Text>
-                   </View>
-                )}
-              />
+      data={sellMessages}
+      numColumns={1}
+      horizontal={false}
+      keyExtractor={item => item.id}
+      
+      renderItem={({item}) => (
+        <TouchableHighlight 
+        style={styles.noMessagesContainer}
+        activeOpacity={0.6}
+        underlayColor="#DDDDDD">
+          <View >
+            <Text>{item.name}</Text>
+            <Text>{item.lastMessage}</Text>
+          </View>
+          </TouchableHighlight>
+      )}
+    />
   </View>
 );
 
@@ -93,11 +105,6 @@ const sellMessages = [
     id: "3",
     name: "Steve",
     lastMessage: "Are you buying this?",
-  },
-  {
-    id: "4",
-    name: "Steve",
-    lastMessage: "I'm selling this",
   },
 ]
 
@@ -193,10 +200,15 @@ const styles = StyleSheet.create({
     },
     noMessagesContainer: {
       flex: 1,
-      marginTop: 5,
-      margin: 10,
-      borderColor: "grey"
-      
+      marginTop: 0,
+      margin: 0,
+      padding: 10,
+      borderColor: "grey",
+      borderWidth: 2,
+      borderColor: '#6495ed',
+      backgroundColor: '#dcdcdc',
+      borderRadius: 5,
+      height: 60,
     },
     container: {
       flex: 1,

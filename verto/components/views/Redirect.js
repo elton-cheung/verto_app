@@ -10,7 +10,11 @@ import ProfileScreen from './ProfileScreen';
 import SettingsHeaderButton from '../reusable/SettingsHeaderButton';
 import ProfileHeaderButton from '../reusable/ProfileHeaderButton';
 import HeaderTitle from '../reusable/HeaderTitle';
-import SecureStorage, { ACCESS_CONTROL, ACCESSIBLE, AUTHENTICATION_TYPE } from 'react-native-secure-storage'
+import SecureStorage, {
+  ACCESS_CONTROL,
+  ACCESSIBLE,
+  AUTHENTICATION_TYPE,
+} from 'react-native-secure-storage';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -36,7 +40,7 @@ function CatalogStackScreen(props) {
         }}
       />
       <CatalogStack.Screen name="Details" component={DetailsScreen} />
-      <CatalogStack.Screen name="Settings" component={SettingsScreen}/>
+      <CatalogStack.Screen name="Settings" component={SettingsScreen} />
       <CatalogStack.Screen name="Profile" component={ProfileScreen} />
     </CatalogStack.Navigator>
   );
@@ -44,14 +48,10 @@ function CatalogStackScreen(props) {
 
 const Tab = createBottomTabNavigator();
 export default class Verto extends React.Component {
-
-userToken({route, navigation}){
-  const {t} = route.params;
-  return(
-    console.log('open', t)
-  );
-}
-
+  userToken({route, navigation}) {
+    const {t} = route.params;
+    return console.log('open', t);
+  }
 
   render() {
     return (
@@ -80,7 +80,7 @@ userToken({route, navigation}){
           />
           <Tab.Screen
             name="Sell"
-            component={AddProductScreen}//{this.userToken}
+            component={AddProductScreen} //{this.userToken}
             options={{
               tabBarIcon: () => (
                 <Image
@@ -116,4 +116,4 @@ userToken({route, navigation}){
       </NavigationContainer>
     );
   }
-};
+}

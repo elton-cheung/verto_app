@@ -2,24 +2,27 @@ import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {Button} from 'react-native-elements';
 
-const data = {
-  price: 12.6,
-  title: 'Ridge Racer 3D',
-  user: 'Johnny F.',
-  photoSrc: require('../../assets/images/ridge_racer_3d.jpeg'),
-  description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
-};
-
 export default class DetailsScreen extends React.Component {
-  render(props) {
-    console.log(props);
+  constructor(props) {
+    super(props);
+  }
 
+  render() {
+    const data = {
+      name: this.props.route.params.name,
+      photoSrc: this.props.route.params.photoSrc,
+      price: this.props.route.params.price,
+      user: 'Johnny F.',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
+    };
+
+    console.log('hello world', this.props.route.params.photoSrc);
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>{data.title}</Text>
-        <Image source={data.photoSrc} style={styles.image} />
-        <Text style={styles.price}>${data.price.toFixed(2)}</Text>
+        <Text style={styles.title}>{data.name}</Text>
+        <Image source={{uri: data.photoSrc}} style={styles.image} />
+        <Text style={styles.price}>${data.price}</Text>
         <View style={styles.userContainer}>
           <Image
             source={require('../../assets/logos/account.png')}
