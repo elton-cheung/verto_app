@@ -19,37 +19,49 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 const FirstRoute = () => (
   <View style={{ backgroundColor: '#f0f8ff' }}>
-    <FlatList style={styles.flatList}
-                data={buyMessages}
-                numColumns={1}
-                horizontal={false}
-                keyExtractor={item => item.id}
-                
-                renderItem={({item}) => (
-                  <View style={styles.noMessagesContainer}>
-                    <Text>{item.name}</Text>
-                    <Text>{item.lastMessage}</Text>
-                   </View>
-                )}
-              />
+    
+        <FlatList style={styles.flatList}
+            data={buyMessages}
+            numColumns={1}
+            horizontal={false}
+            keyExtractor={item => item.id}
+            
+            renderItem={({item}) => (
+              <TouchableHighlight 
+                style={styles.noMessagesContainer}
+                activeOpacity={0.6}
+                underlayColor="#DDDDDD">
+                <View >
+                  <Text>{item.name}</Text>
+                  <Text>{item.lastMessage}</Text>
+                </View>
+              </TouchableHighlight>
+            )}
+        />
+    
   </View> 
 );
 
 const SecondRoute = () => (
   <View style={{ backgroundColor: '#f0f8ff' }}>
     <FlatList style={styles.flatList}
-                data={sellMessages}
-                numColumns={1}
-                horizontal={false}
-                keyExtractor={item => item.id}
-                
-                renderItem={({item}) => (
-                  <View style={styles.noMessagesContainer}>
-                    <Text>{item.name}</Text>
-                    <Text>{item.lastMessage}</Text>
-                   </View>
-                )}
-              />
+      data={sellMessages}
+      numColumns={1}
+      horizontal={false}
+      keyExtractor={item => item.id}
+      
+      renderItem={({item}) => (
+        <TouchableHighlight 
+        style={styles.noMessagesContainer}
+        activeOpacity={0.6}
+        underlayColor="#DDDDDD">
+          <View >
+            <Text>{item.name}</Text>
+            <Text>{item.lastMessage}</Text>
+          </View>
+          </TouchableHighlight>
+      )}
+    />
   </View>
 );
 
