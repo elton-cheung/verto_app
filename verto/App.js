@@ -42,15 +42,13 @@ export default class App extends Component {
   render() {
     // if you want to see auth flow:
 
-    // return <HomeStack />;
+    //return <HomeStack />;
 
-    const AuthStack = HomeStack;
-    const VertoStack = Verto;
-
+   /* const AuthStack = HomeStack;
     const FinalStack = createSwitchNavigator(
       {
         Auth: AuthStack,
-        App: VertoStack,
+        Main: AuthStack,
       },
       {
         initialRouteName: 'Auth',
@@ -58,7 +56,7 @@ export default class App extends Component {
     );
 
     const Final = createAppContainer(FinalStack);
-     //return <Final />;
+     return <Final />;*/
 
     return <Redirect />;
   }

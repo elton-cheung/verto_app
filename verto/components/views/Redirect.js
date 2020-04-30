@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 
 import React from 'react';
-import {Image} from 'react-native';
+import {Text, Image, Alert} from 'react-native';
 import {AddProductScreen} from './AddProduct';
 import {SplashScreen} from './SplashScreen';
 import DetailsScreen from './DetailsScreen';
@@ -15,11 +15,10 @@ import SecureStorage, { ACCESS_CONTROL, ACCESSIBLE, AUTHENTICATION_TYPE } from '
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import ChatScreen from './ChatScreen';
 
 const CatalogStack = createStackNavigator();
-async() => {
-    const got = await SecureStorage.getItem(token_user, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
-}
+
 function CatalogStackScreen(props) {
   return (
     <CatalogStack.Navigator>
@@ -37,7 +36,7 @@ function CatalogStackScreen(props) {
         }}
       />
       <CatalogStack.Screen name="Details" component={DetailsScreen} />
-      <CatalogStack.Screen name="Settings" component={SettingsScreen} />
+      <CatalogStack.Screen name="Settings" component={SettingsScreen}/>
       <CatalogStack.Screen name="Profile" component={ProfileScreen} />
     </CatalogStack.Navigator>
   );
@@ -45,6 +44,15 @@ function CatalogStackScreen(props) {
 
 const Tab = createBottomTabNavigator();
 export default class Verto extends React.Component {
+
+userToken({route, navigation}){
+  const {t} = route.params;
+  return(
+    console.log('open', t)
+  );
+}
+
+
   render() {
     return (
       <NavigationContainer>
@@ -72,7 +80,7 @@ export default class Verto extends React.Component {
           />
           <Tab.Screen
             name="Sell"
-            component={AddProductScreen}
+            component={this.userToken}//{AddProductScreen}
             options={{
               tabBarIcon: () => (
                 <Image
@@ -89,7 +97,7 @@ export default class Verto extends React.Component {
           />
           <Tab.Screen
             name="Chat"
-            component={DetailsScreen}
+            component={ChatScreen}
             options={{
               tabBarIcon: () => (
                 <Image

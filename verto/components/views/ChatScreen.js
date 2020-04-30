@@ -81,27 +81,7 @@ export default class ChatScreen extends React.Component {
                 numColumns={1}
                 horizontal={false}
               />
-              <View style={{flexDirection:"row"}}>
-
-                <TouchableHighlight style={styles.homeContainer}>
-                  <Image style={styles.homeIcon} source={homeIcon}/>
-                </TouchableHighlight>
-
-                <TouchableHighlight style={styles.cameraContainer}>
-                  <Image style={styles.camera} source={camera}/>                    
-                </TouchableHighlight>
-
-                <TouchableHighlight style={styles.messengerContainer}>
-                  <Image style={styles.messenger} source={messenger}></Image>
-                </TouchableHighlight>
-
-              </View>
-
-              <View style={{flexDirection:"row"}}>
-                <Text style={styles.shop}>Shop</Text>
-                <Text style={styles.sell}>Sell</Text>
-                <Text style={styles.chat}>Chat</Text>
-              </View>
+              
             </View>
             
         );
