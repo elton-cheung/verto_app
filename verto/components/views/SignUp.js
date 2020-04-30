@@ -183,7 +183,7 @@ calculateAge(birth_date) {
           />
 
           <Button
-            title="Add E-mail"
+            title="Verify E-mail"
             onPress={this.verification.bind(this)}
           />
         </View>

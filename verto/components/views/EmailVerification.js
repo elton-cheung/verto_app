@@ -20,6 +20,7 @@ class EmailVer extends React.Component {
     // this.setState({
     //   email: this.props.email
     // });
+    console.log(this.state.email);
     try{
       let data = new Object();
       data["email"] = this.state.email
@@ -85,6 +86,7 @@ async resendCode(){
 
 async verification(){
   try{
+    console.log('https://api.vertostore.com/account/email-update/' + this.state.value)
     let data = new Object();
     data["email"] = this.state.email;
     SecureStorage.getItem(this.state.userId, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
@@ -93,7 +95,7 @@ async verification(){
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer' + SecureStorage.getItem(userId, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
+            'Authorization': 'Bearer ' + response
           },
           body: JSON.stringify(data),
         }))
@@ -103,7 +105,13 @@ async verification(){
             if (json.code == 'verified_email') {
               console.log('here')
               this.props.navigation.navigate('PhoneInput',  {token_user: this.state.userId} );
+            }
+            if(json.code == 'failed_verification'){
+              alert('The code you entered was incorrect')
             } 
+            if(json.message == 'Auth failed'){
+              console.log('Authorization failed')
+            }
           });
         }
         catch{
