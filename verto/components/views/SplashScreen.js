@@ -150,11 +150,9 @@ export class SplashScreen extends Component {
         style={styles.item}
         onPress={() => {
           navigation.navigate('Details', {
-            screenProps: {
-              name,
-              photoSrc,
-              price,
-            },
+            name,
+            photoSrc,
+            price,
           });
         }}>
         <Card image={{uri: photoSrc}}>

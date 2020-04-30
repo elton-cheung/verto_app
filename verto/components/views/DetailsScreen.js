@@ -17,11 +17,11 @@ export default class DetailsScreen extends React.Component {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
     };
 
-    console.log('hello world', )
+    console.log('hello world', this.props.route.params.photoSrc);
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{data.name}</Text>
-        <Image source={data.photoSrc} style={styles.image} />
+        <Image source={{uri: data.photoSrc}} style={styles.image} />
         <Text style={styles.price}>${data.price}</Text>
         <View style={styles.userContainer}>
           <Image
