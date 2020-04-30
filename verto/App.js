@@ -12,7 +12,7 @@ export default class App extends Component {
   render() {
     // if you want to see auth flow:
 
-    //return <HomeStack />;
+    // return <HomeStack />;
 
     const AuthStack = HomeStack;
     const FinalStack = createSwitchNavigator(

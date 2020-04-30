@@ -1,7 +1,5 @@
-/* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {Component} from 'react';
 import {
-  View,
   StyleSheet,
   FlatList,
   Text,
@@ -12,289 +10,190 @@ import {
 import {Card} from 'react-native-elements';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
-export class SplashScreen extends React.Component {
+export class SplashScreen extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: [],
+      isLoading: true,
+    };
+  }
+
+  componentDidMount() {
+    fetch('https://api.vertostore.com/products/search', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        text: '',
+        categories: [
+          'Electronics',
+          'Home',
+          'Clothing',
+          'Accessories',
+          'Entertainment',
+          'Books',
+          'Electronics',
+          'Sports',
+          'Experiences',
+        ],
+        price: {
+          minPrice: 2000,
+          maxPrice: 300000,
+        },
+        geospatial: {
+          maxDistance: 30,
+          minDistance: 0,
+          long: 89.23232,
+          lat: -72.32232,
+        },
+        skip: 0,
+      }),
+    })
+      .then(response => response.json())
+      .then(json => {
+        // return json.products;
+        // console.log(json.products)
+        this.setState({data: json.products});
+      })
+      .catch(error => console.error(error))
+      .finally(() => {
+        this.setState({isLoading: false});
+      });
+  }
+
+  Welcome() {
+    return (
+      <Text style={styles.welcome}>
+        Welcome back,
+        <Text> </Text>
+        <Text style={{color: '#4D94FF'}}>Jennie</Text>!
+      </Text>
+    );
+  }
+
+  SearchCarousel() {
+    return (
+      <SafeAreaView style={styles.carousel}>
+        <ScrollView
+          style={styles.scrollView}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}>
+          <TouchableOpacity style={styles.searchIcon}>
+            <Image
+              source={require('verto/assets/search_icons/search_home.png')}
+            />
+            <Text style={styles.searchName}>Home</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.searchIcon}>
+            <Image
+              source={require('verto/assets/search_icons/search_clothing.png')}
+            />
+            <Text style={styles.searchName}>Clothing</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.searchIcon}>
+            <Image
+              source={require('verto/assets/search_icons/search_accessories.png')}
+            />
+            <Text style={styles.searchName}>Accessories</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.searchIcon}>
+            <Image
+              source={require('verto/assets/search_icons/search_entertainment.png')}
+            />
+            <Text style={styles.searchName}>Entertainment</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.searchIcon}>
+            <Image
+              source={require('verto/assets/search_icons/search_books.png')}
+            />
+            <Text style={styles.searchName}>Books</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.searchIcon}>
+            <Image
+              source={require('verto/assets/search_icons/search_electronics.png')}
+            />
+            <Text style={styles.searchName}>Electronics</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.searchIcon}>
+            <Image
+              source={require('verto/assets/search_icons/search_experiences.png')}
+            />
+            <Text style={styles.searchName}>Experiences</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.searchIcon}>
+            <Image
+              source={require('verto/assets/search_icons/search_sports.png')}
+            />
+            <Text style={styles.searchName}>Sports</Text>
+          </TouchableOpacity>
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
+
+  Item({name, photoSrc, price, navigation}) {
+    // const navigation = useNavigation();
+    // const photoSrc = require({photoSrc})
+    return (
+      <TouchableOpacity
+        style={styles.item}
+        onPress={() => {
+          navigation.navigate('Details', {
+            screenProps: {
+              name,
+              photoSrc,
+              price,
+            },
+          });
+        }}>
+        <Card image={{uri: photoSrc}}>
+          <Text>{name}</Text>
+          <Text>${price}</Text>
+        </Card>
+      </TouchableOpacity>
+    );
+  }
+
   render() {
+    const {data, isLoading} = this.state;
+
     return (
       <React.Fragment>
-        <View style={styles.container}>
-          <Welcome />
-          <Carousel />
-          <Products navigation={this.props.navigation} />
-        </View>
+        <ScrollView style={styles.container}>
+          <this.Welcome />
+          <this.SearchCarousel />
+          <SafeAreaView style={styles.container}>
+            <FlatList
+              data={data}
+              numColumns={2}
+              horizontal={false}
+              keyExtractor={({id}, index) => id}
+              renderItem={({item}) => (
+                <this.Item
+                  name={item.title}
+                  price={item.price.listing_price}
+                  photoSrc={item.images[0]}
+                  navigation={this.props.navigation}
+                />
+              )}
+            />
+          </SafeAreaView>
+        </ScrollView>
       </React.Fragment>
     );
   }
 }
-
-//eventually want to place name of user instead of "Jennie"
-function Welcome() {
-  return (
-    <Text style={styles.welcome}>
-      Welcome back,
-      <Text> </Text>
-      <Text style={{color: '#4D94FF'}}>Jennie</Text>!
-    </Text>
-  );
-}
-
-//carousel element with search icons
-function Carousel() {
-  return (
-    <SafeAreaView style={styles.carousel}>
-      <ScrollView
-        style={styles.scrollView}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}>
-        <TouchableOpacity style={styles.searchIcon}>
-          <Image
-            source={require('verto/assets/search_icons/search_home.png')}
-          />
-          <Text style={styles.searchName}>Home</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.searchIcon}>
-          <Image
-            source={require('verto/assets/search_icons/search_clothing.png')}
-          />
-          <Text style={styles.searchName}>Clothing</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.searchIcon}>
-          <Image
-            source={require('verto/assets/search_icons/search_accessories.png')}
-          />
-          <Text style={styles.searchName}>Accessories</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.searchIcon}>
-          <Image
-            source={require('verto/assets/search_icons/search_entertainment.png')}
-          />
-          <Text style={styles.searchName}>Entertainment</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.searchIcon}>
-          <Image
-            source={require('verto/assets/search_icons/search_books.png')}
-          />
-          <Text style={styles.searchName}>Books</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.searchIcon}>
-          <Image
-            source={require('verto/assets/search_icons/search_electronics.png')}
-          />
-          <Text style={styles.searchName}>Electronics</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.searchIcon}>
-          <Image
-            source={require('verto/assets/search_icons/search_experiences.png')}
-          />
-          <Text style={styles.searchName}>Experiences</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.searchIcon}>
-          <Image
-            source={require('verto/assets/search_icons/search_sports.png')}
-          />
-          <Text style={styles.searchName}>Sports</Text>
-        </TouchableOpacity>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    itemName: 'Iphone 11 Used',
-    photoSrc: require('../../assets/images/iphone11.jpg'),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '200',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    itemName: 'Mens Coat',
-    photoSrc: require('../../assets/images/mens_coat.jpeg'),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '40',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    itemName: 'Minifridge Used',
-    photoSrc: require('../../assets/images/minifridge.jpg'),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '25',
-  },
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    itemName: 'Iphone 11 Used',
-    photoSrc: require('../../assets/images/iphone11.jpg'),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '200',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    itemName: 'Mens Coat',
-    photoSrc: require('../../assets/images/mens_coat.jpeg'),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '40',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    itemName: 'Minifridge Used',
-    photoSrc: require('../../assets/images/minifridge.jpg'),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '25',
-  },
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    itemName: 'Iphone 11 Used',
-    photoSrc: require('../../assets/images/iphone11.jpg'),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '200',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    itemName: 'Mens Coat',
-    photoSrc: require('../../assets/images/mens_coat.jpeg'),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '40',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    itemName: 'Minifridge Used',
-    photoSrc: require('../../assets/images/minifridge.jpg'),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '25',
-  },
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    itemName: 'Iphone 11 Used',
-    photoSrc: require('../../assets/images/iphone11.jpg'),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '200',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    itemName: 'Mens Coat',
-    photoSrc: require('../../assets/images/mens_coat.jpeg'),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '40',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    itemName: 'Minifridge Used',
-    photoSrc: require('../../assets/images/minifridge.jpg'),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '25',
-  },
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    itemName: 'Iphone 11 Used',
-    photoSrc: require('../../assets/images/iphone11.jpg'),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '200',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    itemName: 'Mens Coat',
-    photoSrc: require('../../assets/images/mens_coat.jpeg'),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '40',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    itemName: 'Minifridge Used',
-    photoSrc: require('../../assets/images/minifridge.jpg'),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '25',
-  },
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    itemName: 'Iphone 11 Used',
-    photoSrc: require('../../assets/images/iphone11.jpg'),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '200',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    itemName: 'Mens Coat',
-    photoSrc: require('../../assets/images/mens_coat.jpeg'),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '40',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    itemName: 'Minifridge Used',
-    photoSrc: require('../../assets/images/minifridge.jpg'),
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    price: '25',
-  },
-];
-
-function Item({name, photoSrc, price, navigation}) {
-  return (
-    <TouchableOpacity
-      style={styles.item}
-      onPress={() => {
-        navigation.navigate('Details', {
-          name,
-          photoSrc,
-          price,
-        });
-      }}>
-      <Card image={photoSrc}>
-        <Text>{name}</Text>
-        <Text>${price}</Text>
-      </Card>
-    </TouchableOpacity>
-  );
-}
-
-// items will be taken from Verto data, this is just placeholder items
-// Need to reconsider after knowing how data is organized
-// render the list of products
-function Products(props) {
-  return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={DATA}
-        numColumns={2}
-        horizontal={false}
-        keyExtractor={item => item.id}
-        renderItem={({item}) => (
-          <Item
-            name={item.itemName}
-            photoSrc={item.photoSrc}
-            price={item.price}
-            navigation={props.navigation}
-          />
-        )}
-      />
-    </SafeAreaView>
-  );
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -308,7 +207,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   item: {
-    //need to fix this!
     width: 205,
   },
   image: {
