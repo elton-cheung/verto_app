@@ -8,7 +8,7 @@ import Redirect from './components/views/Redirect';
 import ChatScreen from './components/views/ChatScreen';
 import Verto from './components/views/Redirect';
 
-export default class App {
+export default class App extends Component {
   render() {
     // if you want to see auth flow:
 
@@ -26,8 +26,8 @@ export default class App {
     );
 
     const Final = createAppContainer(FinalStack);
-    // return <Final />;
+    return <Final />;
 
-    return <Verto />;
+    //return <Verto />;
   }
 }
