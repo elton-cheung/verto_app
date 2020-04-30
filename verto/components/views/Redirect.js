@@ -15,7 +15,7 @@ import SecureStorage, { ACCESS_CONTROL, ACCESSIBLE, AUTHENTICATION_TYPE } from '
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import ChatScreen from './ChatScreen';
+import {CreateChatScreen} from './ChatScreen';
 
 const CatalogStack = createStackNavigator();
 
@@ -80,7 +80,7 @@ userToken({route, navigation}){
           />
           <Tab.Screen
             name="Sell"
-            component={this.userToken}//{AddProductScreen}
+            component={AddProductScreen}//{this.userToken}
             options={{
               tabBarIcon: () => (
                 <Image
@@ -97,7 +97,7 @@ userToken({route, navigation}){
           />
           <Tab.Screen
             name="Chat"
-            component={ChatScreen}
+            component={CreateChatScreen}
             options={{
               tabBarIcon: () => (
                 <Image

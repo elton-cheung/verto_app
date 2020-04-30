@@ -10,7 +10,12 @@ import {Button, Card} from 'react-native-elements';
 import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler';
 import { NavigationContainer, TabActions } from '@react-navigation/native';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
-
+import SettingsScreen from './SettingsScreen';
+import ProfileScreen from './ProfileScreen';
+import SettingsHeaderButton from '../reusable/SettingsHeaderButton';
+import ProfileHeaderButton from '../reusable/ProfileHeaderButton';
+import HeaderTitle from '../reusable/HeaderTitle';
+import {createStackNavigator} from '@react-navigation/stack';
 
 const FirstRoute = () => (
   <View style={{ backgroundColor: '#ff4081' }} />
@@ -21,6 +26,30 @@ const SecondRoute = () => (
 );
 
 const initialLayout = { width: Dimensions.get('window').width };
+
+const messages = [
+  {
+    id: "1",
+    name: "Take",
+    lastMessage: "I'd Like to buy this",
+  },
+  {
+    id: "2",
+    name: "Steve",
+    lastMessage: "Are you selling this?",
+  },
+  {
+    id: "3",
+    name: "Steve",
+    lastMessage: "Are you selling this?",
+  },
+  {
+    id: "4",
+    name: "Steve",
+    lastMessage: "Are you selling this?",
+  },
+]
+
 
 function ChatSlider() {
   
@@ -53,41 +82,59 @@ function ChatSlider() {
     />
   );
 }
-export default class ChatScreen extends React.Component {
+class ChatScreen extends React.Component {
+
+    constructor(props) {
+      super(props);
+    }
 
     render() {
         return (
             <View style={styles.container}>
-              <View style={{flexDirection:"row"}}>
-                <TouchableOpacity>
-                  <Image style={styles.account} source={account}/>
-                </TouchableOpacity>       
-                <Image style={styles.verto_pic1} source={verto_logo} />
-                <Image style={styles.verto_pic2} source={verto_logo} />
-                <Text style={styles.title}>Verto</Text>
-                <TouchableOpacity>
-                  <Image style={styles.settings} source={settings} />
-                </TouchableOpacity>
-              </View>
               <ChatSlider/>
               <FlatList style={styles.flatList}
-                data={[{title: 'Title Text', key: 'item1'}]}
-                renderItem={({}) => (
-                  <View style={styles.noMessagesContainer}>
-                    <Text style={styles.noMessages}>No</Text>
-                    <Text style={styles.noMessages}>Messages</Text>
-                   </View>
-                )}
+                data={messages}
                 numColumns={1}
                 horizontal={false}
-              />
-              
+                keyExtractor={item => item.id}
+                
+                renderItem={({item}) => (
+                  <View style={styles.noMessagesContainer}>
+                    <Text>{item.name}</Text>
+                    <Text>{item.lastMessage}</Text>
+                   </View>
+                )}
+              /> 
             </View>
-            
         );
     }
 }
   
+const ChatScreenStack = createStackNavigator();
+
+function CreateChatScreen(props) {
+  return (
+    <ChatScreenStack.Navigator>
+      <ChatScreenStack.Screen
+        name="Chat"
+        component={ChatScreen}
+        options={{
+          headerLeft: () => (
+            <ProfileHeaderButton navigation={props.navigation} />
+          ),
+          headerTitle: () => <HeaderTitle />,
+          headerRight: () => (
+            <SettingsHeaderButton navigation={props.navigation} />
+          ),
+        }}
+      />
+      <ChatScreenStack.Screen name="Settings" component={SettingsScreen} />
+      <ChatScreenStack.Screen name="Profile" component={ProfileScreen} />
+    </ChatScreenStack.Navigator>
+  );
+}
+
+export {CreateChatScreen};
 
 const styles = StyleSheet.create({
     tabContainer: {
@@ -102,10 +149,9 @@ const styles = StyleSheet.create({
     },
     noMessagesContainer: {
       flex: 1,
-      marginTop: 180,
+      marginTop: 5,
       margin: 10,
-      justifyContent: 'center',
-      alignItems: 'center',
+      borderColor: "grey"
       
     },
     container: {
