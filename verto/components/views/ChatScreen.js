@@ -18,16 +18,44 @@ import HeaderTitle from '../reusable/HeaderTitle';
 import {createStackNavigator} from '@react-navigation/stack';
 
 const FirstRoute = () => (
-  <View style={{ backgroundColor: '#ff4081' }} />
+  <View style={{ backgroundColor: '#f0f8ff' }}>
+    <FlatList style={styles.flatList}
+                data={buyMessages}
+                numColumns={1}
+                horizontal={false}
+                keyExtractor={item => item.id}
+                
+                renderItem={({item}) => (
+                  <View style={styles.noMessagesContainer}>
+                    <Text>{item.name}</Text>
+                    <Text>{item.lastMessage}</Text>
+                   </View>
+                )}
+              />
+  </View> 
 );
 
 const SecondRoute = () => (
-  <View style={{ backgroundColor: '#673ab7' }} />
+  <View style={{ backgroundColor: '#f0f8ff' }}>
+    <FlatList style={styles.flatList}
+                data={sellMessages}
+                numColumns={1}
+                horizontal={false}
+                keyExtractor={item => item.id}
+                
+                renderItem={({item}) => (
+                  <View style={styles.noMessagesContainer}>
+                    <Text>{item.name}</Text>
+                    <Text>{item.lastMessage}</Text>
+                   </View>
+                )}
+              />
+  </View>
 );
 
 const initialLayout = { width: Dimensions.get('window').width };
 
-const messages = [
+const buyMessages = [
   {
     id: "1",
     name: "Take",
@@ -47,6 +75,29 @@ const messages = [
     id: "4",
     name: "Steve",
     lastMessage: "Are you selling this?",
+  },
+]
+
+const sellMessages = [
+  {
+    id: "1",
+    name: "Take",
+    lastMessage: "I'd Like to sell this",
+  },
+  {
+    id: "2",
+    name: "Steve",
+    lastMessage: "Are you buying this?",
+  },
+  {
+    id: "3",
+    name: "Steve",
+    lastMessage: "Are you buying this?",
+  },
+  {
+    id: "4",
+    name: "Steve",
+    lastMessage: "I'm selling this",
   },
 ]
 
@@ -86,25 +137,18 @@ class ChatScreen extends React.Component {
 
     constructor(props) {
       super(props);
+      this.state = { 
+        slider: 'buying', 
+      }; 
     }
+
+   
 
     render() {
         return (
             <View style={styles.container}>
               <ChatSlider/>
-              <FlatList style={styles.flatList}
-                data={messages}
-                numColumns={1}
-                horizontal={false}
-                keyExtractor={item => item.id}
-                
-                renderItem={({item}) => (
-                  <View style={styles.noMessagesContainer}>
-                    <Text>{item.name}</Text>
-                    <Text>{item.lastMessage}</Text>
-                   </View>
-                )}
-              /> 
+               
             </View>
         );
     }
@@ -160,8 +204,9 @@ const styles = StyleSheet.create({
       margin: 10,
     },
     flatList: {
+      marginTop: "5%",
       alignSelf: 'center',
-      height: "60%",
+      height: "95%",
       width: "100%",
     },
     messengerContainer: {
