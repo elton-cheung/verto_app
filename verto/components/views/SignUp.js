@@ -1,6 +1,8 @@
 import React from 'react';
 import {View, Button, TextInput, StyleSheet, Image, Text} from 'react-native';
 import DatePicker from 'react-native-datepicker'
+import SecureStorage, { ACCESS_CONTROL, ACCESSIBLE, AUTHENTICATION_TYPE } from 'react-native-secure-storage';
+
 // import styles from './style/signUpFlowStyle.js';
 
 class SignUp extends React.Component {
@@ -9,8 +11,8 @@ class SignUp extends React.Component {
     lastname: '',
     password: '',
     confpassword: '',
-    currentdate: "",
-    email:"",
+    currentdate: '',
+    email:'',
     birthDate:"2016-05-15",
     error: 'Please enter all the fields'
   };
@@ -72,27 +74,26 @@ calculateAge(birth_date) {
             .then(json => {
               let emailSend = this.state.email;
               if (json.code == 'user_created') {
-                // alert('1')
                 const token = json.token
                 const userId = json.user.user_id
                 const secure = SecureStorage.setItem(userId, token, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
                 this.props.navigation.navigate('EmailVer',  {token_user: userId, email:json.user.email} );
               } else if (json.code == 'email_exists') {
-                alert('2')
                 console.log(json.code)
                 this.setState({error: 'This email is already used'});
-                this.props.navigation.navigate('EmailVer', {email:"ethango@bu.edu"});
+                const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsdG9uY0BidS5lZHUiLCJ1c2VyX2lkIjoiNWVhOGEzYmZmZDk5ZDQxNjBiNWFlYjliIiwidmVydG9faWQiOiI1Yjk3MzgwYWVkNmYwOTBlZTI3NjQ4NTYzYmZkYTE5NiIsImlhdCI6MTU4ODExMDI3M30.pQuzX0-jySNczrIjkJUOwRr4gPQEYx-7yiDwb2zi7Cs"
+                const userId = "5ea8a3bffd99d4160b5aeb9b"
+                const secure = SecureStorage.setItem(userId, token, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
+                this.props.navigation.navigate('EmailVer', {token_user: userId, email:"eltonc@bu.edu"});
               }
               else if(json.code == 'chatkit_error'){
-                alert('3')
                 this.setState({error: 'Please enter a valid e-mail'})
               }
               else if(json.code == "edu_email_required"){
-                alert('4')
                 this.setState({error: 'Please enter an edu e-mail'})
               }
               else{
-                alert('5')
+                alert('An unexpected error occur please contact us!')
 
               }
             });
