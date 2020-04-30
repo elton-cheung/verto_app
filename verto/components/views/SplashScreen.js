@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import {
-  View,
   StyleSheet,
   FlatList,
   Text,
   SafeAreaView,
   ScrollView,
   Image,
-  ActivityIndicator,
 } from 'react-native';
 import {Card} from 'react-native-elements';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -136,7 +134,7 @@ export class SplashScreen extends Component {
 
   Item({name,photoSrc,price,navigation}) {
     // const navigation = useNavigation();
-
+  // const photoSrc = require({photoSrc})
     return (
       <TouchableOpacity
         style={styles.item}
@@ -149,7 +147,8 @@ export class SplashScreen extends Component {
             },
           });
         }}>
-        <Card image={photoSrc}>
+        
+        <Card image={{uri:photoSrc}}>
           <Text>{name}</Text>
           <Text>${price}</Text>
         </Card>
