@@ -86,7 +86,7 @@ class AddProductContainer extends React.Component {
 
   handleSubmit = () => {
     const value = this._form.getValue();
-
+    console.log('value', value);
     var dataForm = new FormData();
     dataForm.append('image', {
       uri: this.state.source,
@@ -94,31 +94,9 @@ class AddProductContainer extends React.Component {
       name: 'testPhotoName',
     });
 
-    // return axios({
-    //   method: 'POST',
-    //   url: 'https://api.vertostore.com/products/image-upload',
-    //   async: true,
-    //   crossDomain: true,
-    //   headers: {
-    //     Authorization: 'Bearer ' + keys.token,
-    //   },
-    //   processData: false,
-    //   contentType: false,
-    //   mimeType: 'multipart/form-data',
-    //   dataType: 'json',
-    //   data: dataForm,
-    // })
-    //   .then(responseJson => {
-    //     console.log('hello', responseJson.data);
-    //     console.log('We hit upload Image function!!!');
-    //     return responseJson;
-    //   })
-    //   .catch(error => {
-    //     console.log(error.response);
-    //   });
-
-    /* POST request to add image to server */
+    /* POST request to add product to server */
     let headers = new Headers({
+      'Content-Type': 'application/json',
       Authorization: 'Bearer ' + keys.token,
     });
     let formdata = new FormData();
@@ -133,11 +111,22 @@ class AddProductContainer extends React.Component {
       body: formdata,
     };
     fetch('https://api.vertostore.com/products/image-upload', requestOptions)
-      .then(res => {
-        console.log('res ', res);
-        res.json();
+      .then(res => res.json())
+      .then(json => {
+        let newProduct = {
+          image_keys: [json.image_key],
+          vendor_price: 12345,
+          coordinate: {
+            lng: 42.36,
+            lat: 71.06,
+          },
+        };
+        requestOptions.body = JSON.stringify(newProduct);
+        console.log('json', newProduct);
+        return fetch('https://api.vertostore.com/products/', requestOptions);
       })
-      .then(json => console.log('hello', json))
+      .then(response => response.text())
+      .then(text => console.log('i made it here', text))
       .catch(error => console.log('error', error));
   };
 
