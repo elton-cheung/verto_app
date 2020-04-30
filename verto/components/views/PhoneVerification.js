@@ -8,8 +8,8 @@ import SecureStorage, { ACCESS_CONTROL, ACCESSIBLE, AUTHENTICATION_TYPE } from '
 
 class PhoneVer extends React.Component {
   state = {
-    email: '',
-    confemail: '',
+    phone:'',
+    code:'',
     errorMessage: 'Enter Code Here',
     error: true
   };

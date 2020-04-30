@@ -30,7 +30,7 @@ class PhoneInput extends React.Component {
         },
         body: JSON.stringify(data),
       }))
-            .then(response => response.json())
+            .then(response => console.log(response))
             .then(json => {
               if (json.message == 'Email sent') {
                 // alert('1')
@@ -88,6 +88,10 @@ class PhoneInput extends React.Component {
           <Button
             title="Send Verification Code"
             onPress={this.sendPhone.bind(this)}
+          />
+          <Button
+            title="Skip Phone Verification"
+            onPress={() => this.props.navigation.navigate('Onboard')}
           />
         </View>
       </View>
