@@ -17,6 +17,7 @@ export default class DetailsScreen extends React.Component {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
     };
 
+    console.log('hello world', )
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{data.name}</Text>

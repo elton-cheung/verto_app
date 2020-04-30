@@ -6,7 +6,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import t from 'tcomb-form-native';
 import ImagePicker from 'react-native-image-picker';
 import bootstrap from 'tcomb-form-native/lib/stylesheets/bootstrap.js';
-import axios from 'react-native-axios';
 
 import SettingsScreen from './SettingsScreen';
 import ProfileScreen from './ProfileScreen';
