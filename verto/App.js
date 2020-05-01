@@ -10,10 +10,6 @@ import Verto from './components/views/Redirect';
 
 export default class App extends Component {
   render() {
-    // if you want to see auth flow:
-
-    // return <HomeStack />;
-
     const AuthStack = HomeStack;
     const FinalStack = createSwitchNavigator(
       {
@@ -26,8 +22,8 @@ export default class App extends Component {
     );
 
     const Final = createAppContainer(FinalStack);
-    //return <Final />;
+    return <Final />;
 
-    return <Verto />;
+    /// return <Verto />;
   }
 }
