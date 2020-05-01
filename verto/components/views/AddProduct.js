@@ -24,7 +24,6 @@ const Location = t.enums({
 
 const Item = t.struct({
   item: t.String,
-  username: t.String,
   description: t.String,
   location: t.maybe(Location),
   price: t.Number,
@@ -35,9 +34,6 @@ const formOptions = {
   fields: {
     item: {
       error: 'Item name required.',
-    },
-    user: {
-      error: 'Username required.',
     },
     description: {
       error: 'Description required.',
@@ -64,7 +60,6 @@ formOptions.stylesheet.textboxView.normal = {
 const imagePickerOptions = {
   title: 'Select images',
   mediaType: 'photo',
-  customButtons: [{name: 'fb', title: 'Choose photo from Facebook'}],
   storageOptions: {
     skipBackup: true,
     path: 'images',

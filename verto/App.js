@@ -26,8 +26,8 @@ export default class App extends Component {
     );
 
     const Final = createAppContainer(FinalStack);
-    //return <Final />;
+    return <Final />;
 
-    return <Verto />;
+    //return <Verto />;
   }
 }
