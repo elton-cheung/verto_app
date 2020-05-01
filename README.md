@@ -1,14 +1,12 @@
 # Verto (The Mobile App) version 1.0 
 This app is a prototype for Verto's mobile platform, built in React Native and AWS. The goal is to create an iOS/Android app for Verto users to buy and sell products to and from other college students. This is an MVP for the primary functionality of viewing products from other sellers and uploading products to the database. We developed the entire frontend from scratch, which was an emphasis from our project manager, and the backend has been developed by Verto, whose API we use.
 
-## Verto Authentication 
-
 ## Requirements: 
-* Apple [Xcode](https://developer.apple.com/xcode/)
-* Android [Android_Studio](https://developer.android.com/studio/)
+* Apple [Xcode](https://developer.apple.com/xcode/) 11+ with the latest iOS SDK
+* Android Studio [Android_Studio](https://developer.android.com/studio/) 3.6+ with latest Android SDK
 
 ## Build 
-1. Installation: Inside verto directory ``` npm install ```
+1. Installation: ``` npm install ```
 2. To run on
 * Android: ``` npx react-native run-android ```
 * iOS: 
@@ -16,7 +14,9 @@ Inside verto/ios directory: ```pod install```
 Inside verto directory:     ```npx react-native run-ios ```
 
 ## Login Credentials
-If having signup issues, contact us for an account to use.
+If having signup issues, use the following account to login:
+email: vertostore@vertostore.com
+password: VertoStore!
 
 ## Dependencies
 1. React-native
