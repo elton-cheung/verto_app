@@ -3,7 +3,7 @@ This app is a prototype for Verto's mobile platform, built in React Native and A
 
 ## Requirements: 
 * Apple [Xcode](https://developer.apple.com/xcode/) 11+ with the latest iOS SDK
-* Android Studio [Android_Studio](https://developer.android.com/studio/) 3.6+ with latest Android SDK
+* Android [Android_Studio](https://developer.android.com/studio/) 3.6+ with latest Android SDK
 
 ## Build 
 1. Installation: ``` npm install ```
