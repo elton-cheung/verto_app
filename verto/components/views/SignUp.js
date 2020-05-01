@@ -4,7 +4,10 @@ import DatePicker from 'react-native-datepicker'
 import SecureStorage, { ACCESS_CONTROL, ACCESSIBLE, AUTHENTICATION_TYPE } from 'react-native-secure-storage';
 
 // import styles from './style/signUpFlowStyle.js';
-
+/*
+ Datepicker is deprecated and should be replaced with a better library, but it's used here for now
+  because of time constraint. Datepicker is also not great because some of the dates are hard coded
+*/
 class SignUp extends React.Component {
   state = {
     firstname: '',
@@ -16,11 +19,12 @@ class SignUp extends React.Component {
     birthDate:"2016-05-15",
     error: 'Please enter all the fields'
   };
-  onChangeText = (key, val) => {
-    this.setState({[key]: val});
-  };
 
-
+/*
+  Function to calculate age
+  Input: String (yyyymmdd)
+  Output: A number to determine age
+*/
 calculateAge(birth_date) {
   var year = Number(birth_date.substring(0, 4));
   var month = Number(birth_date.substring(4, 2)) - 1;
@@ -33,6 +37,13 @@ calculateAge(birth_date) {
   return age
 }
 
+/*
+  Verification using the API
+  Sends a POST request, if the email_exist, we will notify the user
+  Currently, we are checking for simple test case 
+  (if password is not the same, age and making sure they enter all the input fields)
+  In the future, it would be great to use a better library for organization if there is away to do so
+*/
   async verification(){
     let birth = new Object();
     birth["day"] = this.state.birthDate.substring(8,10)
@@ -59,8 +70,7 @@ calculateAge(birth_date) {
         this.setState({error: "You must be at least 13 years old to use this service"})
       }
       else{
-        //NO error, then proceed
-        // console.log("Inside this")
+        //No input fields error, then proceed
         try {
           await fetch('https://api.vertostore.com/account/signup', {
             method: 'POST',
@@ -73,18 +83,14 @@ calculateAge(birth_date) {
             .then(response => response.json())
             .then(json => {
               let emailSend = this.state.email;
+              console.log(json);
               if (json.code == 'user_created') {
                 const token = json.token
                 const userId = json.user.user_id
                 const secure = SecureStorage.setItem(userId, token, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
                 this.props.navigation.navigate('EmailVer',  {token_user: userId, email:json.user.email} );
               } else if (json.code == 'email_exists') {
-                console.log(json.code)
                 this.setState({error: 'This email is already used'});
-                const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsdG9uY0BidS5lZHUiLCJ1c2VyX2lkIjoiNWVhOGEzYmZmZDk5ZDQxNjBiNWFlYjliIiwidmVydG9faWQiOiI1Yjk3MzgwYWVkNmYwOTBlZTI3NjQ4NTYzYmZkYTE5NiIsImlhdCI6MTU4ODExMDI3M30.pQuzX0-jySNczrIjkJUOwRr4gPQEYx-7yiDwb2zi7Cs"
-                const userId = "5ea8a3bffd99d4160b5aeb9b"
-                const secure = SecureStorage.setItem(userId, token, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
-                this.props.navigation.navigate('EmailVer', {token_user: userId, email:"eltonc@bu.edu"});
               }
               else if(json.code == 'chatkit_error'){
                 this.setState({error: 'Please enter a valid e-mail'})
@@ -93,12 +99,11 @@ calculateAge(birth_date) {
                 this.setState({error: 'Please enter an edu e-mail'})
               }
               else{
-                alert('An unexpected error occur please contact us!')
-
+                alert('An error has occured, please contact us!');
               }
             });
         } catch {
-          alert('An unexpected error occur please contact us!');
+          alert('An error has occured, please contact us!');
         }
         }
       }

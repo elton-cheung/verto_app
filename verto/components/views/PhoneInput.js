@@ -14,7 +14,14 @@ class PhoneInput extends React.Component {
   };
 
 
-  // After e-mail verification, we need to set up phone verification
+ /*
+  This phone verification calls the verto Phone Verification API
+  AS of April 30 2020, the API is temporarily responding with an error but for future users, please try to test the code
+  Logic wise, instead of checking the JSON message, we check the status, everything else should be similar
+  We also have an optional Skip Phone verification (Phone Verification is not required but Email is)
+  For future developers, make sure you implement a functionality to verify phone number in case people want to verify the phone
+  Number after logging in.
+ */
 
   async sendPhone(){
     try{
@@ -30,14 +37,9 @@ class PhoneInput extends React.Component {
         },
         body: JSON.stringify(data),
       }))
-            .then(response => console.log(response))
-            .then(json => {
-              if (json.message == 'Email sent') {
-                // alert('1')
-                console.log('email has been sent')
-              }
-              else{
-                console.log('An error has occured, please contact us!');
+            .then(response => {
+              if(response.status == 200){
+                this.props.navigation.navigate('PhoneVer', {token_user: this.state.userId, phone:this.state.phone})
               }
             });
           }

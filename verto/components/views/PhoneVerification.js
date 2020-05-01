@@ -8,30 +8,43 @@ import SecureStorage, { ACCESS_CONTROL, ACCESSIBLE, AUTHENTICATION_TYPE } from '
 
 class PhoneVer extends React.Component {
   state = {
-    phone:'',
+    phone:this.props.navigation.getParam('phone'),
     code:'',
     errorMessage: 'Enter Code Here',
     error: true
   };
   
-  onChangeText = (key, val) => {
-    this.setState({[key]: val});
-  };
 
-  // After e-mail verification, we need to set up phone verification
-  signUp = async () => {
-    const {email, confemail} = this.state;
-    try {
-      // here place your signup logic
-      console.log('Next adding phone number!: ', success);
-    } catch (err) {
-      console.log('error signing up: ', err);
-    }
-  };
+  /*
+  PhoneInput and PhoneVerification is unchecked as of April 30 2020, please test out the API, similar logic
+  Be careful, the body data needs the code to be extracted
+  */
+  
 
-  completeEmail() {
-    // this.signUp;
-    this.props.navigation.navigate('PhoneVer');
+  async verifyPhone(){
+    try{
+      let data = new Object();
+        data["phone"] = this.state.phone
+        data["code"] = this.state.code
+        SecureStorage.getItem(this.state.userId, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
+        .then(response => fetch('https://api.vertostore.com/account/code-verification/', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + response
+          },
+          body: JSON.stringify(data),
+        }))
+              .then(response => {
+                if(response.status == 200){
+                  this.props.navigation.navigate('PhoneVer', {token_user: this.state.userId, phone:this.state.phone})
+                }
+              });
+            }
+            catch{
+                console.log('An error has occured, please contact us!')
+            }     
   }
 
   render() {
@@ -63,7 +76,7 @@ class PhoneVer extends React.Component {
             secureTextEntry={true}
             placeholder={this.state.errorMessage}
             placeholderTextColor="red"
-            onChangeText={val => this.onChangeText('password', val)}
+            onChangeText={code => this.setState({code})}
             maxLength={6}
           />
           <Text style={{textAlign: 'center', fontSize: 15}}>An SMS message will been sent</Text>
@@ -78,7 +91,7 @@ class PhoneVer extends React.Component {
           />
                     <Text style={{textAlign: 'center', fontSize: 15}}>If you have not received the SMS, please click to</Text>
 <Text style={{color: 'blue'}}
-      onPress={() => this.state.error ? this.setState({errorMessage: "Wrong Code"}) : alert("SMS sent")}>
+      onPress={this.verifyPhone.bind(this)}>
   resend SMS
 </Text>
         </View>

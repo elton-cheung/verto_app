@@ -8,19 +8,24 @@ import SecureStorage, { ACCESS_CONTROL, ACCESSIBLE, AUTHENTICATION_TYPE } from '
 
 class EmailVer extends React.Component {
   state = {
-    userId: '',
     email: this.props.navigation.getParam('email'),
     value: '',
     userId:this.props.navigation.getParam('token_user'),
   };
-  // Call the Email Verification API
 
+/* Send the verification E-mail before we render the page
+Authorization is the bearer token, we first have to retrieve it through SecureStorage (A promise),
+Use that promise to send a POST request to Verto's API
+Then if response == "Email Sent", we notify the users that the email is sent
+Otherwise, there are many possible problem:
+1. It could be a bug in the body JSON that we are sending
+2. The auth token could be wrong
 
+NOTE: THE API takes a while to send the code
+Sometimes the API doesn't respond -> so try using Postman first
+Expects Bearer token and  a body of {"email" : "youremail@something.edu"}
+*/
   componentWillMount(){
-    // this.setState({
-    //   email: this.props.email
-    // });
-    console.log(this.state.email);
     try{
       let data = new Object();
       data["email"] = this.state.email
@@ -38,8 +43,7 @@ class EmailVer extends React.Component {
             .then(response => response.json())
             .then(json => {
               if (json.message == 'Email sent') {
-                // alert('1')
-                console.log('email has been sent')
+                alert('An email has been sent to your .edu email')
               }
               else{
                 alert('An error has occured, please contact us!');
@@ -50,10 +54,11 @@ class EmailVer extends React.Component {
               alert('An error has occured, please contact us!')
           }        
 }
-
-// After e-mail verification, we need to set up phone verification
+/*
+  Resend code is the same function as above, this is triggered when the user press the resend code button
+  Similar logic to above, except now we do it after render
+*/
 async resendCode(){
-  console.log('inside resend code')
   try{
     let data = new Object();
     data["email"] = this.state.email
@@ -69,10 +74,8 @@ async resendCode(){
       }))
       .then(response => response.json())
             .then(json => {
-              console.log(json)
               if (json.message == 'Email sent') {
-                // alert('1')
-                console.log("email sent 2")
+                alert('An email has been sent to your .edu email')
               }
               else{
                 alert('An error has occured, please contact us!');
@@ -84,9 +87,13 @@ async resendCode(){
   }
 }
 
+ /* 
+ After e-mail verification, we need to set up phone verification, 
+ The authorization key is retrieved using secure storage, similar to how we post the send email request
+ The API docs requires email and code that was sent.
+*/
 async verification(){
   try{
-    console.log('https://api.vertostore.com/account/email-update/' + this.state.value)
     let data = new Object();
     data["email"] = this.state.email;
     SecureStorage.getItem(this.state.userId, {accessible: ACCESSIBLE.WHEN_UNLOCKED})
@@ -95,15 +102,13 @@ async verification(){
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + response
+            'Authorization': 'Bearer ' + response 
           },
           body: JSON.stringify(data),
         }))
           .then(response => response.json())
           .then(json => {
-            console.log(json)
             if (json.code == 'verified_email') {
-              console.log('here')
               this.props.navigation.navigate('PhoneInput',  {token_user: this.state.userId} );
             }
             if(json.code == 'failed_verification'){
@@ -118,11 +123,6 @@ async verification(){
           alert('An error has occured, please contact us!');
         }   
 }
-
-  completeEmail() {
-    // this.signUp;
-    this.props.navigation.navigate('PhoneVer');
-  }
 
   render() {
     return (
@@ -178,10 +178,6 @@ async verification(){
   }
 }
 
-/*
-  TODO: Implement a function to adjust text size upon typing
-
-*/
 const styles = StyleSheet.create({
   buttonLog: {
       alignSelf: 'stretch',
