@@ -23,8 +23,8 @@ const Location = t.enums({
 });
 
 const Item = t.struct({
-  item: t.String,
-  description: t.String,
+  item: t.maybe(t.String),
+  description: t.maybe(t.String),
   location: t.maybe(Location),
   price: t.Number,
 });
