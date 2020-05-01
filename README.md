@@ -11,6 +11,10 @@ This app is a prototype for Verto's mobile platform, built in React Native and A
 Inside verto/ios directory: ```pod install```
 Inside verto directory:     ```npx react-native run-ios ```
 
+2. If you get a build error about missing modules (i.e. React Navigation), uninstall and reinstall the module:
+* ```npm uninstall react-navigation```
+* ```npm install react-navigation```
+
 ## Dependencies
 1. React-native 0.6+
 2. Refer to verto/package.json for more info.
