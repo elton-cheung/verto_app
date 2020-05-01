@@ -41,14 +41,14 @@ class LogIn extends React.Component {
     })
       .then(response => response.json())
       .then(json => {
+        /*Created to test sending token keys
         const token = json.token;
         const userId = json.user.user_id;
         const secure = SecureStorage.setItem(userId, token, {
           accessible: ACCESSIBLE.WHEN_UNLOCKED,
-        });
+        });*/
         if (json.code == 'authorized') {
-          //console.log("this is the key ", json.user.user_id),
-          this.props.navigation.navigate('Verto', {t: 86});
+          this.props.navigation.navigate('Verto');
         } else {
           Alert.alert('Wrong Credentials', 'Please Try Again');
         }
