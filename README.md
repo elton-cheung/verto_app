@@ -6,9 +6,7 @@ This app is a prototype for Verto's mobile platform, built in React Native and A
 * Android [Android_Studio](https://developer.android.com/studio/) 3.6+ with latest Android SDK
 
 ## Build 
-1. Installation: ``` npm install ```
-2. To run on
-* Android: ``` npx react-native run-android ```
+1. [Installation](https://reactnative.dev/docs/running-on-device):
 * iOS: 
 Inside verto/ios directory: ```pod install```
 Inside verto directory:     ```npx react-native run-ios ```
@@ -19,7 +17,7 @@ email: vertostore@vertostore.com
 password: VertoStore!
 
 ## Dependencies
-1. React-native
+1. React-native 0.6+
 2. Refer to verto/package.json for more info.
 
 ## Known Fatal Bugs
@@ -33,7 +31,7 @@ password: VertoStore!
 1. Forgot Password page is not connected to the Verto API as Verto has not created one yet.
 2. Profile screen is a placeholder and does not hold any information.
 3. Settings screen is undeveloped and does not hold any information.
-4. AddProduct screen was developed using a form builder library called tcomb-form-native. In hindsight, we reccommend to Verto they use another library or use native built-in components as this library is deprecated. The uploads also use a static price.
+4. AddProduct screen was developed using a form builder library called tcomb-form-native. In hindsight, we recommend to Verto they use another library or use native built-in components as this library is deprecated. The uploads also use a static price.
 5. DetailsScreen is a frontend mockup. Buy/Message buttons don't navigate anywhere. User and description is static, but the other fields are pulled from the database.
 6. Datepicker for the sign-up page is deprecated, we recommend using another library. It is also incomplete as some of the values such as (max date is hard coded)
 4. As of April 30, 2020, the PhoneInput and PhoneVerification page is incomplete due to the API not working but when the API is back, it should be implemented
