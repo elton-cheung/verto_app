@@ -24,6 +24,11 @@ class SignUp extends React.Component {
   Function to calculate age
   Input: String (yyyymmdd)
   Output: A number to determine age
+  Credit: Francisc
+  Title: Calculate age given the birth date in the format YYYYMMDD
+  Date: October 30 2010
+  Link: https://meta.stackoverflow.com/questions/316496/citation-for-linking-to-answers
+  License: License "CC BY" is linked to license deed.
 */
 calculateAge(birth_date) {
   var year = Number(birth_date.substring(0, 4));
