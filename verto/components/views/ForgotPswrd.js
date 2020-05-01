@@ -1,4 +1,4 @@
-
+//Does not have fuctionality as Verto has not added any on their backend
 import React from 'react';
 import {View, Button, TextInput, StyleSheet, Image, Text, Linking} from 'react-native';
 import { Icon } from 'react-native-elements';
