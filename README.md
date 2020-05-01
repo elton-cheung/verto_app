@@ -27,7 +27,7 @@ Inside verto directory:     ```npx react-native run-ios ```
 2. Profile screen is a placeholder and does not hold any information.
 3. Settings screen is undeveloped and does not hold any information.
 4. AddProduct screen was developed using a form builder library called tcomb-form-native. In hindsight, we recommend to Verto they use another library or use native built-in components as this library is deprecated. The uploads also use a static price.
-5. SearchCarousel on SplashScreen is frontend mockup. Doesn't work to search by categories. 
+5. SearchCarousel on SplashScreen is frontend mockup. Can't use to search by categories. 
 6. DetailsScreen is a frontend mockup. Buy/Message buttons don't navigate anywhere. User and description is static, but the other fields are pulled from the database.
 7. Datepicker for the sign-up page is deprecated, we recommend using another library. It is also incomplete as some of the values such as (max date is hard coded)
 8. As of April 30, 2020, the PhoneInput and PhoneVerification page is incomplete due to the API not working but when the API is back, it should be implemented
