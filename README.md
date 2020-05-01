@@ -12,11 +12,13 @@ This app is a prototype for Verto's mobile platform, built in React Native and A
 2. To run on
 * Android: ``` npx react-native run-android ```
 * iOS: 
-* Inside verto/ios directory: ```pod install```
-* Inside verto directory:     ```npx react-native run-ios ```
+Inside verto/ios directory: ```pod install```
+Inside verto directory:     ```npx react-native run-ios ```
 
 ## Login Credentials
-If having signup issues, contact us for an account.
+If having signup issues, use the following account to login:
+email: vertostore@vertostore.com
+password: VertoStore!
 
 ## Dependencies
 1. React-native
@@ -34,6 +36,6 @@ If having signup issues, contact us for an account.
 5. DetailsScreen is a frontend mockup. Buy/Message buttons don't navigate anywhere. User and description is static, but the other fields are pulled from the database.
 
 ## Verto Useful Components
-1. SplashScreen:
+1. SplashScreen: Main screen for Verto users (after logging in). Users will see an updated list of products that is being pulled from Verto's API. They can click on each card to see a details screen for each product.
 2. AddProduct: Screen for adding products to the database. User selects an image (which is the only required field for the backend), which is sent to Verto's API and uploaded to the database using attributes pre-filled in by an image-recognition API.
 3. DetailsScreen: Tapping on a card in the SplashScreen(shop tab) will display further details about the product.
