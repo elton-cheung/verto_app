@@ -12,8 +12,8 @@ This app is a prototype for Verto's mobile platform, built in React Native and A
 2. To run on
 * Android: ``` npx react-native run-android ```
 * iOS: 
-*Inside verto/ios directory: ```pod install```
-*Inside verto directory:     ```npx react-native run-ios ```
+* Inside verto/ios directory: ```pod install```
+* Inside verto directory:     ```npx react-native run-ios ```
 
 ## Login Credentials
 If having signup issues, contact us for an account.
