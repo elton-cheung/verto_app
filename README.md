@@ -8,7 +8,7 @@ This app is a prototype for Verto's mobile platform, built in React Native and A
 * Android [Android_Studio](https://developer.android.com/studio/)
 
 ## Build 
-1. Installation: ``` npm install ```
+1. Installation: Inside verto directory ``` npm install ```
 2. To run on
 * Android: ``` npx react-native run-android ```
 * iOS: 
@@ -16,9 +16,7 @@ Inside verto/ios directory: ```pod install```
 Inside verto directory:     ```npx react-native run-ios ```
 
 ## Login Credentials
-If having signup issues, use the following account to login:
-email: vertostore@vertostore.com
-password: VertoStore!
+If having signup issues, contact us for an account to use.
 
 ## Dependencies
 1. React-native
