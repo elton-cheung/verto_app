@@ -28,7 +28,7 @@ password: VertoStore!
 1. Forgot Password page is not connected to the Verto API as Verto has not created one yet.
 2. Profile screen is a placeholder and does not hold any information.
 3. Settings screen is undeveloped and does not hold any information.
-4. AddProduct screen was developed using a form builder library called tcomb-form-native. In hindsight, we reccommend to Verto they use another library or use native built-in components as this library is deprecated. The uploads also use a static price.
+4. AddProduct screen was developed using a form builder library called tcomb-form-native. In hindsight, we recommend to Verto they use another library or use native built-in components as this library is deprecated. The uploads also use a static price.
 5. DetailsScreen is a frontend mockup. Buy/Message buttons don't navigate anywhere. User and description is static, but the other fields are pulled from the database.
 
 ## Verto Useful Components
