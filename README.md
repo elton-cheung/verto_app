@@ -11,11 +11,6 @@ This app is a prototype for Verto's mobile platform, built in React Native and A
 Inside verto/ios directory: ```pod install```
 Inside verto directory:     ```npx react-native run-ios ```
 
-## Login Credentials
-If having signup issues, use the following account to login:
-email: vertostore@vertostore.com
-password: VertoStore!
-
 ## Dependencies
 1. React-native 0.6+
 2. Refer to verto/package.json for more info.
