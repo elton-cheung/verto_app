@@ -25,6 +25,9 @@ password: VertoStore!
 ## Known Fatal Bugs
 1. Clicking the "upload" button when adding a product (sell tab) causes the app to crash.
 2. Clicking the "logout" button in the settings screen (top right header button) causes the app to crash.
+3. There are occurences when typing the password will trigger a "Strong Password" to hinder the input field of the password, this is not consistent, but may prevent the user from signing in
+
+
 
 ## Known Missing Features
 1. Forgot Password page is not connected to the Verto API as Verto has not created one yet.
@@ -32,6 +35,11 @@ password: VertoStore!
 3. Settings screen is undeveloped and does not hold any information.
 4. AddProduct screen was developed using a form builder library called tcomb-form-native. In hindsight, we reccommend to Verto they use another library or use native built-in components as this library is deprecated. The uploads also use a static price.
 5. DetailsScreen is a frontend mockup. Buy/Message buttons don't navigate anywhere. User and description is static, but the other fields are pulled from the database.
+6. Datepicker for the sign-up page is deprecated, we recommend using another library. It is also incomplete as some of the values such as (max date is hard coded)
+4. As of April 30, 2020, the PhoneInput and PhoneVerification page is incomplete due to the API not working but when the API is back, it should be implemented
+5. Better features to check for Input fields in the SignUp should be used instead of checking them in the frontend. SignUp currently checks for three basic case: (Missing Input, Password not being the same, and age)
+6. In addition, checking password strength feature is not implemented in the current build
+
 
 ## Verto Useful Components
 1. SplashScreen: Main screen for Verto users (after logging in). Users will see an updated list of products that is being pulled from Verto's API. They can click on each card to see a details screen for each product.
