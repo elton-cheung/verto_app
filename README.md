@@ -15,12 +15,12 @@ This app is a prototype for Verto's mobile platform, built in React Native and A
 Inside verto/ios directory: ```pod install```
 Inside verto directory:     ```npx react-native run-ios ```
 
-### Login Credentials
+## Login Credentials
 If having signup issues, use the following account to login:
 email: vertostore@vertostore.com
 password: VertoStore!
 
-### Dependencies
+## Dependencies
 1. React-native
 2. Refer to verto/package.json for more info.
 
@@ -28,7 +28,7 @@ password: VertoStore!
 1. Clicking the "upload" button when adding a product (sell tab) causes the app to crash.
 2. Clicking the "logout" button in the settings screen (top right header button) causes the app to crash.
 
-### Known Missing Features
+## Known Missing Features
 1. Forgot Password page is not connected to the Verto API as Verto has not created one yet.
 2. Profile screen is a placeholder and does not hold any information.
 3. Settings screen is undeveloped and does not hold any information.
