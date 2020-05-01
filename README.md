@@ -6,8 +6,7 @@ This app is a prototype for Verto's mobile platform, built in React Native and A
 * Android [Android_Studio](https://developer.android.com/studio/) 3.6+ with latest Android SDK
 
 ## Build 
-1. [Installation] (https://reactnative.dev/docs/running-on-device):
-* Android:``` npx react-native run-android ```
+1. [Installation](https://reactnative.dev/docs/running-on-device):
 * iOS: 
 Inside verto/ios directory: ```pod install```
 Inside verto directory:     ```npx react-native run-ios ```
@@ -18,7 +17,7 @@ email: vertostore@vertostore.com
 password: VertoStore!
 
 ## Dependencies
-1. React-native
+1. React-native 0.6+
 2. Refer to verto/package.json for more info.
 
 ## Known Fatal Bugs
